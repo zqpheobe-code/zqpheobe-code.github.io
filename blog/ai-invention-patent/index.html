@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI设计的发明能申请专利吗？——从一篇NAR顶刊论文说起 | SinPheobe Cheung</title>
+  <meta name="description" content="作为NAR论文作者兼涉外专利代理师，张倩从CN/US/EPO三视角分析：AI设计的DNA序列能不能申请专利？发明人是谁？披露义务是什么？">
+  <meta name="keywords" content="AI专利, AI发明, 深度学习, 合成增强子, 专利代理师, 张倩, SinPheobe, PCT, 生物技术专利, 发明人">
+  <meta name="author" content="SinPheobe Cheung">
+  <meta property="og:title" content="AI设计的发明能申请专利吗？——从一篇NAR顶刊论文说起">
+  <meta property="og:description" content="NAR论文作者兼专利代理师双视角分析AI发明的可专利性">
+  <meta property="og:type" content="article">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --paper:#FFFBEB;--paper-2:#FBF6E4;--paper-3:#F5EFD9;
+  --ink-deep:#0F172A;--ink-green:#2D5A4A;--ink-green-2:#4A7A6E;
+  --ink-gray:#78716C;--ink-light:#A8A29E;
+  --seal-red:#A8423A;--seal-red-light:rgba(168,66,58,0.08);
+  --border-ink:rgba(45,90,74,0.15);--border-ink-2:rgba(45,90,74,0.08);
+  --shadow-soft:0 2px 8px rgba(15,23,42,0.06);
+  --cn-font:"Noto Serif SC","STKaiti","KaiTi","楷体","Songti SC",serif;
+  --en-font:"EB Garamond","Noto Serif SC",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0;}
+html,body{background:var(--paper);font-family:var(--cn-font);color:var(--ink-deep);font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased;}
+.container{max-width:680px;margin:0 auto;padding:0 24px;}
+header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:2px solid var(--ink-green);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.brand__seal{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:var(--seal-red);color:var(--paper);font-size:16px;font-weight:700;}
+.brand__name{font-size:18px;color:var(--ink-green);font-weight:700;letter-spacing:1px;}
+.back-link{font-size:13px;color:var(--ink-green);text-decoration:none;}
+article{padding:40px 0 60px;}
+.article-header{margin-bottom:32px;}
+.article-date{font-size:13px;color:var(--ink-light);font-family:var(--en-font);margin-bottom:8px;}
+.article-title{font-size:24px;font-weight:700;color:var(--ink-deep);line-height:1.5;margin-bottom:12px;}
+.article-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.article-tag{font-size:11px;padding:3px 10px;background:var(--paper-3);border:1px solid var(--border-ink-2);color:var(--ink-green-2);}
+.article-divider{height:1px;background:var(--border-ink);margin:24px 0;}
+.article-body h2{font-size:19px;font-weight:700;color:var(--ink-green);margin:32px 0 12px;line-height:1.5;border-left:3px solid var(--seal-red);padding-left:12px;}
+.article-body h3{font-size:16px;font-weight:700;color:var(--ink-deep);margin:24px 0 8px;}
+.article-body p{margin-bottom:16px;color:var(--ink-deep);}
+.article-body strong{color:var(--seal-red);font-weight:700;}
+.article-body em{font-style:italic;color:var(--ink-green);}
+.article-body blockquote{margin:20px 0;padding:16px 20px;background:var(--paper-3);border-left:3px solid var(--ink-green);color:var(--ink-gray);font-size:14px;}
+.article-body ul,.article-body ol{margin:12px 0 16px 24px;}
+.article-body li{margin-bottom:6px;}
+.article-body code{font-family:monospace;background:var(--paper-3);padding:2px 6px;font-size:14px;color:var(--seal-red);}
+.article-body a{color:var(--ink-green);text-decoration:underline;}
+.callout{margin:24px 0;padding:20px;background:var(--seal-red-light);border:1px solid var(--seal-red);font-size:14px;color:var(--ink-deep);}
+.callout__title{font-weight:700;color:var(--seal-red);margin-bottom:8px;}
+.author-box{margin:40px 0;padding:24px;background:var(--paper-2);border:1px solid var(--border-ink);text-align:center;}
+.author-box__name{font-size:16px;font-weight:700;color:var(--ink-green);margin-bottom:4px;}
+.author-box__bio{font-size:13px;color:var(--ink-gray);line-height:1.7;}
+.author-box__links{margin-top:12px;}
+.author-box__links a{display:inline-block;margin:0 8px;font-size:13px;color:var(--ink-green);text-decoration:none;border:1px solid var(--ink-green);padding:4px 12px;transition:background .15s,color .15s;}
+.author-box__links a:hover{background:var(--ink-green);color:var(--paper);}
+footer{padding:24px 0;text-align:center;border-top:1px solid var(--border-ink);}
+footer a{color:var(--ink-green);text-decoration:none;font-size:13px;}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">
+      <span class="brand__seal">SP</span>
+      <span class="brand__name">SinPheobe Cheung</span>
+    </a>
+    <a class="back-link" href="/blog/">← 博客</a>
+  </header>
+  <div class="container">
+    <article>
+      <div class="article-header">
+        <div class="article-date">2026-07-16</div>
+        <h1 class="article-title">AI设计的发明能申请专利吗？——从一篇NAR顶刊论文说起</h1>
+        <div class="article-tags">
+          <span class="article-tag">AI专利</span>
+          <span class="article-tag">深度学习</span>
+          <span class="article-tag">合成生物学</span>
+          <span class="article-tag">PCT</span>
+          <span class="article-tag">CN/US/EPO</span>
+        </div>
+      </div>
+      <div class="article-divider"></div>
+      <div class="article-body">
+
+<p>2024年，我和合作者在 <em>Nucleic Acids Research</em>（IF 16.7）上发表了一篇论文，用一个可解释的深度学习框架设计了具有跨物种活性的合成增强子（<a href="https://doi.org/10.1093/nar/gkae912" target="_blank" rel="noopener">DOI: 10.1093/nar/gkae912</a>）。</p>
+
+<p>论文发表后，一个问题自然浮现：<strong>这些由AI设计的DNA序列，能不能申请专利？</strong></p>
+
+<p>我既是这篇论文的作者，也是一名涉外专利代理师（CN/US/EPO/JP/KR）。这篇文章我尝试从研究者和技术代理师两个视角，拆解"AI设计的发明"在专利法上到底面临哪些问题。</p>
+
+<h2>一、先搞清概念：AI辅助 vs AI自主</h2>
+
+<p>讨论"AI发明的专利问题"，首先要区分两种情况：</p>
+
+<ul>
+<li><strong>AI辅助发明</strong>：人提出问题、设计方向，AI作为工具生成具体方案，人做筛选和验证。我的NAR论文就属于这一类——我们设计了深度学习框架，用AI预测和生成增强子序列，但最终经过实验验证和筛选的是人。</li>
+<li><strong>AI自主发明</strong>：AI独立完成发明创造，人没有实质性的技术贡献。DABUS系列案件就是典型代表。</li>
+</ul>
+
+<p>这两种情况在专利法上的待遇完全不同。</p>
+
+<div class="callout">
+<div class="callout__title">关键区分</div>
+目前全球主要专利局（CNIPA、USPTO、EPO）的共识是：<strong>AI不能作为发明人</strong>。但"AI作为工具辅助人类发明"是完全可专利的——这和你用Excel算数据、用CAD画图纸没有本质区别。
+</div>
+
+<h2>二、发明人是谁？——三局态度对比</h2>
+
+<h3>美国（USPTO）</h3>
+
+<p>2022年，美国联邦巡回上诉法院在 <em>Thaler v. Vidal</em> 案中明确裁定：<strong>"发明人"必须是人类</strong>（inventor必须是natural person）。2024年，USPTO发布了《AI辅助发明的发明人身份指南》，进一步确认：</p>
+
+<ul>
+<li>AI不能被列为发明人</li>
+<li>但如果一个人对发明做出了"显著贡献"（significant contribution），可以作为发明人</li>
+<li>仅仅用AI跑了一下、没有实质性判断和改进，可能不够格</li>
+</ul>
+
+<h3>中国（CNIPA）</h3>
+
+<p>中国《专利法》第十三条规定发明人是指"对发明创造的实质性特点作出创造性贡献的人"。2023年修订的《专利法实施细则》没有直接提及AI，但实务中：</p>
+
+<ul>
+<li>CNIPA不接受AI作为发明人（DABUS在中国的申请也被驳回）</li>
+<li>AI辅助发明中，实际做出创造性贡献的人类研究者可以列为发明人</li>
+<li>没有"AI必须披露"的强制要求（这一点和美国2024指南的导向类似）</li>
+</ul>
+
+<h3>欧洲（EPO）</h3>
+
+<p>EPO在DABUS案中同样裁定：欧洲专利公约（EPC）第81条要求的发明人必须是自然人。EPO还要求申请人提交声明说明发明人是如何获得权利的。</p>
+
+<p>但EPO的态度更务实：<strong>不关心你用了什么工具，只关心发明人是不是人</strong>。只要发明人栏填的是自然人，且该人确实做出了创造性贡献，EPO不会因为你在过程中用了AI就拒绝授权。</p>
+
+<h2>三、回到我的论文：能申请什么专利？</h2>
+
+<p>在NAR这篇论文中，我们做了一件事：训练了一个可解释的深度学习模型，用它来设计合成增强子，并在多个物种中验证了这些增强子的活性。</p>
+
+<p>如果要把这个成果申请专利，可专利的客体包括：</p>
+
+<ol>
+<li><strong>方法权利要求</strong>：使用该深度学习框架设计增强子的方法（包括模型架构、训练数据、预测流程）</li>
+<li><strong>产品权利要求</strong>：通过该方法获得的特定合成增强子序列（需要具体序列，不能只写"AI设计的增强子"）</li>
+<li><strong>用途权利要求</strong>：这些合成增强子在基因工程/合成生物学中的应用</li>
+<li><strong>系统权利要求</strong>：包含该模型的计算机系统/装置</li>
+</ol>
+
+<h3>需要特别注意的三个问题</h3>
+
+<p><strong>1. 充分公开（Written Description / Enablement）</strong></p>
+
+<p>专利说明书必须让本领域技术人员能够实现发明。如果AI模型是发明的核心，说明书中至少需要：</p>
+
+<ul>
+<li>描述模型的基本架构（不能只说"用深度学习"）</li>
+<li>提供足够的训练数据和参数信息使结果可复现</li>
+<li>如果模型权重是关键，可能需要部分公开或提供获取途径</li>
+</ul>
+
+<p>这一点在USPTO特别严格——2023年 <em>Amgen v. Sanofi</em> 案后，美国对功能性权利要求的enablement要求大幅提高。如果你的权利要求写的是"通过AI设计的所有增强子"，但没有提供足够多具体序列，很可能因为enablement不充分被驳回。</p>
+
+<p><strong>2. 新颖性和创造性</strong></p>
+
+<p>AI设计的序列天然面临一个挑战：<strong>它"显而易见"吗？</strong></p>
+
+<p>如果审查员认为"任何人用类似的AI模型都能设计出这样的序列"，可能会以缺乏创造性为由驳回。你需要证明：</p>
+
+<ul>
+<li>模型本身的设计有创造性（比如我们的框架是"可解释的"，这一点区别于黑盒模型）</li>
+<li>或者，设计出的序列有出人意料的技术效果（比如跨物种活性，这是非显而易见的）</li>
+</ul>
+
+<p><strong>3. 披露AI使用的义务</strong></p>
+
+<p>目前，CNIPA、USPTO、EPO都<strong>没有强制要求</strong>申请人在专利文件中披露AI的使用情况。但USPTO 2024年的指南暗示，如果AI使用与发明人身份认定相关，申请人可能需要向USPTO说明。</p>
+
+<p>实务建议：<strong>主动披露比隐瞒更安全</strong>。在说明书中如实描述AI的使用方式，既能满足充分公开的要求，也能在发明人身份问题上避免后续争议。</p>
+
+<h2>四、如果走PCT，怎么布局？</h2>
+
+<p>假设你想就AI设计增强子的方法申请国际专利，PCT是一个合理选择。策略上需要注意：</p>
+
+<ol>
+<li><strong>优先权</strong>：在中国首次申请后12个月内提交PCT。如果论文已经发表，必须在发表前提交首次申请（否则丧失新颖性）。</li>
+<li><strong>权利要求层次</strong>：独立权利要求写方法（最宽），从属权利要求逐步收窄到具体序列。产品权利要求单独布局。</li>
+<li><strong>进入国家阶段的选择</strong>：生物技术领域，US（最大市场）、EP（统一保护）、JP（合成生物学强国）、KR（生物制药活跃）是重点。</li>
+<li><strong>各国差异</strong>：
+  <ul>
+    <li>US：对软件/AI相关方法权利要求有Alice两步法审查（35 U.S.C. § 101），需要证明不是"抽象概念"</li>
+    <li>EPO：技术特征必须达到"technical character"要求，纯数学方法不行，但"用数学方法控制技术系统"可以</li>
+    <li>中国：审查指南2023修订版已纳入AI相关审查规则，要求技术方案解决技术问题</li>
+  </ul>
+</li>
+</ol>
+
+<h2>五、总结：四个实操建议</h2>
+
+<div class="callout">
+<div class="callout__title">给研究者和企业的建议</div>
+<ol>
+<li><strong>论文发表前先评估专利</strong>。一旦论文公开，新颖性就没了。如果你用AI设计了有商业价值的序列，在投稿前先提交专利申请（哪怕只是 provisional application）。</li>
+<li><strong>发明人栏只填人类</strong>。不管AI做了多少工作，发明人必须是做出"创造性贡献"的自然人。在论文中，对实验设计、数据分析、结论判断有实质贡献的人才有资格。</li>
+<li><strong>说明书中如实描述AI的使用</strong>。这不是法律强制要求，但能避免后续发明人资格争议，同时满足充分公开。</li>
+<li><strong>权利要求要有层次</strong>。方法→产品→用途，从宽到窄。AI相关的方法权利要求在各局都可能面临客体审查挑战，备好具体序列作为退路。</li>
+</ol>
+</div>
+
+<h2>写在最后</h2>
+
+<p>AI不会取代发明人，但会改变发明的方式。作为同时活跃在AI研究和专利实务两端的人，我持续关注这个交叉领域的法律演进。如果你有AI相关发明的专利问题，欢迎交流。</p>
+
+<div class="author-box">
+  <div class="author-box__name">张倩 SinPheobe Cheung</div>
+  <div class="author-box__bio">
+    涉外专利代理师（CN/US/EPO/JP/KR）· 生物技术与微生物学背景<br>
+    4篇SCI论文 · Nucleic Acids Research (IF 16.7) 作者<br>
+    ORCID: 0009-0001-7744-4692
+  </div>
+  <div class="author-box__links">
+    <a href="/">个人主页</a>
+    <a href="/tool/">知产前置通</a>
+    <a href="https://orcid.org/0009-0001-7744-4692" target="_blank" rel="noopener">ORCID</a>
+  </div>
+</div>
+
+      </div>
+    </article>
+    <footer>
+      <a href="/blog/">← 返回博客</a>　·　<a href="/">返回首页</a>
+    </footer>
+  </div>
+</body>
+</html>

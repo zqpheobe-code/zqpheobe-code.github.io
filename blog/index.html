@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>博客 | SinPheobe Cheung</title>
+  <meta name="description" content="张倩 SinPheobe Cheung — 涉外专利代理师的博客：AI与专利、涉外专利实务、生物技术知识产权。">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --paper:#FFFBEB;--paper-2:#FBF6E4;--paper-3:#F5EFD9;
+  --ink-deep:#0F172A;--ink-green:#2D5A4A;--ink-green-2:#4A7A6E;
+  --ink-gray:#78716C;--ink-light:#A8A29E;
+  --seal-red:#A8423A;--seal-red-light:rgba(168,66,58,0.08);
+  --border-ink:rgba(45,90,74,0.15);--border-ink-2:rgba(45,90,74,0.08);
+  --shadow-soft:0 2px 8px rgba(15,23,42,0.06);
+  --cn-font:"Noto Serif SC","STKaiti","KaiTi","楷体","Songti SC",serif;
+  --en-font:"EB Garamond","Noto Serif SC",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0;}
+html,body{background:var(--paper);font-family:var(--cn-font);color:var(--ink-deep);font-size:15px;line-height:1.8;-webkit-font-smoothing:antialiased;}
+.container{max-width:720px;margin:0 auto;padding:0 20px;}
+header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:2px solid var(--ink-green);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.brand__seal{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:var(--seal-red);color:var(--paper);font-size:16px;font-weight:700;font-family:var(--cn-font);}
+.brand__name{font-size:18px;color:var(--ink-green);font-weight:700;letter-spacing:1px;}
+.back-link{font-size:13px;color:var(--ink-green);text-decoration:none;border:1px solid var(--ink-green);padding:6px 14px;transition:background .15s,color .15s;}
+.back-link:hover{background:var(--ink-green);color:var(--paper);}
+.blog-header{padding:48px 0 32px;text-align:center;border-bottom:1px solid var(--border-ink);}
+.blog-header h1{font-size:28px;color:var(--ink-green);font-weight:700;letter-spacing:2px;margin-bottom:8px;}
+.blog-header p{font-size:14px;color:var(--ink-gray);}
+.post-list{padding:24px 0;}
+.post-item{display:block;padding:24px 0;border-bottom:1px solid var(--border-ink-2);text-decoration:none;transition:padding-left .2s;}
+.post-item:hover{padding-left:8px;}
+.post-item:last-child{border-bottom:none;}
+.post-item__date{font-size:12px;color:var(--ink-light);font-family:var(--en-font);margin-bottom:6px;}
+.post-item__title{font-size:18px;font-weight:700;color:var(--ink-deep);margin-bottom:6px;line-height:1.5;}
+.post-item__excerpt{font-size:14px;color:var(--ink-gray);line-height:1.7;}
+.post-item__tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.post-tag{font-size:11px;padding:2px 8px;background:var(--paper-3);border:1px solid var(--border-ink-2);color:var(--ink-green-2);}
+footer{padding:32px 0;text-align:center;border-top:1px solid var(--border-ink);margin-top:32px;}
+footer a{color:var(--ink-green);text-decoration:none;font-size:13px;}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="brand" href="/">
+      <span class="brand__seal">SP</span>
+      <span class="brand__name">SinPheobe Cheung</span>
+    </a>
+    <a class="back-link" href="/">← 返回首页</a>
+  </header>
+  <div class="container">
+    <div class="blog-header">
+      <h1>博客</h1>
+      <p>AI与专利 · 涉外专利实务 · 生物技术知识产权</p>
+    </div>
+    <div class="post-list">
+      <a class="post-item" href="/blog/ai-invention-patent/">
+        <div class="post-item__date">2026-07-16</div>
+        <div class="post-item__title">AI设计的发明能申请专利吗？——从一篇NAR顶刊论文说起</div>
+        <div class="post-item__excerpt">2024年，我和合作者在Nucleic Acids Research上发表了一篇论文，用深度学习设计合成增强子。作为论文作者兼专利代理师，我从两个视角分析：AI设计的DNA序列，到底能不能申请专利？</div>
+        <div class="post-item__tags">
+          <span class="post-tag">AI专利</span>
+          <span class="post-tag">深度学习</span>
+          <span class="post-tag">合成生物学</span>
+          <span class="post-tag">PCT</span>
+        </div>
+      </a>
+    </div>
+    <footer>
+      <a href="/">SinPheobe Cheung · 涉外专利代理师</a>
+    </footer>
+  </div>
+</body>
+</html>
