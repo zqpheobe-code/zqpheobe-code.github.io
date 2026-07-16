@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SinPheobe Cheung | 涉外专利代理师</title>
+  <meta name="description" content="SinPheobe Cheung 张倩 — 涉外专利代理师（CN/US/EPO/JP/KR），生物技术+知识产权法双背景，4篇SCI论文。International patent attorney specializing in biotechnology patents.">
+  <meta name="keywords" content="SinPheobe Cheung, 张倩, patent attorney, intellectual property, biotechnology patents, PCT, BCI ethics, microbiology, international patent prosecution, 涉外专利代理师, 知识产权">
+  <meta name="author" content="SinPheobe Cheung">
+  <meta property="og:title" content="SinPheobe Cheung | Patent Attorney & IP Researcher">
+  <meta property="og:description" content="International patent prosecution across CN/US/EPO/JP/KR. Biotechnology + IP Law. 4 SCI publications.">
+  <meta property="og:type" content="profile">
+  <link rel="canonical" href="https://orcid.org/0009-0001-7744-4692">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=EB+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --paper:#FFFBEB;
+  --paper-2:#FBF6E4;
+  --paper-3:#F5EFD9;
+  --ink-deep:#0F172A;
+  --ink-green:#2D5A4A;
+  --ink-green-2:#4A7A6E;
+  --ink-gray:#78716C;
+  --ink-light:#A8A29E;
+  --seal-red:#A8423A;
+  --seal-red-light:rgba(168,66,58,0.08);
+  --border-ink:rgba(45,90,74,0.15);
+  --border-ink-2:rgba(45,90,74,0.08);
+  --shadow-soft:0 2px 8px rgba(15,23,42,0.06);
+  --shadow-deep:0 12px 40px rgba(15,23,42,0.12);
+  --cn-font:"Noto Serif SC","STKaiti","KaiTi","楷体","Songti SC",serif;
+  --en-font:"EB Garamond","Noto Serif SC",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0;}
+html,body{
+  background:var(--paper);
+  font-family:var(--cn-font);
+  color:var(--ink-deep);
+  font-size:15px;
+  line-height:1.8;
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+}
+body[data-lang="en"]{font-family:var(--en-font);}
+
+/* Layout */
+.container{max-width:760px;margin:0 auto;}
+
+/* Header */
+header{
+  position:sticky;top:0;z-index:50;
+  background:var(--paper);
+  border-bottom:2px solid var(--ink-green);
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:10px;}
+.brand__seal{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;
+  background:var(--seal-red);color:var(--paper);
+  font-size:16px;font-weight:700;
+  font-family:var(--cn-font);
+  letter-spacing:0;
+}
+.brand__name{font-size:18px;color:var(--ink-green);font-weight:700;letter-spacing:1px;}
+.lang-toggle{
+  display:flex;gap:0;
+  border:1px solid var(--ink-green);
+}
+.lang-btn{
+  padding:6px 14px;
+  font-size:13px;font-family:inherit;
+  border:none;background:transparent;
+  color:var(--ink-green);cursor:pointer;
+  border-radius:0;
+  transition:background .15s,color .15s;
+}
+.lang-btn.active{background:var(--ink-green);color:var(--paper);}
+.lang-btn:not(.active):hover{background:var(--paper-3);}
+
+/* Hero */
+.hero{
+  text-align:center;
+  padding:64px 24px 48px;
+  background:var(--paper);
+  border-bottom:1px solid var(--border-ink);
+}
+.hero__avatar{
+  width:80px;height:80px;
+  margin:0 auto 24px;
+  background:var(--seal-red);
+  display:flex;align-items:center;justify-content:center;
+  font-size:30px;font-weight:700;color:var(--paper);
+  font-family:var(--cn-font);
+  box-shadow:var(--shadow-soft);
+}
+.hero__name{font-size:28px;color:var(--ink-green);font-weight:700;letter-spacing:2px;margin-bottom:4px;}
+.hero__name-en{font-family:var(--en-font);font-size:24px;letter-spacing:1px;}
+.hero__name-alt{font-family:var(--en-font);font-size:13px;color:var(--ink-gray);letter-spacing:1px;margin-bottom:8px;}
+.hero__subtitle{font-size:16px;color:var(--ink-deep);margin-bottom:12px;}
+.hero__tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px;}
+.tag{
+  font-size:12px;padding:4px 12px;
+  background:var(--paper-3);
+  border:1px solid var(--border-ink);
+  color:var(--ink-green);
+}
+
+/* Stats */
+.stats{
+  display:flex;gap:0;
+  border-top:1px solid var(--border-ink);
+  border-bottom:1px solid var(--border-ink);
+  background:var(--paper-2);
+}
+.stat{
+  flex:1;text-align:center;padding:28px 12px;
+  border-right:1px solid var(--border-ink-2);
+}
+.stat:last-child{border-right:none;}
+.stat__num{
+  font-size:32px;font-weight:700;
+  color:var(--ink-green);
+  font-family:var(--en-font);
+}
+.stat__label{font-size:12px;color:var(--ink-gray);margin-top:4px;letter-spacing:1px;}
+body[data-lang="en"] .stat__label{font-family:var(--en-font);}
+
+/* Section */
+.section{
+  margin:16px;padding:32px;
+  background:var(--paper-2);
+  border:1px solid var(--border-ink);
+  box-shadow:var(--shadow-soft);
+}
+.section__title{
+  font-size:18px;color:var(--ink-deep);
+  font-weight:700;margin-bottom:20px;
+  line-height:1.5;
+  display:flex;align-items:center;gap:0;
+}
+.section__title::before{
+  content:"";display:inline-block;
+  width:3px;height:18px;
+  background:var(--seal-red);
+  margin-right:10px;flex-shrink:0;
+}
+
+/* About */
+.about__text{
+  font-size:15px;color:var(--ink-deep);
+  line-height:1.9;
+}
+.about__text-en{font-family:var(--en-font);font-size:15px;}
+
+/* Education */
+.edu-item{
+  display:flex;gap:16px;
+  padding:16px 0;
+  border-bottom:1px solid var(--border-ink-2);
+}
+.edu-item:last-child{border-bottom:none;}
+.edu-item__year{
+  flex-shrink:0;width:100px;
+  font-size:13px;color:var(--ink-green-2);
+  font-family:var(--en-font);font-weight:600;
+}
+.edu-item__body{flex:1;}
+.edu-item__school{font-size:15px;font-weight:700;color:var(--ink-deep);}
+.edu-item__major{font-size:13px;color:var(--ink-gray);margin-top:2px;}
+
+/* Work Experience */
+.work-item{
+  padding:16px 0;
+  border-bottom:1px solid var(--border-ink-2);
+}
+.work-item:last-child{border-bottom:none;}
+.work-item__body{min-width:0;}
+.work-item__role{font-size:15px;font-weight:700;color:var(--ink-deep);margin-bottom:2px;}
+.work-item__role--current{color:var(--seal-red);}
+.work-item__company{font-size:13px;color:var(--ink-gray);margin-bottom:10px;}
+.work-item__tags{display:flex;flex-wrap:wrap;gap:6px;}
+.work-tag{
+  display:inline-block;font-size:11px;
+  padding:3px 10px;
+  background:var(--paper-3);
+  border:1px solid var(--border-ink-2);
+  color:var(--ink-green-2);
+}
+
+/* Publications */
+.pub-item{
+  padding:16px 0;
+  border-bottom:1px solid var(--border-ink-2);
+}
+.pub-item:last-child{border-bottom:none;}
+.pub-item__title{
+  font-size:15px;font-weight:600;color:var(--ink-deep);
+  line-height:1.6;margin-bottom:4px;
+}
+.pub-item__title-en{font-family:var(--en-font);}
+.pub-item__meta{font-size:13px;color:var(--ink-gray);margin-bottom:6px;}
+.pub-item__doi{font-size:13px;}
+.pub-item__doi a{
+  color:var(--ink-green);
+  text-decoration:underline;
+}
+.pub-badge{
+  display:inline-block;font-size:11px;
+  padding:2px 8px;font-weight:600;
+  margin-right:6px;
+}
+.pub-badge--top{background:var(--seal-red-light);color:var(--seal-red);}
+.pub-badge--mid{background:rgba(45,90,74,0.1);color:var(--ink-green);}
+
+/* Expertise */
+.exp-grid{display:grid;gap:12px;}
+.exp-grid--2{grid-template-columns:1fr 1fr;}
+@media(max-width:600px){.exp-grid--2{grid-template-columns:1fr;}}
+.exp-card{
+  padding:16px;
+  background:var(--paper);
+  border:1px solid var(--border-ink-2);
+  transition:border-color .2s;
+}
+.exp-card:hover{border-color:var(--ink-green);}
+.exp-card__icon{
+  font-size:20px;margin-bottom:8px;
+}
+.exp-card__title{font-size:15px;font-weight:700;color:var(--ink-deep);margin-bottom:6px;}
+.exp-card__desc{font-size:13px;color:var(--ink-gray);line-height:1.7;}
+
+/* Connect */
+.connect-links{display:flex;flex-wrap:wrap;gap:12px;}
+.connect-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:10px 20px;
+  border:1px solid var(--ink-green);
+  background:transparent;
+  color:var(--ink-green);
+  font-size:14px;font-family:inherit;
+  text-decoration:none;
+  transition:background .15s,color .15s;
+}
+.connect-btn:hover{background:var(--ink-green);color:var(--paper);}
+.connect-btn--primary{background:var(--ink-green);color:var(--paper);}
+.connect-btn--primary:hover{background:var(--ink-green-2);}
+.connect-btn--soon{opacity:0.5;cursor:default;}
+
+/* Footer */
+footer{
+  margin:16px;padding:32px;
+  background:var(--paper-2);
+  border:1px solid var(--border-ink);
+  box-shadow:var(--shadow-soft);
+  text-align:center;
+}
+.footer__name{color:var(--ink-green);font-weight:700;}
+.footer__orcid{font-size:13px;color:var(--ink-gray);margin-top:4px;font-family:var(--en-font);}
+.footer__orcid a{color:var(--ink-green);text-decoration:underline;}
+.footer__copy{font-size:12px;color:var(--ink-light);margin-top:12px;}
+
+/* Lang visibility */
+[data-lang-cn]{display:inline;}
+[data-lang-en]{display:none;}
+body[data-lang="en"] [data-lang-cn]{display:none;}
+body[data-lang="en"] [data-lang-en]{display:inline;}
+
+/* Responsive */
+@media(min-width:768px){
+  .container{max-width:760px;}
+  .section{margin:20px;padding:36px;}
+  .hero{padding:72px 24px 56px;}
+  .hero__name{font-size:32px;letter-spacing:3px;}
+}
+  </style>
+</head>
+<body data-lang="cn">
+  <header>
+    <div class="brand">
+      <span class="brand__seal">SP</span>
+      <span class="brand__name">SinPheobe Cheung</span>
+    </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('cn')">中文</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- Hero -->
+    <div class="hero">
+      <div class="hero__avatar">SP</div>
+      <h1 class="hero__name">
+        <span data-lang-cn>张倩</span>
+        <span class="hero__name-en" data-lang-en>SinPheobe Cheung</span>
+      </h1>
+      <p class="hero__name-alt" data-lang-cn>SinPheobe Cheung</p>
+      <p class="hero__subtitle">
+        <span data-lang-cn>涉外专利代理师 · 知识产权研究者</span>
+        <span data-lang-en>Patent Attorney · IP Researcher</span>
+      </p>
+      <div class="hero__tags">
+        <span class="tag">CN / US / EPO / JP / KR</span>
+        <span class="tag" data-lang-cn>生物技术</span>
+        <span class="tag" data-lang-en>Biotechnology</span>
+        <span class="tag" data-lang-cn>微生物学</span>
+        <span class="tag" data-lang-en>Microbiology</span>
+        <span class="tag" data-lang-cn>BCI伦理</span>
+        <span class="tag" data-lang-en>BCI Ethics</span>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+      <div class="stat">
+        <div class="stat__num">5</div>
+        <div class="stat__label" data-lang-cn>司法管辖区</div>
+        <div class="stat__label" data-lang-en>Jurisdictions</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">4</div>
+        <div class="stat__label" data-lang-cn>SCI论文</div>
+        <div class="stat__label" data-lang-en>SCI Papers</div>
+      </div>
+      <div class="stat">
+        <div class="stat__num">3</div>
+        <div class="stat__label" data-lang-cn>学位</div>
+        <div class="stat__label" data-lang-en>Degrees</div>
+      </div>
+    </div>
+
+    <!-- About -->
+    <div class="section">
+      <h2 class="section__title">
+        <span data-lang-cn>关于</span>
+        <span data-lang-en>About</span>
+      </h2>
+      <p class="about__text" data-lang-cn>
+        涉外专利代理师，专注于中国、美国、欧洲、日本、韩国五国专利申请全流程。生物技术与微生物学背景，对脑机接口伦理、科技治理、新兴技术知识产权策略等领域有持续研究兴趣。
+      </p>
+      <p class="about__text about__text-en" data-lang-en>
+        Patent attorney specializing in international patent prosecution across CN, US, EPO, JP, and KR jurisdictions. Background in biotechnology and microbiology, with research interests in brain-computer interface ethics, technology governance, and intellectual property strategy for emerging technologies.
+      </p>
+    </div>
+
+    <!-- Education -->
+    <div class="section">
+      <h2 class="section__title">
+        <span data-lang-cn>教育背景</span>
+        <span data-lang-en>Education</span>
+      </h2>
+      <div class="edu-item">
+        <div class="edu-item__year">2025–2028</div>
+        <div class="edu-item__body">
+          <div class="edu-item__school" data-lang-cn>湘潭大学 · 知识产权学院</div>
+          <div class="edu-item__school" data-lang-en>Xiangtan University · College of Intellectual Property</div>
+          <div class="edu-item__major" data-lang-cn>知识产权法</div>
+          <div class="edu-item__major" data-lang-en>Intellectual Property Law</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-item__year">2022–2025</div>
+        <div class="edu-item__body">
+          <div class="edu-item__school" data-lang-cn>中国科学院大学 · 微生物研究所</div>
+          <div class="edu-item__school" data-lang-en>University of Chinese Academy of Sciences · Institute of Microbiology</div>
+          <div class="edu-item__major" data-lang-cn>微生物学</div>
+          <div class="edu-item__major" data-lang-en>Microbiology</div>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-item__year">2018–2022</div>
+        <div class="edu-item__body">
+          <div class="edu-item__school" data-lang-cn>北京林业大学 · 生物科学与技术学院</div>
+          <div class="edu-item__school" data-lang-en>Beijing Forestry University · College of Biological Sciences and Biotechnology</div>
+          <div class="edu-item__major" data-lang-cn>生物科学与生物技术</div>
+          <div class="edu-item__major" data-lang-en>Biological Sciences and Biotechnology</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work Experience -->
+    <div class="section">
+      <h2 class="section__title">
+        <span data-lang-cn>工作经历</span>
+        <span data-lang-en>Experience</span>
+      </h2>
+      <div class="work-item">
+        <div class="work-item__body">
+          <div class="work-item__role work-item__role--current" data-lang-cn>涉外专利代理人</div>
+          <div class="work-item__role work-item__role--current" data-lang-en>Foreign Patent Agent</div>
+          <div class="work-item__company" data-lang-cn>北京同恒源知识产权代理有限公司 · 重庆办事处</div>
+          <div class="work-item__company" data-lang-en>Beijing Tonghengyuan IP Agency · Chongqing Office</div>
+          <div class="work-item__tags">
+            <span class="work-tag" data-lang-cn>PCT申请</span>
+            <span class="work-tag" data-lang-en>PCT Filing</span>
+            <span class="work-tag" data-lang-cn>审查意见答复</span>
+            <span class="work-tag" data-lang-en>OA Response</span>
+            <span class="work-tag" data-lang-cn>新申请撰写</span>
+            <span class="work-tag" data-lang-en>New Application Drafting</span>
+            <span class="work-tag" data-lang-cn>五国专利流程</span>
+            <span class="work-tag" data-lang-en>5-Country Prosecution</span>
+            <span class="work-tag" data-lang-cn>专利检索</span>
+            <span class="work-tag" data-lang-en>Patent Search</span>
+            <span class="work-tag" data-lang-cn>涉外案件管理</span>
+            <span class="work-tag" data-lang-en>Cross-Border Case Mgmt</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-item__body">
+          <div class="work-item__role" data-lang-cn>知识产权工程师</div>
+          <div class="work-item__role" data-lang-en>IP Engineer</div>
+          <div class="work-item__company" data-lang-cn>安徽华恒生物科技股份有限公司</div>
+          <div class="work-item__company" data-lang-en>Anhui Huaheng Biotechnology Co., Ltd.</div>
+          <div class="work-item__tags">
+            <span class="work-tag" data-lang-cn>专利布局</span>
+            <span class="work-tag" data-lang-en>Patent Portfolio</span>
+            <span class="work-tag" data-lang-cn>FTO分析</span>
+            <span class="work-tag" data-lang-en>FTO Analysis</span>
+            <span class="work-tag" data-lang-cn>生物技术专利</span>
+            <span class="work-tag" data-lang-en>Biotech Patents</span>
+            <span class="work-tag" data-lang-cn>专利挖掘</span>
+            <span class="work-tag" data-lang-en>Patent Mining</span>
+            <span class="work-tag" data-lang-cn>知识产权管理</span>
+            <span class="work-tag" data-lang-en>IP Management</span>
+            <span class="work-tag" data-lang-cn>企业IP战略</span>
+            <span class="work-tag" data-lang-en>Corporate IP Strategy</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-item">
+        <div class="work-item__body">
+          <div class="work-item__role" data-lang-cn>行业研究实习生</div>
+          <div class="work-item__role" data-lang-en>Industry Research Intern</div>
+          <div class="work-item__company" data-lang-cn>上海罗葛瑞森</div>
+          <div class="work-item__company" data-lang-en>Shanghai Logan &amp; Robinson</div>
+          <div class="work-item__tags">
+            <span class="work-tag" data-lang-cn>估值分析</span>
+            <span class="work-tag" data-lang-en>Valuation</span>
+            <span class="work-tag" data-lang-cn>宏观分析</span>
+            <span class="work-tag" data-lang-en>Macro Analysis</span>
+            <span class="work-tag" data-lang-cn>策略研究</span>
+            <span class="work-tag" data-lang-en>Strategy Research</span>
+            <span class="work-tag" data-lang-cn>行业研究</span>
+            <span class="work-tag" data-lang-en>Industry Research</span>
+            <span class="work-tag" data-lang-cn>数据分析</span>
+            <span class="work-tag" data-lang-en>Data Analysis</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <h2 class="section__title">
+        <span data-lang-cn>学术论文</span>
+        <span data-lang-en>Publications</span>
+      </h2>
+      <div class="pub-item">
+        <div class="pub-item__title pub-item__title-en">Genome-Wide Landscape of Position Effect Variegation in <em>Pichia pastoris</em></div>
+        <div class="pub-item__meta">
+          <span class="pub-badge pub-badge--top">IF 4.7</span>
+          Journal of Fungi · 2026
+        </div>
+        <div class="pub-item__doi"><a href="https://doi.org/10.3390/jof12020136" target="_blank" rel="noopener">DOI: 10.3390/jof12020136</a></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-item__title pub-item__title-en">A novel interpretable deep learning-based computational framework designed synthetic enhancers with broad cross-species activity</div>
+        <div class="pub-item__meta">
+          <span class="pub-badge pub-badge--top">IF 16.7</span>
+          Nucleic Acids Research · 2024
+        </div>
+        <div class="pub-item__doi"><a href="https://doi.org/10.1093/nar/gkae912" target="_blank" rel="noopener">DOI: 10.1093/nar/gkae912</a></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-item__title pub-item__title-en">Genome-Wide Identification and Characterization of Hexokinase Genes in Moso Bamboo (<em>Phyllostachys edulis</em>)</div>
+        <div class="pub-item__meta">
+          <span class="pub-badge pub-badge--mid">IF 5.6</span>
+          Frontiers in Plant Science · 2020
+        </div>
+        <div class="pub-item__doi"><a href="https://doi.org/10.3389/fpls.2020.00600" target="_blank" rel="noopener">DOI: 10.3389/fpls.2020.00600</a></div>
+      </div>
+      <div class="pub-item">
+        <div class="pub-item__title pub-item__title-en">Genome-Wide Identification and Characterization of the UBP Gene Family in Moso Bamboo (<em>Phyllostachys edulis</em>)</div>
+        <div class="pub-item__meta">
+          <span class="pub-badge pub-badge--mid">IF 6.2</span>
+          International Journal of Molecular Sciences · 2019
+        </div>
+        <div class="pub-item__doi"><a href="https://doi.org/10.3390/ijms20174309" target="_blank" rel="noopener">DOI: 10.3390/ijms20174309</a></div>
+      </div>
+    </div>
+
+    <!-- Expertise -->
+    <div class="section">
+      <h2 class="section__title">
+        <span data-lang-cn>专业领域</span>
+        <span data-lang-en>Expertise</span>
+      </h2>
+      <div class="exp-grid exp-grid--2">
+        <div class="exp-card">
+          <div class="exp-card__icon">⚖</div>
+          <div class="exp-card__title" data-lang-cn>涉外专利申请</div>
+          <div class="exp-card__title" data-lang-en>International Patent Prosecution</div>
+          <div class="exp-card__desc" data-lang-cn>中国、美国、欧洲、日本、韩国 — PCT申请、审查意见答复、国家阶段进入</div>
+          <div class="exp-card__desc" data-lang-en>CN, US, EPO, JP, KR — PCT applications, OA responses, national phase entry</div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card__icon">🧬</div>
+          <div class="exp-card__title" data-lang-cn>生物技术专利</div>
+          <div class="exp-card__title" data-lang-en>Biotechnology Patents</div>
+          <div class="exp-card__desc" data-lang-cn>微生物菌株专利、基因工程、药物化合物、生物制剂</div>
+          <div class="exp-card__desc" data-lang-en>Microbial strain patents, gene engineering, pharmaceutical compounds, biologics</div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card__icon">🧠</div>
+          <div class="exp-card__title" data-lang-cn>BCI伦理与治理</div>
+          <div class="exp-card__title" data-lang-en>BCI Ethics & Governance</div>
+          <div class="exp-card__desc" data-lang-cn>脑机接口伦理框架、神经技术知识产权策略</div>
+          <div class="exp-card__desc" data-lang-en>Brain-computer interface ethical frameworks, IP strategy for neurotechnology</div>
+        </div>
+        <div class="exp-card">
+          <div class="exp-card__icon">⚙</div>
+          <div class="exp-card__title" data-lang-cn>知产工具与自动化</div>
+          <div class="exp-card__title" data-lang-en>IP Tools & Automation</div>
+          <div class="exp-card__desc" data-lang-cn>AI辅助专利流程、官费管理系统、知产前置通</div>
+          <div class="exp-card__desc" data-lang-en>AI-assisted patent workflows, fee management, IP process automation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 知产前置通 -->
+    <div class="section">
+      <h2 class="section__title">
+        <span data-lang-cn>知产前置通</span>
+        <span data-lang-en>IP Pre-Check Tool</span>
+      </h2>
+      <p class="about__text" data-lang-cn style="margin-bottom:16px;">
+        免费专利自助工具：能不能申请专利 · 申请流程时间轴 · 中国/海外11国官费一键计算。自测 + 算账 + 代理师三出口。
+      </p>
+      <p class="about__text about__text-en" data-lang-en style="margin-bottom:16px;">
+        Free patent self-service tool: patentability check · application timeline · fee calculator for 11 countries. Self-assessment + cost calculation + attorney referral.
+      </p>
+      <div class="connect-links">
+        <a class="connect-btn connect-btn--primary" href="/tool/" data-lang-cn>打开工具 →</a>
+        <a class="connect-btn connect-btn--primary" href="/tool/" data-lang-en>Open Tool →</a>
+      </div>
+    </div>
+
+    <!-- Connect -->
+    <div class="section">
+      <h2 class="section__title">
+        <span data-lang-cn>联系方式</span>
+        <span data-lang-en>Connect</span>
+      </h2>
+      <div class="connect-links">
+        <a class="connect-btn connect-btn--primary" href="https://orcid.org/0009-0001-7744-4692" target="_blank" rel="noopener">ORCID</a>
+        <a class="connect-btn" href="https://scholar.google.com" target="_blank" rel="noopener" data-lang-cn>Google Scholar</a>
+        <span class="connect-btn connect-btn--soon" data-lang-cn>知乎（即将上线）</span>
+        <span class="connect-btn connect-btn--soon" data-lang-en>Zhihu (coming soon)</span>
+        <span class="connect-btn connect-btn--soon" data-lang-cn>公众号（即将上线）</span>
+        <span class="connect-btn connect-btn--soon" data-lang-en>WeChat (coming soon)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      <span class="footer__name" data-lang-cn>张倩</span>
+      <span class="footer__name" data-lang-en>SinPheobe Cheung</span>
+      <span data-lang-cn> · 涉外专利代理师 · 知识产权研究者</span>
+      <span data-lang-en> · Patent Attorney · IP Researcher</span>
+    </p>
+    <p class="footer__orcid">
+      ORCID: <a href="https://orcid.org/0009-0001-7744-4692" target="_blank" rel="noopener">0009-0001-7744-4692</a>
+    </p>
+    <p class="footer__copy">© 2026 SinPheobe Cheung</p>
+  </footer>
+
+  <script>
+    function setLang(lang){
+      document.body.setAttribute('data-lang',lang);
+      document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.remove('active');});
+      document.querySelector('.lang-btn'+(lang==='cn'?'':'.lang-btn:last-child')).classList.add('active');
+      // Fix active state
+      var btns=document.querySelectorAll('.lang-btn');
+      btns.forEach(function(b){
+        b.classList.remove('active');
+        if((lang==='cn'&&b.textContent==='中文')||(lang==='en'&&b.textContent==='EN')){b.classList.add('active');}
+      });
+      document.documentElement.lang = lang==='cn'?'zh-CN':'en';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,5425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <title>知产前置通</title>
+  <style>
+:root{
+  --paper:#FFFBEB;
+  --paper-2:#FBF6E4;
+  --ink-deep:#0F172A;
+  --ink-green:#2D5A4A;
+  --ink-green-2:#4A7A6E;
+  --ink-gray:#78716C;
+  --ink-light:#A8A29E;
+  --seal-red:#A8423A;
+  --border-ink:rgba(45,90,74,0.15);
+  --border-ink-2:rgba(45,90,74,0.08);
+  --shadow-soft:0 2px 8px rgba(15,23,42,0.06);
+  --shadow-deep:0 12px 40px rgba(15,23,42,0.12);
+  --ip-font:"LXGW WenKai TC","LXGW WenKai","Noto Serif SC","STKaiti","KaiTi","楷体","Songti SC",serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0;}
+html,body{
+  background:var(--paper);
+  font-family:var(--ip-font);
+  color:var(--ink-deep);
+  font-size:15px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  -webkit-tap-highlight-color:transparent;
+}
+#ip-app{max-width:100%;margin:0 auto;min-height:100vh;position:relative;}
+#ip-header{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:2px solid var(--ink-green);padding:14px 16px;}
+.ip-topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.ip-topbar__brand{display:flex;align-items:center;gap:8px;}
+.ip-brand__name{font-size:18px;color:var(--ink-green);font-weight:700;letter-spacing:1px;}
+.ip-topbar__nav{display:flex;gap:8px;}
+.ip-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  border:1px solid var(--ink-green);
+  padding:10px 16px;
+  font-size:15px;
+  font-family:inherit;
+  line-height:1.4;
+  cursor:pointer;
+  background:transparent;
+  color:var(--ink-green);
+  border-radius:0;
+  transition:background .15s,color .15s;
+  white-space:nowrap;
+}
+.ip-btn--primary{background:var(--ink-green);color:var(--paper);}
+.ip-btn--ghost{background:transparent;color:var(--ink-green);}
+.ip-btn--small{padding:6px 12px;font-size:13px;}
+.ip-btn--block{width:100%;}
+.ip-btn:active{background:var(--ink-green-2);color:var(--paper);}
+.ip-section{background:var(--paper-2);margin:12px;padding:24px;border:1px solid var(--border-ink);box-shadow:var(--shadow-soft);}
+.ip-section__title{font-size:18px;color:var(--ink-deep);margin-bottom:16px;font-weight:700;line-height:1.5;}
+.ip-section__title::before{content:"";display:inline-block;width:3px;height:18px;background:var(--seal-red);margin-right:8px;vertical-align:middle;}
+.ip-hero{text-align:center;padding:32px 24px;}
+.ip-hero__title{font-size:22px;color:var(--ink-green);font-weight:700;letter-spacing:2px;line-height:1.5;}
+.ip-hero__tagline{font-size:15px;color:var(--ink-deep);margin-top:12px;line-height:1.7;}
+.ip-hero__sub{font-size:13px;color:var(--ink-gray);margin-top:8px;line-height:1.7;}
+.ip-hero__actions{margin-top:16px;}
+.ip-mount-placeholder{color:var(--ink-light);font-size:13px;text-align:center;padding:24px;line-height:1.7;}
+.ip-conclusion{padding:24px;border:1.5px solid var(--ink-green);background:var(--paper-2);margin-top:16px;}
+.ip-conclusion__title{font-size:18px;color:var(--ink-green);font-weight:700;line-height:1.5;}
+.ip-conclusion__desc{font-size:14px;color:var(--ink-gray);margin-top:8px;line-height:1.7;}
+.ip-conclusion__actions{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap;}
+.ip-calc-block{margin-top:16px;}
+.ip-calc-intro{font-size:13px;color:var(--ink-gray);line-height:1.8;margin-bottom:16px;padding:12px 14px;background:var(--paper);border-left:3px solid var(--ink-green-2);}
+.ip-fee-note{color:var(--ink-light);font-size:13px;margin-top:12px;line-height:1.7;}
+.ip-fee-card{border:1px solid var(--border-ink);padding:16px;margin-bottom:12px;background:var(--paper);}
+.ip-fee-card__head{display:flex;align-items:center;gap:8px;margin-bottom:12px;flex-wrap:wrap;}
+.ip-fee-card__country{font-size:16px;font-weight:700;color:var(--ink-deep);}
+.ip-fee-card__authority{font-size:13px;color:var(--ink-gray);}
+.ip-fee-card__note{font-size:12px;color:var(--ink-light);margin-top:8px;line-height:1.6;}
+.ip-fee-table{width:100%;border-collapse:collapse;font-size:13px;}
+.ip-fee-table th{padding:10px 8px;border-bottom:1px solid var(--border-ink);text-align:left;color:var(--ink-gray);font-weight:400;line-height:1.5;}
+.ip-fee-table td{padding:10px 8px;border-bottom:1px solid var(--border-ink-2);text-align:left;color:var(--ink-deep);line-height:1.5;}
+.ip-fee-table tr:last-child td{border-bottom:none;}
+.ip-fee-name{display:inline-flex;align-items:center;gap:6px;}
+.ip-fee-q{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;background:var(--paper-2);color:var(--ink-green);font-size:11px;cursor:help;border-radius:0;border:1px solid var(--border-ink);font-weight:700;flex-shrink:0;}
+.ip-fee-link{color:var(--ink-green);text-decoration:underline;cursor:pointer;}
+.ip-fee-amount{font-variant-numeric:tabular-nums;color:var(--seal-red);font-weight:600;}
+#ip-footer{
+  margin:12px;
+  padding:24px;
+  background:var(--paper-2);
+  border:1px solid var(--border-ink);
+  box-shadow:var(--shadow-soft);
+  text-align:center;
+}
+.ip-footer__intro{font-size:14px;color:var(--ink-gray);line-height:1.7;margin-bottom:14px;}
+.ip-footer__name{color:var(--ink-green);font-weight:700;}
+.ip-footer__actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+.ip-modal{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-end;}
+.ip-modal[hidden]{display:none;}
+.ip-modal__mask{position:absolute;inset:0;background:rgba(15,23,42,0.45);}
+.ip-modal__panel{
+  position:relative;
+  width:100%;
+  max-width:480px;
+  margin:0 auto;
+  background:var(--paper);
+  border-top:2px solid var(--ink-green);
+  padding:24px 16px 32px;
+  max-height:85vh;
+  overflow-y:auto;
+  box-shadow:var(--shadow-deep);
+  animation:ip-slide-up .25s ease;
+}
+@keyframes ip-slide-up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.ip-modal__close{position:absolute;top:12px;right:12px;width:32px;height:32px;border:none;background:transparent;font-size:20px;color:var(--ink-gray);cursor:pointer;border-radius:0;line-height:1;font-family:inherit;}
+.ip-modal__title{font-size:18px;color:var(--ink-deep);margin-bottom:16px;text-align:center;font-weight:700;padding:0 32px;line-height:1.5;}
+.ip-modal__body{font-size:14px;color:var(--ink-deep);line-height:1.7;}
+.ip-help-item{display:flex;gap:12px;padding:12px;border:1px solid var(--border-ink-2);margin-bottom:12px;align-items:flex-start;background:var(--paper-2);}
+.ip-help__content{flex:1;min-width:0;}
+.ip-help__label{font-size:14px;font-weight:700;color:var(--ink-deep);margin-bottom:4px;line-height:1.5;}
+.ip-help__text{font-size:13px;color:var(--ink-gray);line-height:1.6;}
+.ip-seal{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;flex-shrink:0;font-size:14px;font-weight:700;color:var(--paper);border-radius:0;font-family:inherit;line-height:1;}
+.ip-seal--green{background:var(--ink-green);}
+.ip-seal--blue{background:var(--ink-green-2);}
+.ip-seal--red{background:var(--seal-red);}
+.ip-wechat-strong{color:var(--seal-red);letter-spacing:.5px;font-weight:700;}
+.ip-toast{
+  position:fixed;
+  bottom:30%;
+  left:50%;
+  transform:translateX(-50%);
+  background:var(--ink-deep);
+  color:var(--paper);
+  padding:10px 20px;
+  font-size:13px;
+  z-index:200;
+  animation:ip-toast-fade 2s ease forwards;
+  max-width:80%;
+  text-align:center;
+  line-height:1.5;
+  border-radius:0;
+}
+@keyframes ip-toast-fade{
+  0%{opacity:0;transform:translateX(-50%) translateY(10px)}
+  15%{opacity:1;transform:translateX(-50%) translateY(0)}
+  85%{opacity:1}
+  100%{opacity:0}
+}
+.ip-fee-annuity{margin-top:8px;}
+.ip-fee-annuity summary{font-size:13px;color:var(--ink-green);cursor:pointer;padding:8px 0;line-height:1.6;font-weight:600;}
+.ip-fee-annuity[open] summary{margin-bottom:8px;}
+
+/* ===== 申请流程段样式（process.js 渲染） ===== */
+.ip-process-tabs{display:flex;gap:0;margin-bottom:20px;border-bottom:2px solid var(--border-ink);}
+.ip-process-tab{flex:1;padding:10px 8px;border:none;background:transparent;font-family:inherit;font-size:14px;color:var(--ink-gray);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .15s,border-color .15s;}
+.ip-process-tab--active{color:var(--ink-green);font-weight:700;border-bottom-color:var(--seal-red);}
+.ip-process-panel{display:none;}
+.ip-process-panel--active{display:block;}
+.ip-process-timeline{margin-bottom:20px;}
+.ip-process-timeline__head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.ip-process-timeline__title{font-size:16px;font-weight:700;color:var(--ink-deep);}
+.ip-process-timeline__total{font-size:13px;color:var(--seal-red);margin-bottom:16px;line-height:1.6;}
+.ip-process-timeline__track{padding-left:4px;}
+.ip-process-stage{display:flex;gap:12px;padding-bottom:20px;}
+.ip-process-stage:last-child{padding-bottom:0;}
+.ip-process-stage__node{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:14px;}
+.ip-process-stage__dot{width:12px;height:12px;border:2px solid var(--ink-green);background:var(--paper);flex-shrink:0;margin-top:4px;}
+.ip-process-stage__dot--end{background:var(--seal-red);border-color:var(--seal-red);}
+.ip-process-stage__line{width:2px;flex:1;background:var(--border-ink);margin-top:2px;min-height:24px;}
+.ip-process-stage__body{flex:1;min-width:0;padding-bottom:4px;}
+.ip-process-stage__head{display:flex;align-items:baseline;gap:8px;margin-bottom:2px;flex-wrap:wrap;}
+.ip-process-stage__name{font-size:15px;font-weight:700;color:var(--ink-deep);}
+.ip-process-stage__time{font-size:12px;color:var(--paper);background:var(--ink-green);padding:2px 8px;white-space:nowrap;}
+.ip-process-stage__timefull{font-size:13px;color:var(--ink-gray);margin-bottom:8px;line-height:1.6;}
+.ip-process-stage__row{display:flex;gap:8px;margin-bottom:6px;font-size:13px;line-height:1.6;}
+.ip-process-stage__label{color:var(--ink-green);font-weight:700;flex-shrink:0;width:28px;}
+.ip-process-stage__text{color:var(--ink-deep);flex:1;}
+.ip-process-stage__src{display:inline-block;font-size:12px;margin-top:2px;}
+.ip-process-compact{border:1px solid var(--border-ink-2);padding:14px;margin-bottom:20px;background:var(--paper);}
+.ip-process-compact__title{font-size:14px;font-weight:700;color:var(--ink-green);margin-bottom:10px;}
+.ip-process-compact__row{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:13px;}
+.ip-process-compact__name{font-weight:700;color:var(--ink-deep);width:64px;flex-shrink:0;}
+.ip-process-compact__flow{color:var(--ink-gray);flex:1;}
+.ip-process-compact__time{color:var(--seal-red);font-weight:600;white-space:nowrap;}
+.ip-process-compact__note{font-size:12px;color:var(--ink-light);margin-top:6px;line-height:1.5;}
+.ip-process-annuity{border:1px dashed var(--border-ink);padding:14px;margin-bottom:20px;background:var(--paper-2);}
+.ip-process-annuity__head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.ip-process-annuity__title{font-size:14px;font-weight:700;color:var(--ink-green);}
+.ip-process-annuity__time{font-size:13px;color:var(--ink-deep);line-height:1.6;margin-bottom:4px;}
+.ip-process-annuity__action{font-size:12px;color:var(--ink-gray);line-height:1.6;}
+.ip-process-materials{margin-bottom:20px;}
+.ip-process-materials__title{font-size:15px;font-weight:700;color:var(--ink-deep);margin-bottom:12px;}
+.ip-process-materials__list{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+.ip-process-material{border:1px solid var(--border-ink-2);padding:12px;background:var(--paper);}
+.ip-process-material--key{border-left:3px solid var(--seal-red);}
+.ip-process-material__head{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.ip-process-material__name{font-size:14px;font-weight:700;color:var(--ink-deep);}
+.ip-process-material__tag{font-size:11px;color:var(--paper);background:var(--seal-red);padding:1px 6px;}
+.ip-process-material__desc{font-size:13px;color:var(--ink-gray);line-height:1.6;}
+.ip-process-overseas{border-top:1.5px solid var(--ink-green);padding-top:16px;margin-top:8px;}
+.ip-process-overseas__title{font-size:15px;font-weight:700;color:var(--ink-green);margin-bottom:14px;}
+.ip-process-overseas__path{border:1px solid var(--border-ink-2);padding:14px;margin-bottom:14px;background:var(--paper);}
+.ip-process-overseas__head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;}
+.ip-process-overseas__name{font-size:14px;font-weight:700;color:var(--ink-deep);}
+.ip-process-overseas__desc{font-size:13px;color:var(--ink-gray);line-height:1.6;margin-bottom:12px;}
+.ip-process-overseas__stages{display:flex;flex-direction:column;gap:10px;}
+.ip-process-overseas__stage{border-left:2px solid var(--ink-green-2);padding:6px 0 6px 10px;}
+.ip-process-overseas__sname{font-size:13px;font-weight:700;color:var(--ink-deep);margin-right:8px;}
+.ip-process-overseas__stime{font-size:12px;color:var(--paper);background:var(--ink-green-2);padding:1px 6px;margin-right:6px;}
+.ip-process-overseas__sfull{display:block;font-size:12px;color:var(--ink-gray);line-height:1.5;margin-top:3px;}
+.ip-process-overseas__saction{display:block;font-size:12px;color:var(--ink-deep);line-height:1.5;margin-top:2px;}
+
+/* ===== Quiz 组件样式（quiz.js 动态渲染） ===== */
+.quiz-step{padding:8px 0;}
+.quiz-question{font-size:17px;font-weight:700;color:var(--ink-deep);line-height:1.5;margin-bottom:6px;}
+.quiz-subtitle{font-size:13px;color:var(--ink-gray);margin-bottom:16px;line-height:1.6;}
+.quiz-options{display:flex;flex-direction:column;gap:10px;}
+.quiz-option{display:flex;align-items:center;gap:10px;width:100%;padding:14px 16px;border:1px solid var(--border-ink);background:var(--paper);color:var(--ink-deep);font-size:15px;font-family:inherit;cursor:pointer;text-align:left;border-radius:0;transition:border-color .15s,background .15s;}
+.quiz-option:active{background:var(--paper-2);}
+.quiz-option-icon{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;flex-shrink:0;font-size:14px;font-weight:700;color:var(--paper);background:var(--ink-green);font-family:inherit;line-height:1;border-radius:0;}
+.quiz-option-selected .quiz-option-icon{background:var(--seal-red);}
+.quiz-option-label{flex:1;line-height:1.5;}
+.quiz-option-active{border-color:var(--ink-green);background:var(--paper-2);}
+.quiz-option-selected{border:2px solid var(--ink-green);background:var(--paper-2);font-weight:700;}
+.quiz-option-dimmed{opacity:.4;}
+.quiz-feedback{display:none;margin-top:12px;padding:12px;border-left:3px solid var(--seal-red);background:var(--paper-2);font-size:13px;color:var(--ink-gray);line-height:1.7;}
+.quiz-feedback-text{word-break:break-word;}
+.quiz-feedback-show{display:block;}
+.quiz-action{display:none;margin-top:16px;justify-content:flex-end;gap:10px;}
+.quiz-action-show{display:flex;}
+.quiz-prev-btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 20px;border:1px solid var(--border-ink);background:transparent;color:var(--ink-gray);font-size:15px;font-family:inherit;cursor:pointer;border-radius:0;}
+.quiz-prev-btn:active{background:var(--paper-2);}
+.quiz-next-btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 24px;border:1px solid var(--ink-green);background:var(--ink-green);color:var(--paper);font-size:15px;font-family:inherit;cursor:pointer;border-radius:0;}
+.quiz-next-btn:active{background:var(--ink-green-2);}
+.quiz-progress{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.quiz-progress-text{font-size:12px;color:var(--ink-light);white-space:nowrap;}
+.quiz-progress-bar{flex:1;height:4px;background:var(--border-ink-2);overflow:hidden;}
+.quiz-progress-fill{height:100%;background:var(--ink-green);transition:width .3s ease;}
+.quiz-conclusion{padding:24px;border:1.5px solid var(--ink-green);background:var(--paper-2);text-align:center;}
+.quiz-conclusion-icon{font-size:32px;margin-bottom:8px;}
+.quiz-conclusion-title{font-size:22px;color:var(--ink-green);font-weight:700;margin-bottom:12px;letter-spacing:2px;}
+.quiz-conclusion-type{font-size:18px;color:var(--ink-deep);margin-bottom:12px;line-height:1.5;}
+.quiz-conclusion-type strong{color:var(--ink-green);}
+.quiz-conclusion-advice{font-size:14px;color:var(--ink-gray);line-height:1.7;margin-bottom:12px;text-align:left;}
+.quiz-conclusion-tag{font-size:13px;color:var(--seal-red);padding:8px 12px;background:var(--paper);border:1px solid var(--border-ink-2);margin-bottom:12px;text-align:left;line-height:1.6;}
+.quiz-conclusion-actions{display:flex;gap:12px;justify-content:center;margin-bottom:12px;flex-wrap:wrap;}
+.quiz-btn-primary{display:inline-flex;align-items:center;justify-content:center;padding:10px 24px;border:1px solid var(--ink-green);background:var(--ink-green);color:var(--paper);font-size:15px;font-family:inherit;cursor:pointer;border-radius:0;}
+.quiz-btn-primary:active{background:var(--ink-green-2);}
+.quiz-btn-secondary{display:inline-flex;align-items:center;justify-content:center;padding:10px 24px;border:1px solid var(--ink-green);background:transparent;color:var(--ink-green);font-size:15px;font-family:inherit;cursor:pointer;border-radius:0;}
+.quiz-btn-secondary:active{background:var(--paper-2);}
+.quiz-conclusion-redo{font-size:13px;}
+.quiz-conclusion-redo a{color:var(--ink-gray);text-decoration:underline;}
+.quiz-conclusion-agent-hint{font-size:12px;color:var(--ink-light);line-height:1.6;margin-bottom:8px;}
+.quiz-conclusion-types{margin:16px 0;text-align:left;border-top:1px solid var(--border-ink-2);padding-top:14px;}
+.quiz-type-item{display:flex;gap:10px;margin-bottom:8px;line-height:1.6;}
+.quiz-type-item:last-child{margin-bottom:0;}
+.quiz-type-name{flex-shrink:0;width:90px;font-size:13px;font-weight:700;color:var(--ink-green);}
+.quiz-type-desc{flex:1;font-size:12px;color:var(--ink-gray);}
+.quiz-help-block{margin-top:12px;padding:12px 14px;background:var(--paper);border-left:3px solid var(--ink-green);}
+.quiz-help-section{margin-bottom:10px;}
+.quiz-help-section:last-child{margin-bottom:0;}
+.quiz-help-title{font-size:13px;font-weight:700;color:var(--ink-green);margin-bottom:4px;}
+.quiz-help-body{font-size:13px;color:var(--ink-gray);line-height:1.7;}
+.quiz-copy-prompt-btn{display:inline-flex;align-items:center;margin-top:6px;padding:6px 14px;border:1px solid var(--ink-green);background:transparent;color:var(--ink-green);font-size:13px;font-family:inherit;cursor:pointer;border-radius:0;}
+.quiz-copy-prompt-btn:active{background:var(--paper-2);}
+.quiz-prompt-text{margin-top:6px;padding:10px 12px;background:var(--paper-2);border:1px solid var(--border-ink-2);font-size:13px;color:var(--ink-deep);line-height:1.7;white-space:pre-wrap;word-break:break-all;}
+.quiz-help-agent .quiz-help-body{color:var(--ink-light);font-size:12px;}
+.quiz-toast{position:fixed;bottom:30%;left:50%;transform:translateX(-50%);background:var(--ink-deep);color:var(--paper);padding:10px 20px;font-size:13px;z-index:300;max-width:80%;text-align:center;line-height:1.5;border-radius:0;opacity:0;transition:opacity .25s ease,transform .25s ease;}
+.quiz-toast-show{opacity:1;transform:translateX(-50%) translateY(0);}
+.quiz-enter{opacity:0;transform:translateY(10px);}
+.quiz-enter-active{opacity:1;transform:translateY(0);transition:opacity .3s ease,transform .3s ease;}
+.ip-inline-link{color:var(--ink-green);text-decoration:underline;cursor:pointer;font-weight:600;}
+.ip-inline-link:active{color:var(--ink-green-2);}
+
+/* ===== SPA 页面切换 ===== */
+.ip-page{display:none;}
+.ip-page.active{display:block;animation:ipPageIn .3s ease;}
+@keyframes ipPageIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
+.ip-topbar__nav .ip-btn--nav{position:relative;}
+.ip-topbar__nav .ip-btn--nav.active{color:var(--ink-green);border-color:var(--ink-green);font-weight:600;}
+.ip-topbar__nav .ip-btn--nav.active::after{content:"";position:absolute;bottom:-2px;left:50%;transform:translateX(-50%);width:60%;height:2px;background:var(--ink-green);}
+
+/* ===== 响应式：平板/小桌面 ===== */
+@media (min-width:768px){
+  #ip-app{max-width:760px;}
+  #ip-header{padding:16px 24px;}
+  .ip-topbar__nav{gap:14px;}
+  .ip-brand__name{font-size:20px;}
+  .ip-btn{padding:10px 20px;font-size:15px;}
+  .ip-section{margin:16px;padding:32px;}
+  .ip-hero{padding:48px 24px;}
+  .ip-hero__title{font-size:28px;letter-spacing:3px;}
+  .ip-hero__tagline{font-size:17px;}
+  .ip-section__title{font-size:20px;}
+  .ip-modal__panel{max-width:560px;}
+  .ip-fee-table{font-size:14px;}
+  .ip-fee-table th,.ip-fee-table td{padding:12px 10px;}
+}
+/* ===== 响应式：大桌面 ===== */
+@media (min-width:1024px){
+  #ip-app{max-width:920px;}
+  .ip-hero{padding:56px 24px;}
+  .ip-hero__title{font-size:32px;}
+  .ip-section{margin:20px;padding:36px;}
+}
+  </style>
+</head>
+<body id="ip-app">
+
+  <!-- 顶部导航栏 -->
+  <header id="ip-header" class="ip-topbar">
+    <div class="ip-topbar__brand">
+      <span class="ip-brand__name">知产前置通</span>
+    </div>
+    <nav class="ip-topbar__nav">
+      <button type="button" class="ip-btn ip-btn--ghost ip-btn--small ip-btn--nav active" data-page="quiz">自测</button>
+      <button type="button" class="ip-btn ip-btn--ghost ip-btn--small ip-btn--nav" data-page="process">流程</button>
+      <button type="button" class="ip-btn ip-btn--ghost ip-btn--small ip-btn--nav" data-page="calc">算账</button>
+      <button type="button" class="ip-btn ip-btn--ghost ip-btn--small ip-btn--nav" data-page="overseas">出海</button>
+    </nav>
+  </header>
+
+  <!-- ===== 页面1：自测 ===== -->
+  <section id="page-quiz" class="ip-page active">
+    <section id="ip-hero" class="ip-section ip-hero">
+      <h1 class="ip-hero__title">知产前置通</h1>
+      <p class="ip-hero__tagline">你的技术要不要申请专利、专利如何申请、官费花多少</p>
+      <p class="ip-hero__sub">问题自测 + 中国/海外官费一键算，拿不准有自助查、AI 提示词、<a class="ip-inline-link" data-copy-wechat>代理师</a>三出口</p>
+      <div class="ip-hero__actions">
+        <button type="button" class="ip-btn ip-btn--ghost ip-btn--small" data-page="calc">直接算账</button>
+      </div>
+    </section>
+
+    <section id="ip-quiz" class="ip-section">
+      <h2 class="ip-section__title">搞清楚能不能申请</h2>
+      <div id="quiz-container" class="ip-quiz-container" data-mount="quiz">
+        <p class="ip-mount-placeholder">自测器加载中…（由 quiz.js 渲染）</p>
+      </div>
+      <div id="ip-conclusion" class="ip-conclusion" data-mount="conclusion" hidden></div>
+    </section>
+  </section>
+
+  <!-- ===== 页面2：申请流程与时间轴 ===== -->
+  <section id="page-process" class="ip-page">
+    <section id="section-process" class="ip-section">
+      <h2 class="ip-section__title">申请到底怎么走、要等多久</h2>
+      <p class="ip-fee-note" style="margin-bottom:16px;">各阶段时间均为专利法法定期限或 CNIPA 官网公布，可点击「查官网」验证</p>
+      <div id="process-container" data-mount="process">
+        <p class="ip-mount-placeholder">流程加载中…</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===== 页面3：中国官费算账 ===== -->
+  <section id="page-calc" class="ip-page">
+    <section class="ip-section">
+      <h2 class="ip-section__title">算算中国官费花多少</h2>
+      <p class="ip-calc-intro">作为申请人，你可以自己向专利局提交申请，但需要自行撰写专利文件、注册专利账号、跟踪审查流程等一系列操作。以上服务均可寻求专业人士帮助，<a class="ip-inline-link" data-copy-wechat>代理费另算</a>。下面先算纯官费：</p>
+      <div id="cn-fees" class="ip-calc-block" data-mount="calc-cn">
+        <p class="ip-mount-placeholder">中国官费加载中…（由 cn_calc.js 渲染）</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===== 页面4：海外官费算账 ===== -->
+  <section id="page-overseas" class="ip-page">
+    <section class="ip-section">
+      <h2 class="ip-section__title">海外各国官费对比</h2>
+      <p class="ip-calc-intro">不同技术领域建议进入的国家不同。以下为 10 国专利官费参考，含申请费、审查费、授权费及年费，所有金额均嵌入官网链接可追溯。</p>
+      <div id="overseas-fees" class="ip-calc-block ip-calc-block--overseas" data-mount="calc-overseas">
+        <p class="ip-mount-placeholder">海外官费加载中…（自测选"出海"后自动展示，也可直接浏览）</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- 底部温和引流（全局，所有页面可见） -->
+  <footer id="ip-footer" class="ip-footer">
+    <p class="ip-footer__intro">看完还是拿不准？<span class="ip-footer__name">涉外专利代理师 张倩</span>帮你一对一判断</p>
+    <div class="ip-footer__actions">
+      <button type="button" class="ip-btn ip-btn--ghost" data-copy-wechat>复制微信号</button>
+    </div>
+  </footer>
+
+  <!-- 三出口弹窗（触点2/3/4/5/6 复用） -->
+  <div id="ip-help-modal" class="ip-modal" data-mount="help-modal" hidden>
+    <div class="ip-modal__mask" data-close-help></div>
+    <div class="ip-modal__panel" role="dialog" aria-modal="true" aria-labelledby="ip-help-title">
+      <button type="button" class="ip-modal__close" data-close-help aria-label="关闭">×</button>
+      <h3 class="ip-modal__title" id="ip-help-title">这个拿不准？</h3>
+      <div class="ip-modal__body">
+        <div class="ip-help-item">
+          <span class="ip-seal ip-seal--green" aria-hidden="true">查</span>
+          <div class="ip-help__content">
+            <div class="ip-help__label">自己查</div>
+            <div class="ip-help__text" id="ip-help-self"></div>
+          </div>
+        </div>
+        <div class="ip-help-item">
+          <span class="ip-seal ip-seal--blue" aria-hidden="true">问</span>
+          <div class="ip-help__content">
+            <div class="ip-help__label">问 AI</div>
+            <div class="ip-help__text" id="ip-help-ai"></div>
+          </div>
+          <button type="button" class="ip-btn ip-btn--small ip-btn--primary" id="ip-help-ai-copy">复制提示词</button>
+        </div>
+        <div class="ip-help-item">
+          <span class="ip-seal ip-seal--red" aria-hidden="true">聊</span>
+          <div class="ip-help__content">
+            <div class="ip-help__label">问代理师</div>
+            <div class="ip-help__text">加微信 <b class="ip-wechat-strong">pb-zhangqian</b></div>
+          </div>
+          <button type="button" class="ip-btn ip-btn--small ip-btn--primary" data-copy-wechat>复制微信号</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+(function () {
+  'use strict';
+
+  /* closest polyfill — 兼容老 webview */
+  if (window.Element && Element.prototype && !Element.prototype.closest) {
+    Element.prototype.closest = function (s) {
+      var n = this;
+      while (n && n.nodeType === 1) {
+        if (n.matches && n.matches(s)) return n;
+        if (n.msMatchesSelector && n.msMatchesSelector(s)) return n;
+        n = n.parentElement || n.parentNode;
+      }
+      return null;
+    };
+  }
+
+  function _ipToast(msg) {
+    var d = document.createElement('div');
+    d.className = 'ip-toast';
+    d.textContent = msg;
+    document.body.appendChild(d);
+    setTimeout(function () { if (d.parentNode) d.parentNode.removeChild(d); }, 2000);
+  }
+
+  function _ipCopyFallback(text, successMsg, toastFn) {
+    var ok = false, ta;
+    try {
+      ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly', '');
+      ta.style.position = 'fixed';
+      ta.style.top = '-9999px';
+      ta.style.left = '0';
+      ta.style.opacity = '0';
+      ta.style.fontSize = '16px';
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+    } catch (err) {
+      ok = false;
+      try { if (ta && ta.parentNode) ta.parentNode.removeChild(ta); } catch (e2) {}
+    }
+    toastFn(ok ? successMsg : '复制失败，请长按手动复制');
+  }
+
+  function _ipCopy(text, successMsg) {
+    var toastFn = (typeof showCopyToast === 'function') ? showCopyToast : _ipToast;
+    if (navigator && navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      navigator.clipboard.writeText(text).then(function () {
+        toastFn(successMsg);
+      }, function () { _ipCopyFallback(text, successMsg, toastFn); });
+    } else {
+      _ipCopyFallback(text, successMsg, toastFn);
+    }
+  }
+
+  function _formatAmount(amount, currency) {
+    if (amount === 0 || amount === '0' || amount == null || amount === '') return '—';
+    if (currency === 'CNY') return '\u00a5' + amount;
+    if (currency === 'USD') return 'USD$' + amount;
+    if (currency === 'EUR') return 'EUR\u20ac' + amount;
+    return (currency ? currency + ' ' : '') + amount;
+  }
+
+  function _buildFeeRow(name, fee, explain) {
+    fee = fee || {};
+    var tr = document.createElement('tr');
+    var tdN = document.createElement('td');
+    var ns = document.createElement('span');
+    ns.className = 'ip-fee-name';
+    ns.textContent = name;
+    tdN.appendChild(ns);
+    var q = document.createElement('span');
+    q.className = 'ip-fee-q';
+    q.setAttribute('data-explain', explain);
+    q.textContent = '?';
+    tdN.appendChild(q);
+    tr.appendChild(tdN);
+    var tdL = document.createElement('td');
+    var ls = document.createElement('span');
+    ls.className = 'ip-fee-amount';
+    ls.textContent = _formatAmount(fee.large, fee.currency);
+    tdL.appendChild(ls);
+    tr.appendChild(tdL);
+    var tdS = document.createElement('td');
+    var ss = document.createElement('span');
+    ss.className = 'ip-fee-amount';
+    ss.textContent = _formatAmount(fee.small, fee.currency);
+    tdS.appendChild(ss);
+    tr.appendChild(tdS);
+    var tdU = document.createElement('td');
+    if (fee.sourceUrl) {
+      var lk = document.createElement('a');
+      lk.className = 'ip-fee-link';
+      lk.href = fee.sourceUrl;
+      lk.target = '_blank';
+      lk.rel = 'noopener';
+      lk.textContent = '查';
+      tdU.appendChild(lk);
+    } else { tdU.textContent = '—'; }
+    tr.appendChild(tdU);
+    return tr;
+  }
+
+  function _buildFeeCard(c) {
+    c = c || {};
+    var card = document.createElement('div');
+    card.className = 'ip-fee-card';
+    var head = document.createElement('div');
+    head.className = 'ip-fee-card__head';
+    var cy = document.createElement('div');
+    cy.className = 'ip-fee-card__country';
+    cy.textContent = (typeof getCountryName === 'function') ? getCountryName(c.code || '') : (c.name || '');
+    head.appendChild(cy);
+    var au = document.createElement('div');
+    au.className = 'ip-fee-card__authority';
+    au.textContent = c.authority || '';
+    head.appendChild(au);
+    if (c.officialUrl) {
+      var ol = document.createElement('a');
+      ol.className = 'ip-fee-link';
+      ol.href = c.officialUrl;
+      ol.target = '_blank';
+      ol.rel = 'noopener';
+      ol.textContent = '官网';
+      head.appendChild(ol);
+    }
+    var cb = document.createElement('button');
+    cb.className = 'ip-btn ip-btn--small ip-btn--ghost';
+    cb.setAttribute('data-copy-wechat', '');
+    cb.textContent = '咨询该国';
+    head.appendChild(cb);
+    card.appendChild(head);
+    var tbl = document.createElement('table');
+    tbl.className = 'ip-fee-table';
+    var thead = document.createElement('thead');
+    var htr = document.createElement('tr');
+    var hs = ['费用项', '大实体', '小/微实体', '来源'];
+    for (var i = 0; i < hs.length; i++) {
+      var th = document.createElement('th');
+      th.textContent = hs[i];
+      htr.appendChild(th);
+    }
+    thead.appendChild(htr);
+    tbl.appendChild(thead);
+    var tbody = document.createElement('tbody');
+    tbody.appendChild(_buildFeeRow('申请费', c.filingFee, '向专利局提交申请的受理费'));
+    tbody.appendChild(_buildFeeRow('检索费', c.searchFee, '专利局对现有技术进行检索的费用'));
+    tbody.appendChild(_buildFeeRow('审查费', c.examFee, '实质审查费，审查员评估新颖性和创造性'));
+    tbody.appendChild(_buildFeeRow('授权费', c.grantFee, '专利授权后的登记费'));
+    tbl.appendChild(tbody);
+    card.appendChild(tbl);
+    if (c.annuity && c.annuity.length) {
+      var det = document.createElement('details');
+      det.className = 'ip-fee-annuity';
+      var sm = document.createElement('summary');
+      sm.textContent = '年费阶梯（共' + c.annuity.length + '档）';
+      det.appendChild(sm);
+      for (var j = 0; j < c.annuity.length; j++) {
+        var a = c.annuity[j] || {};
+        var ln = document.createElement('div');
+        ln.textContent = '第' + a.year + '年：大实体\u00a5' + a.large + ' / 小实体\u00a5' + a.small;
+        det.appendChild(ln);
+      }
+      card.appendChild(det);
+    }
+    var note = document.createElement('div');
+    note.className = 'ip-fee-card__note';
+    note.textContent = '期限：优先权起 ' + (c.deadline || '') + ' 个月 | ' + (c.notes || '');
+    card.appendChild(note);
+    return card;
+  }
+
+  window.showHelp = function (selfText, aiPromptKey, topic) {
+    var t = document.getElementById('ip-help-title');
+    if (t) t.textContent = topic ? ('\u300c' + topic + '\u300d拿不准？') : '这个拿不准？';
+    var sf = document.getElementById('ip-help-self');
+    if (sf) sf.textContent = selfText || '';
+    // aiPromptKey is a key (e.g. 'grace_period'), look up full text from PROMPTS if available
+    var aiDisplay = aiPromptKey || '';
+    if (typeof PROMPTS !== 'undefined' && PROMPTS && aiPromptKey && PROMPTS[aiPromptKey]) {
+      aiDisplay = PROMPTS[aiPromptKey].template || aiPromptKey;
+    }
+    var ai = document.getElementById('ip-help-ai');
+    if (ai) ai.textContent = aiDisplay || '';
+    var cp = document.getElementById('ip-help-ai-copy');
+    if (cp) cp.setAttribute('data-copy-text', aiPromptKey || '');
+    var m = document.getElementById('ip-help-modal');
+    if (m) m.hidden = false;
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.renderFeeTable = function (countryArray, targetId) {
+    targetId = targetId || 'overseas-fees';
+    var target = document.getElementById(targetId);
+    if (!target) return null;
+    target.innerHTML = '';
+    if (countryArray && countryArray.length) {
+      for (var i = 0; i < countryArray.length; i++) target.appendChild(_buildFeeCard(countryArray[i]));
+    }
+    target.hidden = false;
+    return target;
+  };
+
+  window.showConclusion = function (recommendType, ctx) {
+    var MAP = {
+      invention: { title: '建议申请：发明专利', desc: '保护最强、审查约1.5-3年，适合核心技术' },
+      utility: { title: '建议申请：实用新型', desc: '下证快（6-10个月）、费用低，适合产品结构改进' },
+      design: { title: '建议申请：外观设计', desc: '只保护样子，最快授权，适合产品外观' },
+      dual: { title: '建议：发明+实用新型同日双报', desc: '先用实用新型快速获权，发明授权时再择一保留' }
+    };
+    var info = MAP[recommendType] || MAP.invention;
+    var el = document.getElementById('ip-conclusion');
+    if (!el) return;
+    el.innerHTML = '<div class="ip-conclusion__title">' + info.title + '</div>'
+      + '<div class="ip-conclusion__desc">' + info.desc + '</div>'
+      + '<div class="ip-conclusion__actions">'
+      + '<button class="ip-btn ip-btn--ghost" data-page="process">看流程</button>'
+      + '<button class="ip-btn ip-btn--primary" data-page="calc">看费用</button>'
+      + '<button class="ip-btn ip-btn--ghost" data-copy-wechat>找代理师聊聊</button>'
+      + '</div>';
+    el.hidden = false;
+    if (el.scrollIntoView) { try { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {} }
+  };
+
+  window.copyWechat = function (text) {
+    _ipCopy(text || 'pb-zhangqian', '已复制微信号 pb-zhangqian，去微信添加好友');
+  };
+
+  // ===== SPA 页面切换 =====
+  var _currentPage = 'quiz';
+  window.switchPage = function (pageId, opts) {
+    opts = opts || {};
+    if (!pageId) return;
+    var pages = document.querySelectorAll('.ip-page');
+    for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
+    var target = document.getElementById('page-' + pageId);
+    if (!target) { target = document.getElementById('page-quiz'); pageId = 'quiz'; }
+    target.classList.add('active');
+    _currentPage = pageId;
+
+    // 导航高亮
+    var navBtns = document.querySelectorAll('.ip-btn--nav');
+    for (var j = 0; j < navBtns.length; j++) {
+      navBtns[j].classList.toggle('active', navBtns[j].getAttribute('data-page') === pageId);
+    }
+
+    // 滚到顶部
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // 流程页面：首次进入时渲染，若已出海则展开海外途径
+    if (pageId === 'process' && !opts.skipInit) {
+      if (typeof renderProcess === 'function') {
+        try { renderProcess('process-container'); } catch (e) {}
+      }
+      if (window._overseasExpanded && typeof expandOverseasProcess === 'function') {
+        expandOverseasProcess();
+      }
+      // 激活指定类型的流程tab（由自测结论卡传入）
+      if (opts.processTab) {
+        var tab = document.querySelector('[data-process-tab="' + opts.processTab + '"]');
+        if (tab && typeof _handleProcessTab === 'function') {
+          _handleProcessTab({ target: tab });
+        }
+      }
+    }
+
+    // 海外页面：首次进入时 init OverseasCalc
+    if (pageId === 'overseas' && !opts.skipInit) {
+      var ovEl = document.getElementById('overseas-fees');
+      if (ovEl && typeof OverseasCalc !== 'undefined' && typeof OverseasCalc.init === 'function') {
+        try { OverseasCalc.init(); } catch (e) {}
+      }
+    }
+
+    // hash 同步（方便分享）
+    try { history.replaceState(null, '', '#' + pageId); } catch (e) {}
+  };
+
+  window.getCurrentPage = function () { return _currentPage; };
+
+  document.addEventListener('click', function (e) {
+    if (!e.target || !e.target.closest) return;
+    if (e.target.closest('[data-copy-wechat]')) { window.copyWechat(); return; }
+
+    // 页面切换导航
+    var navBtn = e.target.closest('[data-page]');
+    if (navBtn) {
+      window.switchPage(navBtn.getAttribute('data-page'));
+      return;
+    }
+
+    // 兼容旧 data-scroll（部分内部按钮可能仍用）
+    var s = e.target.closest('[data-scroll]');
+    if (s) {
+      var scrollTarget = s.getAttribute('data-scroll');
+      // 旧锚点映射到新页面
+      var pageMap = { 'ip-quiz': 'quiz', 'section-process': 'process', 'section-calc': 'calc', 'ip-calc': 'calc', 'overseas-fees': 'overseas' };
+      if (pageMap[scrollTarget]) {
+        window.switchPage(pageMap[scrollTarget]);
+      } else {
+        var se = document.getElementById(scrollTarget);
+        if (se && se.scrollIntoView) { try { se.scrollIntoView({ behavior: 'smooth' }); } catch (e2) {} }
+      }
+      return;
+    }
+    if (e.target.closest('[data-close-help]')) {
+      var hm = document.getElementById('ip-help-modal');
+      if (hm) hm.hidden = true;
+      document.body.style.overflow = '';
+      return;
+    }
+    var q = e.target.closest('[data-explain]');
+    if (q) { _ipToast(q.getAttribute('data-explain')); return; }
+    var ac = e.target.closest('#ip-help-ai-copy');
+    if (ac) {
+      var pk = ac.getAttribute('data-copy-text') || '';
+      if (typeof copyPrompt === 'function' && pk) {
+        copyPrompt(pk);
+      } else if (typeof PROMPTS !== 'undefined' && PROMPTS && PROMPTS[pk]) {
+        _ipCopy(PROMPTS[pk].template || pk, '已复制，去问 GLM/ChatGPT/DeepSeek 都行');
+      } else {
+        _ipCopy(pk, '已复制，去问 GLM/ChatGPT/DeepSeek 都行');
+      }
+      return;
+    }
+  });
+
+  // expandOverseas: quiz.js conclusion card calls this to show overseas fees
+  window._overseasExpanded = false;
+  window.expandOverseas = function () {
+    window._overseasExpanded = true;
+    var el = document.getElementById('overseas-fees');
+    if (el) el.hidden = false;
+    // 同步展开流程段的海外途径
+    if (typeof expandOverseasProcess === 'function') expandOverseasProcess();
+    // 自动切换到海外页面
+    if (typeof window.switchPage === 'function') {
+      window.switchPage('overseas');
+    }
+  };
+
+  // Initialize process timeline when DOM is ready
+  function _initProcess() {
+    if (typeof renderProcess === 'function') {
+      try { renderProcess('process-container'); } catch (e) { console.warn('[skeleton] renderProcess failed:', e); }
+    }
+  }
+
+  // Initialize quiz when DOM is ready (if quiz.js is loaded)
+  function _initQuiz() {
+    if (typeof Quiz !== 'undefined' && typeof Quiz.init === 'function') {
+      var container = document.getElementById('quiz-container');
+      if (container) {
+        try { Quiz.init(container); } catch (e) { console.warn('[skeleton] Quiz.init failed:', e); }
+      }
+    }
+  }
+  function _initAll() {
+    _initProcess();
+    _initQuiz();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', _initAll);
+  } else {
+    _initAll();
+  }
+
+})();
+  </script>
+<script>
+// ===== process.js 内联（模块D2） =====
+/**
+ * 知产前置通 - 专利申请流程与时间轴（模块D2）
+ *
+ * 模块用途：
+ *   自测器结论卡之后、官费算账之前，补一段"申请到底是个什么过程"。
+ *   回答小白三件事：多久（官网公布时间/法定期限）·准备啥·做什么。
+ *   发明走完整5阶段时间轴；实用新型/外观给3阶段简化版。
+ *   出海时展开 PCT / 巴黎公约两条途径时间线。
+ *
+ * 设计原则（与全站一致）：
+ *   - 时间有源：每个阶段/每条途径均附 CNIPA 官网或国际组织链接，可点击验证
+ *   - 海外延伸默认隐藏，第5步选"出海"时由 expandOverseas() 一并展开
+ *   - 复用 skeleton.html 的 ip-section / ip-fee-card 视觉风格
+ *   - 材料拿不准 → 复制微信号引流（copyWechat），不依赖 PROMPTS key
+ *
+ * 依赖（由其他模块提供，本文件只调用不实现）：
+ *   - skeleton.html 提供 copyWechat()、_ipToast() 等全局函数
+ *
+ * 导出接口：
+ *   - PROCESS                 : 流程数据（中国发明/实用新型/外观 + 材料 + 海外途径）
+ *   - renderProcess(targetId) : 渲染流程段到指定容器
+ *   - expandOverseasProcess() : 展开海外途径时间线（由 expandOverseas 调用）
+ *
+ * 使用方式：
+ *   <script src="process.js"><\/script>
+ *   renderProcess('process-container');
+ */
+var PROCESS = (function () {
+  'use strict';
+
+  // CNIPA 专利申请审批流程官方说明页（发明5阶段 / 实用新型·外观3阶段）
+  var URL_CNIPA_FLOW = 'https://www.cnipa.gov.cn/art/2020/6/5/art_1517_92471.html';
+  // CNIPA 一图看懂专利审批流程
+  var URL_CNIPA_CHART = 'https://www.cnipa.gov.cn/art/2026/4/24/art_1517_206128.html';
+  // PCT 国际阶段官方（WIPO）
+  var URL_PCT = 'https://www.wipo.int/pct/zh/';
+  // 巴黎公约（WIPO）
+  var URL_PARIS = 'https://www.wipo.int/treaties/zh/ip/paris/';
+
+  return {
+    // ===================== 中国发明专利流程（5阶段） =====================
+    cnInvention: {
+      title: '发明专利',
+      authority: '国家知识产权局 CNIPA',
+      officialUrl: URL_CNIPA_FLOW,
+      totalNote: '整体约 1.5–3 年授权（依案而异），保护期 20 年（自申请日起算）',
+      stages: [
+        {
+          name: '受理',
+          time: '提交即受理',
+          timeLabel: '当天',
+          prep: '技术交底书、说明书、权利要求书、附图、摘要',
+          action: '向 CNIPA 提交申请文件，获得申请号和申请日',
+          sourceUrl: URL_CNIPA_FLOW
+        },
+        {
+          name: '初步审查',
+          time: '受理后进行，有形式缺陷发补正通知书（通常 1–2 个月内）',
+          timeLabel: '约1–2个月',
+          prep: '对照补正通知书修改格式、补齐文件',
+          action: '收到补正通知书后限期答复，否则视为撤回',
+          sourceUrl: URL_CNIPA_FLOW
+        },
+        {
+          name: '公布',
+          time: '自申请日起满 18 个月（专利法第34条），可申请提前公布',
+          timeLabel: '满18个月',
+          prep: '想早公开 → 提"提前公布请求"',
+          action: '公开后获得临时保护，他人实施可主张适当费用',
+          sourceUrl: URL_CNIPA_FLOW
+        },
+        {
+          name: '实质审查',
+          time: '自申请日起 3 年内提出请求（专利法第35条），逾期视为撤回',
+          timeLabel: '3年内请求',
+          prep: '实审请求书 + 缴实审费',
+          action: '审查员检索评估新颖性/创造性，发审查意见通知书（可能多轮），需逐次答复',
+          sourceUrl: URL_CNIPA_FLOW
+        },
+        {
+          name: '授权登记',
+          time: '审查通过发授权通知书，缴登记费后发证；整体约 1.5–3 年',
+          timeLabel: '约1.5–3年',
+          prep: '缴授权登记费 + 第一年年费',
+          action: '缴费领证，专利权自公告之日起生效',
+          sourceUrl: URL_CNIPA_FLOW
+        }
+      ]
+    },
+
+    // ===================== 中国实用新型（3阶段，无公布无实审） =====================
+    cnUtility: {
+      title: '实用新型',
+      authority: '国家知识产权局 CNIPA',
+      officialUrl: URL_CNIPA_FLOW,
+      totalNote: '通常 6–10 个月授权（依案而异），只保护产品形状/构造，保护期 10 年',
+      stages: [
+        {
+          name: '受理',
+          time: '提交即受理',
+          timeLabel: '当天',
+          prep: '说明书、权利要求书、附图、摘要',
+          action: '提交申请，获得申请号',
+          sourceUrl: URL_CNIPA_FLOW
+        },
+        {
+          name: '初步审查',
+          time: '受理后进行形式审查，不评估创造性',
+          timeLabel: '受理后',
+          prep: '对照补正通知书修改形式问题',
+          action: '收到补正通知书限期答复',
+          sourceUrl: URL_CNIPA_FLOW
+        },
+        {
+          name: '授权登记',
+          time: '初审合格即授权，通常 6–10 个月',
+          timeLabel: '约6–10个月',
+          prep: '缴授权登记费 + 第一年年费',
+          action: '缴费领证',
+          sourceUrl: URL_CNIPA_FLOW
+        }
+      ]
+    },
+
+    // ===================== 中国外观设计（3阶段，无公布无实审） =====================
+    cnDesign: {
+      title: '外观设计',
+      authority: '国家知识产权局 CNIPA',
+      officialUrl: URL_CNIPA_FLOW,
+      totalNote: '通常 3–6 个月授权（依案而异），只保护外观，保护期 15 年',
+      stages: [
+        {
+          name: '受理',
+          time: '提交即受理',
+          timeLabel: '当天',
+          prep: '图片或照片、简要说明',
+          action: '提交申请，获得申请号',
+          sourceUrl: URL_CNIPA_FLOW
+        },
+        {
+          name: '初步审查',
+          time: '受理后进行形式审查，不评估创造性',
+          timeLabel: '受理后',
+          prep: '对照补正通知书修改形式问题',
+          action: '收到补正通知书限期答复',
+          sourceUrl: URL_CNIPA_FLOW
+        },
+        {
+          name: '授权登记',
+          time: '初审合格即授权，通常 3–6 个月',
+          timeLabel: '约3–6个月',
+          prep: '缴授权登记费 + 第一年年费',
+          action: '缴费领证',
+          sourceUrl: URL_CNIPA_FLOW
+        }
+      ]
+    },
+
+    // ===================== 申请材料清单（按类型区分） =====================
+    materialsInvention: [
+      { name: '技术交底书', desc: '核心文件。讲清技术背景、要解决的技术问题、技术方案、有益效果。不会写？这是代理师最擅长帮你梳理的环节', key: true },
+      { name: '权利要求书', desc: '界定保护范围，决定专利值多少钱。写窄了保护弱，写宽了易被驳回', key: false },
+      { name: '说明书及附图', desc: '把技术方案讲清楚到本领域技术人员能实现的程度，附图配合文字', key: false },
+      { name: '摘要', desc: '一句话概括技术方案，300字以内，便于检索', key: false },
+      { name: '委托书（找代理师时）', desc: '委托代理机构办理时需要签署专利代理委托书', key: false }
+    ],
+    materialsUtility: [
+      { name: '技术交底书', desc: '核心文件。讲清产品结构、连接关系、工作原理。不会写？代理师最擅长帮你梳理', key: true },
+      { name: '权利要求书', desc: '界定保护范围，只保护产品形状/构造，不保护方法', key: false },
+      { name: '说明书及附图', desc: '结构图+文字说明，讲清楚到本领域技术人员能制造的程度', key: false },
+      { name: '摘要', desc: '一句话概括技术方案，300字以内', key: false },
+      { name: '委托书（找代理师时）', desc: '委托代理机构办理时需要签署专利代理委托书', key: false }
+    ],
+    materialsDesign: [
+      { name: '图片或照片', desc: '核心文件。六面视图（主视图、后视图、左视图、右视图、俯视图、仰视图）+ 立体图，清楚展示外观', key: true },
+      { name: '简要说明', desc: '写明产品名称、用途、设计要点、图片或照片省略的视图等', key: false },
+      { name: '委托书（找代理师时）', desc: '委托代理机构办理时需要签署专利代理委托书', key: false }
+    ],
+
+    // ===================== 年费维持（所有类型通用） =====================
+    annuity: {
+      title: '年费维持',
+      time: '授权后每年缴，逐年递增；逾期 6 个月内可补缴 + 滞纳金（《专利法实施细则》第98条）',
+      action: '按年缴费维持有效，不缴则专利权终止。是否继续缴要看专利是否还在用、产品是否还在卖',
+      sourceUrl: URL_CNIPA_FLOW
+    },
+
+    // ===================== 海外途径（出海时展开） =====================
+    overseas: [
+      {
+        title: 'PCT 途径',
+        authority: 'WIPO 国际局 + 各国国家局',
+        officialUrl: URL_PCT,
+        desc: '先交一份国际申请，30/31 个月内再进入各国国家阶段。适合同时进多国、想推迟决策和费用',
+        stages: [
+          {
+            name: '国际申请',
+            time: '优先权日起 12 个月内提交国际申请',
+            timeLabel: '12个月内',
+            action: '向受理局提交 PCT 国际申请，国际检索报告 + 书面意见'
+          },
+          {
+            name: '国际公布',
+            time: '优先权日起满 18 个月由 WIPO 公布',
+            timeLabel: '满18个月',
+            action: '国际公布，临时保护'
+          },
+          {
+            name: '国家阶段',
+            time: '优先权日起 30 个月内（部分国家 31 个月）进入各国国家阶段',
+            timeLabel: '30/31个月内',
+            action: '缴纳各国官费、提交译文、接受各国实质审查'
+          }
+        ]
+      },
+      {
+        title: '巴黎公约途径',
+        authority: '各国国家局',
+        officialUrl: URL_PARIS,
+        desc: '利用优先权，在首次申请后 12 个月内直接向各国分别提交。适合只进少数国家、想尽快启动审查',
+        stages: [
+          {
+            name: '首次申请',
+            time: '先在一个成员国提交（通常是中国）',
+            timeLabel: '先申请',
+            action: '获得首次申请日，即优先权日'
+          },
+          {
+            name: '优先权期限内',
+            time: '优先权日起 12 个月内，向目标国分别提交申请',
+            timeLabel: '12个月内',
+            action: '在各国分别提交申请文件、译文，主张优先权'
+          },
+          {
+            name: '各国审查',
+            time: '各国按本国程序实质审查，周期各异',
+            timeLabel: '各国不同',
+            action: '答复各国审查意见，分别缴费'
+          }
+        ]
+      }
+    ],
+
+    chartUrl: URL_CNIPA_CHART
+  };
+})();
+
+// ============================================================
+// 渲染流程段
+// @param {string} targetId - 容器元素 id
+// ============================================================
+function renderProcess(targetId) {
+  var target = document.getElementById(targetId);
+  if (!target) return;
+  target.innerHTML = _buildProcessHTML();
+  if (!renderProcess._tabBound) {
+    renderProcess._tabBound = true;
+    document.addEventListener('click', _handleProcessTab);
+  }
+}
+
+function _handleProcessTab(e) {
+  var tab = e.target.closest('[data-process-tab]');
+  if (!tab) return;
+  var name = tab.getAttribute('data-process-tab');
+  var container = tab.closest('#process-container') || document;
+  var tabs = container.querySelectorAll('[data-process-tab]');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.toggle('ip-process-tab--active', tabs[i] === tab);
+  }
+  var panels = container.querySelectorAll('[data-process-panel]');
+  for (var j = 0; j < panels.length; j++) {
+    var p = panels[j];
+    var match = (p.getAttribute('data-process-panel') === name);
+    p.classList.toggle('ip-process-panel--active', match);
+    p.hidden = !match;
+  }
+}
+
+// ============================================================
+// 展开海外途径时间线（由 skeleton.html 的 expandOverseas 调用）
+// ============================================================
+function expandOverseasProcess() {
+  var el = document.getElementById('process-overseas');
+  if (el) el.hidden = false;
+}
+
+// ------------------------------------------------------------
+// 内部构建函数
+// ------------------------------------------------------------
+function _buildProcessHTML() {
+  var html = '';
+  // 三个类型 tab
+  html += '<div class="ip-process-tabs">';
+  html += '  <button class="ip-process-tab ip-process-tab--active" data-process-tab="invention" type="button">发明专利</button>';
+  html += '  <button class="ip-process-tab" data-process-tab="utility" type="button">实用新型</button>';
+  html += '  <button class="ip-process-tab" data-process-tab="design" type="button">外观设计</button>';
+  html += '</div>';
+  // 发明 panel（默认显示）
+  html += '<div class="ip-process-panel ip-process-panel--active" data-process-panel="invention">';
+  html += _buildTimeline(PROCESS.cnInvention, true);
+  html += _buildMaterialsBlock(PROCESS.materialsInvention);
+  html += '</div>';
+  // 实用新型 panel
+  html += '<div class="ip-process-panel" data-process-panel="utility" hidden>';
+  html += _buildTimeline(PROCESS.cnUtility, false);
+  html += _buildMaterialsBlock(PROCESS.materialsUtility);
+  html += '</div>';
+  // 外观设计 panel
+  html += '<div class="ip-process-panel" data-process-panel="design" hidden>';
+  html += _buildTimeline(PROCESS.cnDesign, false);
+  html += _buildMaterialsBlock(PROCESS.materialsDesign);
+  html += '</div>';
+  // 年费维持（三类型共用）
+  html += _buildAnnuityBlock();
+  // 海外途径（默认隐藏，三类型共用）
+  html += _buildOverseasBlock();
+  return html;
+}
+
+function _buildTimeline(data, isMain) {
+  var html = '';
+  html += '<div class="ip-process-timeline' + (isMain ? ' ip-process-timeline--main' : '') + '">';
+  html += '  <div class="ip-process-timeline__head">';
+  html += '    <span class="ip-process-timeline__title">' + data.title + '流程</span>';
+  if (data.officialUrl) {
+    html += '  <a class="ip-fee-link" href="' + data.officialUrl + '" target="_blank" rel="noopener">官网</a>';
+  }
+  html += '  </div>';
+  html += '  <div class="ip-process-timeline__total">' + data.totalNote + '</div>';
+  html += '  <div class="ip-process-timeline__track">';
+  for (var i = 0; i < data.stages.length; i++) {
+    var s = data.stages[i];
+    var isLast = (i === data.stages.length - 1);
+    html += '  <div class="ip-process-stage">';
+    html += '    <div class="ip-process-stage__node">';
+    html += '      <span class="ip-process-stage__dot' + (isLast ? ' ip-process-stage__dot--end' : '') + '"></span>';
+    if (!isLast) html += '<span class="ip-process-stage__line"></span>';
+    html += '    </div>';
+    html += '    <div class="ip-process-stage__body">';
+    html += '      <div class="ip-process-stage__head">';
+    html += '        <span class="ip-process-stage__name">' + s.name + '</span>';
+    html += '        <span class="ip-process-stage__time">' + s.timeLabel + '</span>';
+    html += '      </div>';
+    html += '      <div class="ip-process-stage__timefull">' + s.time + '</div>';
+    if (s.prep) {
+      html += '    <div class="ip-process-stage__row"><span class="ip-process-stage__label">准备</span><span class="ip-process-stage__text">' + s.prep + '</span></div>';
+    }
+    if (s.action) {
+      html += '    <div class="ip-process-stage__row"><span class="ip-process-stage__label">做</span><span class="ip-process-stage__text">' + s.action + '</span></div>';
+    }
+    if (s.sourceUrl) {
+      html += '    <a class="ip-process-stage__src ip-fee-link" href="' + s.sourceUrl + '" target="_blank" rel="noopener">查官网</a>';
+    }
+    html += '    </div>';
+    html += '  </div>';
+  }
+  html += '  </div>';
+  html += '</div>';
+  return html;
+}
+
+function _buildAnnuityBlock() {
+  var a = PROCESS.annuity;
+  var html = '';
+  html += '<div class="ip-process-annuity">';
+  html += '  <div class="ip-process-annuity__head">';
+  html += '    <span class="ip-process-annuity__title">' + a.title + '</span>';
+  if (a.sourceUrl) {
+    html += '  <a class="ip-fee-link" href="' + a.sourceUrl + '" target="_blank" rel="noopener">官网</a>';
+  }
+  html += '  </div>';
+  html += '  <div class="ip-process-annuity__time">' + a.time + '</div>';
+  html += '  <div class="ip-process-annuity__action">' + a.action + '</div>';
+  html += '</div>';
+  return html;
+}
+
+function _buildMaterialsBlock(materials) {
+  materials = materials || [];
+  var html = '';
+  html += '<div class="ip-process-materials">';
+  html += '  <div class="ip-process-materials__title">申请要准备什么</div>';
+  html += '  <div class="ip-process-materials__list">';
+  for (var i = 0; i < materials.length; i++) {
+    var m = materials[i];
+    html += '  <div class="ip-process-material' + (m.key ? ' ip-process-material--key' : '') + '">';
+    html += '    <div class="ip-process-material__head">';
+    html += '      <span class="ip-process-material__name">' + m.name + '</span>';
+    if (m.key) html += '<span class="ip-process-material__tag">核心</span>';
+    html += '    </div>';
+    html += '    <div class="ip-process-material__desc">' + m.desc + '</div>';
+    html += '  </div>';
+  }
+  html += '  </div>';
+  html += '  <button type="button" class="ip-btn ip-btn--ghost ip-btn--small ip-btn--block" data-copy-wechat>交底书不会写？复制微信号问代理师</button>';
+  html += '</div>';
+  return html;
+}
+
+function _buildOverseasBlock() {
+  var html = '';
+  html += '<div id="process-overseas" class="ip-process-overseas" hidden>';
+  html += '  <div class="ip-process-overseas__title">出海怎么走？两条途径</div>';
+  for (var i = 0; i < PROCESS.overseas.length; i++) {
+    var o = PROCESS.overseas[i];
+    html += '  <div class="ip-process-overseas__path">';
+    html += '    <div class="ip-process-overseas__head">';
+    html += '      <span class="ip-process-overseas__name">' + o.title + '</span>';
+    if (o.officialUrl) {
+      html += '  <a class="ip-fee-link" href="' + o.officialUrl + '" target="_blank" rel="noopener">官网</a>';
+    }
+    html += '    </div>';
+    html += '    <div class="ip-process-overseas__desc">' + o.desc + '</div>';
+    html += '    <div class="ip-process-overseas__stages">';
+    for (var j = 0; j < o.stages.length; j++) {
+      var s = o.stages[j];
+      html += '  <div class="ip-process-overseas__stage">';
+      html += '    <span class="ip-process-overseas__sname">' + s.name + '</span>';
+      html += '    <span class="ip-process-overseas__stime">' + s.timeLabel + '</span>';
+      html += '    <span class="ip-process-overseas__sfull">' + s.time + '</span>';
+      html += '    <span class="ip-process-overseas__saction">' + s.action + '</span>';
+      html += '  </div>';
+    }
+    html += '    </div>';
+    html += '  </div>';
+  }
+  html += '  <button type="button" class="ip-btn ip-btn--ghost ip-btn--small ip-btn--block" data-copy-wechat>不知道选哪条？复制微信号问代理师</button>';
+  html += '</div>';
+  return html;
+}
+
+</script>
+<script>
+// ============================================================
+// 知产前置通 - 整合内联模块（模块G）
+// 整合时间: 2026-06-27 23:34
+// ============================================================
+
+// --- fees.json → const FEES ---
+var FEES = {
+  "meta": {
+    "updateDate": "2026-06-27",
+    "rateDate": "2026-06-26",
+    "exchangeRate": {
+      "USD": 6.8166,
+      "EUR": 7.7405,
+      "JPY": 0.042107,
+      "KRW": 0.00494,
+      "GBP": 8.9832,
+      "AUD": 4.7046,
+      "CAD": 4.7954,
+      "INR": 0.0812,
+      "BRL": 1.32,
+      "CNY": 1.0
+    },
+    "exchangeRateNote": "汇率统一为1外币=X人民币。USD/EUR/JPY/GBP/AUD/CAD取央行2026-06-26中间价；KRW/INR/BRL为交叉计算参考汇率（1 USD≈1380 KRW / 84 INR / 5.17 BRL）。前端折算仅供参考。",
+    "schemaVersion": "1.0"
+  },
+  "countries": {
+    "CN": {
+      "name": "中国",
+      "authority": "国家知识产权局（CNIPA）",
+      "officialUrl": "https://www.cnipa.gov.cn/col/col1518/index.html",
+      "feeReductionUrl": "https://cponline.cnipa.gov.cn/GzfwYwblGlwhTMVC/GzfwYwblGlwhT/selectByNoticeId?weihuRid=286",
+      "currency": "CNY",
+      "deadline": 31,
+      "deadlineNote": "PCT进入中国国家阶段31个月（含宽限期）",
+      "entityTiers": {
+        "large": {
+          "label": "大实体",
+          "reduction": 0
+        },
+        "small": {
+          "label": "小实体/自然人",
+          "reduction": 0.85
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明",
+          "filingFee": {
+            "tiers": {
+              "large": 900,
+              "small": 135
+            },
+            "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+          },
+          "printingFee": {
+            "tiers": {
+              "large": 50,
+              "small": 50
+            },
+            "note": "公布印刷费，不减缴",
+            "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+          },
+          "searchFee": {
+            "tiers": {
+              "large": 0,
+              "small": 0
+            },
+            "note": "中国发明无单独检索费",
+            "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 2500,
+              "small": 375
+            },
+            "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 260,
+              "small": 255
+            },
+            "note": "登记费255+印花税5，登记费减缴后约255",
+            "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+          },
+          "annuity": [
+            {
+              "fromYear": 1,
+              "toYear": 3,
+              "type": "annual",
+              "tiers": {
+                "large": 900,
+                "small": 135
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 4,
+              "toYear": 6,
+              "type": "annual",
+              "tiers": {
+                "large": 1200,
+                "small": 180
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 7,
+              "toYear": 9,
+              "type": "annual",
+              "tiers": {
+                "large": 2000,
+                "small": 300
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 10,
+              "toYear": 12,
+              "type": "annual",
+              "tiers": {
+                "large": 4000,
+                "small": 600
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 13,
+              "toYear": 15,
+              "type": "annual",
+              "tiers": {
+                "large": 6000,
+                "small": 900
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 16,
+              "toYear": 20,
+              "type": "annual",
+              "tiers": {
+                "large": 8000,
+                "small": 1200
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            }
+          ],
+          "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+        },
+        "utilityModel": {
+          "label": "实用新型",
+          "filingFee": {
+            "tiers": {
+              "large": 500,
+              "small": 75
+            },
+            "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 0,
+              "small": 0
+            },
+            "note": "实用新型无实质审查",
+            "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 205,
+              "small": 200
+            },
+            "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+          },
+          "annuity": [
+            {
+              "fromYear": 1,
+              "toYear": 3,
+              "type": "annual",
+              "tiers": {
+                "large": 600,
+                "small": 90
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 4,
+              "toYear": 5,
+              "type": "annual",
+              "tiers": {
+                "large": 900,
+                "small": 135
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 6,
+              "toYear": 8,
+              "type": "annual",
+              "tiers": {
+                "large": 1200,
+                "small": 180
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 9,
+              "toYear": 10,
+              "type": "annual",
+              "tiers": {
+                "large": 2000,
+                "small": 300
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            }
+          ],
+          "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+        },
+        "design": {
+          "label": "外观设计",
+          "filingFee": {
+            "tiers": {
+              "large": 500,
+              "small": 75
+            },
+            "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 205,
+              "small": 200
+            },
+            "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+          },
+          "annuity": [
+            {
+              "fromYear": 1,
+              "toYear": 3,
+              "type": "annual",
+              "tiers": {
+                "large": 600,
+                "small": 90
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 4,
+              "toYear": 5,
+              "type": "annual",
+              "tiers": {
+                "large": 900,
+                "small": 135
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 6,
+              "toYear": 8,
+              "type": "annual",
+              "tiers": {
+                "large": 1200,
+                "small": 180
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            },
+            {
+              "fromYear": 9,
+              "toYear": 10,
+              "type": "annual",
+              "tiers": {
+                "large": 2000,
+                "small": 300
+              },
+              "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+            }
+          ],
+          "sourceUrl": "https://www.cnipa.gov.cn/col/col1518/index.html"
+        }
+      },
+      "notes": "小实体（年收入/销售额≤100万单位，或个人年收入≤6万）减缴85%（申请费、实审费、复审费、自授权起十年内年费）。"
+    },
+    "US": {
+      "name": "美国",
+      "authority": "美国专利商标局（USPTO）",
+      "officialUrl": "https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule",
+      "currency": "USD",
+      "deadline": 30,
+      "deadlineNote": "PCT进入美国国家阶段30个月",
+      "entityTiers": {
+        "large": {
+          "label": "大实体",
+          "reduction": 0
+        },
+        "small": {
+          "label": "小实体（独立发明人/雇员≤500人）",
+          "reduction": 0.6
+        },
+        "micro": {
+          "label": "微实体（小实体+收入不超上限+未4件以上授权）",
+          "reduction": 0.8
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明（Utility Patent）",
+          "filingFee": {
+            "tiers": {
+              "large": 350,
+              "small": 140,
+              "micro": 70
+            },
+            "sourceUrl": "https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule"
+          },
+          "searchFee": {
+            "tiers": {
+              "large": 770,
+              "small": 308,
+              "micro": 154
+            },
+            "sourceUrl": "https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 880,
+              "small": 352,
+              "micro": 176
+            },
+            "sourceUrl": "https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 1290,
+              "small": 516,
+              "micro": 258
+            },
+            "note": "Issue fee",
+            "sourceUrl": "https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule"
+          },
+          "maintenanceFee": [
+            {
+              "atYear": 3.5,
+              "type": "lumpAtYear",
+              "tiers": {
+                "large": 2150,
+                "small": 860,
+                "micro": 430
+              },
+              "note": "授权后第3.5年缴纳",
+              "sourceUrl": "https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule"
+            },
+            {
+              "atYear": 7.5,
+              "type": "lumpAtYear",
+              "tiers": {
+                "large": 4040,
+                "small": 1616,
+                "micro": 808
+              },
+              "note": "授权后第7.5年缴纳",
+              "sourceUrl": "https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule"
+            },
+            {
+              "atYear": 11.5,
+              "type": "lumpAtYear",
+              "tiers": {
+                "large": 8280,
+                "small": 3312,
+                "micro": 1656
+              },
+              "note": "授权后第11.5年缴纳",
+              "sourceUrl": "https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule"
+            }
+          ],
+          "sourceUrl": "https://www.uspto.gov/learning-and-resources/fees-and-payment/uspto-fee-schedule"
+        }
+      },
+      "notes": "费率自2025年1月19日起生效。小实体减免60%（支付大实体40%），微实体减免80%（支付大实体20%）。以上为电子申请费率，纸质申请需额外缴纳非电子申请费。美国无逐年年费，改在授权后3.5/7.5/11.5年缴3次维持费。"
+    },
+    "EP": {
+      "name": "欧洲专利局",
+      "authority": "欧洲专利局（EPO）",
+      "officialUrl": "https://www.epo.org/en/applying/fees",
+      "currency": "EUR",
+      "deadline": 31,
+      "deadlineNote": "PCT进入欧洲地区阶段31个月",
+      "entityTiers": {
+        "large": {
+          "label": "标准实体",
+          "reduction": 0
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明",
+          "filingFee": {
+            "tiers": {
+              "large": 135
+            },
+            "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+          },
+          "searchFee": {
+            "tiers": {
+              "large": 1595
+            },
+            "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 2010
+            },
+            "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 1135
+            },
+            "note": "授权及公布费",
+            "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+          },
+          "annuity": [
+            {
+              "fromYear": 3,
+              "toYear": 3,
+              "type": "annual",
+              "tiers": {
+                "large": 725
+              },
+              "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+            },
+            {
+              "fromYear": 4,
+              "toYear": 4,
+              "type": "annual",
+              "tiers": {
+                "large": 885
+              },
+              "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+            },
+            {
+              "fromYear": 5,
+              "toYear": 5,
+              "type": "annual",
+              "tiers": {
+                "large": 1050
+              },
+              "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+            },
+            {
+              "fromYear": 6,
+              "toYear": 6,
+              "type": "annual",
+              "tiers": {
+                "large": 1215
+              },
+              "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+            },
+            {
+              "fromYear": 7,
+              "toYear": 7,
+              "type": "annual",
+              "tiers": {
+                "large": 1375
+              },
+              "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+            },
+            {
+              "fromYear": 8,
+              "toYear": 8,
+              "type": "annual",
+              "tiers": {
+                "large": 1540
+              },
+              "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+            },
+            {
+              "fromYear": 9,
+              "toYear": 9,
+              "type": "annual",
+              "tiers": {
+                "large": 1700
+              },
+              "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+            },
+            {
+              "fromYear": 10,
+              "toYear": 20,
+              "type": "annual",
+              "tiers": {
+                "large": 1865
+              },
+              "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+            }
+          ],
+          "sourceUrl": "https://www.epo.org/en/legal/official-journal/2026/01/a2"
+        }
+      },
+      "notes": "费用自2026年4月1日生效（行政理事会CA/D 9/25决定）。数据源自OJ EPO 2026 A2官方费率表。另需单独缴纳指定费€720。EPO无实体减缴。年费第3-9年逐年递增，第10-20年统一€1865。"
+    },
+    "JP": {
+      "name": "日本",
+      "authority": "日本特许厅（JPO）",
+      "officialUrl": "https://www.jpo.go.jp/e/system/process/tesuryo/hyou.html",
+      "currency": "JPY",
+      "deadline": 30,
+      "deadlineNote": "PCT进入日本国家阶段30个月",
+      "entityTiers": {
+        "large": {
+          "label": "标准实体",
+          "reduction": 0
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明（特许）",
+          "filingFee": {
+            "tiers": {
+              "large": 14000
+            },
+            "sourceUrl": "https://www.jpo.go.jp/e/system/process/tesuryo/hyou.html"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 138000
+            },
+            "perClaim": {
+              "large": 4000
+            },
+            "note": "审查请求费=基础138000+每项权利要求4000",
+            "sourceUrl": "https://www.jpo.go.jp/e/system/process/tesuryo/hyou.html"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 4300
+            },
+            "perClaim": {
+              "large": 300
+            },
+            "note": "专利费(第1-3年)=每年基础4300+每项权利要求300，授权时一次性缴纳3年",
+            "sourceUrl": "https://www.jpo.go.jp/e/system/process/tesuryo/hyou.html"
+          },
+          "annuity": [
+            {
+              "fromYear": 1,
+              "toYear": 3,
+              "type": "annual",
+              "tiers": {
+                "large": 4300
+              },
+              "perClaim": {
+                "large": 300
+              },
+              "note": "授权时一次性缴纳3年",
+              "sourceUrl": "https://www.jpo.go.jp/e/system/process/tesuryo/hyou.html"
+            },
+            {
+              "fromYear": 4,
+              "toYear": 6,
+              "type": "annual",
+              "tiers": {
+                "large": 10300
+              },
+              "perClaim": {
+                "large": 800
+              },
+              "sourceUrl": "https://www.jpo.go.jp/e/system/process/tesuryo/hyou.html"
+            },
+            {
+              "fromYear": 7,
+              "toYear": 9,
+              "type": "annual",
+              "tiers": {
+                "large": 24800
+              },
+              "perClaim": {
+                "large": 1900
+              },
+              "sourceUrl": "https://www.jpo.go.jp/e/system/process/tesuryo/hyou.html"
+            },
+            {
+              "fromYear": 10,
+              "toYear": 20,
+              "type": "annual",
+              "tiers": {
+                "large": 59400
+              },
+              "perClaim": {
+                "large": 4600
+              },
+              "note": "JPO官费表实际覆盖至第25年，本项目截取至第20年",
+              "sourceUrl": "https://www.jpo.go.jp/e/system/process/tesuryo/hyou.html"
+            }
+          ],
+          "sourceUrl": "https://www.jpo.go.jp/e/system/process/tesuryo/hyou.html"
+        }
+      },
+      "notes": "费率自2022年4月1日起生效。JPO不设实体减缴制度。审查费和年费含每项权利要求附加费。第1-3年年费在授权时一次性缴纳（含在grantFee中），第4年起逐年缴纳。"
+    },
+    "KR": {
+      "name": "韩国",
+      "authority": "韩国特许厅（KIPO）",
+      "officialUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01",
+      "currency": "KRW",
+      "deadline": 31,
+      "deadlineNote": "PCT进入韩国国家阶段31个月",
+      "entityTiers": {
+        "large": {
+          "label": "标准实体",
+          "reduction": 0
+        },
+        "small": {
+          "label": "小实体（自然人且为发明人）",
+          "reduction": 0.7
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明",
+          "filingFee": {
+            "tiers": {
+              "large": 46000,
+              "small": 13800
+            },
+            "note": "电子申请；纸质66000，超20页每页加1000",
+            "sourceUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01"
+          },
+          "searchFee": {
+            "tiers": {
+              "large": 0,
+              "small": 0
+            },
+            "note": "无单独检索费",
+            "sourceUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 166000,
+              "small": 49800
+            },
+            "perClaim": {
+              "large": 51000,
+              "small": 15300
+            },
+            "note": "审查请求费=基础+每项权利要求附加。小实体减免70%仅限申请费/审查费/第1-3年年费",
+            "sourceUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 0,
+              "small": 0
+            },
+            "note": "授权费已包含在第1-3年年费中",
+            "sourceUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01"
+          },
+          "annuity": [
+            {
+              "fromYear": 1,
+              "toYear": 3,
+              "type": "annual",
+              "tiers": {
+                "large": 13000,
+                "small": 3900
+              },
+              "perClaim": {
+                "large": 12000,
+                "small": 3600
+              },
+              "note": "第1-3年含授权费，须在收到授权决定后3个月内一次性缴纳",
+              "sourceUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01"
+            },
+            {
+              "fromYear": 4,
+              "toYear": 6,
+              "type": "annual",
+              "tiers": {
+                "large": 36000
+              },
+              "perClaim": {
+                "large": 20000
+              },
+              "sourceUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01"
+            },
+            {
+              "fromYear": 7,
+              "toYear": 9,
+              "type": "annual",
+              "tiers": {
+                "large": 90000
+              },
+              "perClaim": {
+                "large": 34000
+              },
+              "sourceUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01"
+            },
+            {
+              "fromYear": 10,
+              "toYear": 12,
+              "type": "annual",
+              "tiers": {
+                "large": 216000
+              },
+              "perClaim": {
+                "large": 49000
+              },
+              "sourceUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01"
+            },
+            {
+              "fromYear": 13,
+              "toYear": 20,
+              "type": "annual",
+              "tiers": {
+                "large": 324000
+              },
+              "perClaim": {
+                "large": 49000
+              },
+              "sourceUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01"
+            }
+          ],
+          "sourceUrl": "https://www.kipo.go.kr/en/HtmlApp?c=92004&catmenu=ek03_04_01"
+        }
+      },
+      "notes": "费用自2023年8月1日起生效。小实体减免70%仅适用于自然人且为发明人的申请人，覆盖申请费、审查费及第1-3年年费。第4年起年费不减免。韩国专利保护期20年（自申请日起）。"
+    },
+    "DE": {
+      "name": "德国",
+      "authority": "德国专利商标局（DPMA）",
+      "officialUrl": "https://www.dpma.de/english/services/fees/patents/index.html",
+      "currency": "EUR",
+      "deadline": 31,
+      "deadlineNote": "PCT进入德国国家阶段31个月",
+      "entityTiers": {
+        "large": {
+          "label": "标准实体",
+          "reduction": 0
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明",
+          "filingFee": {
+            "tiers": {
+              "large": 40
+            },
+            "note": "电子申请，含10项权利要求；纸质60，超项每项加20",
+            "sourceUrl": "https://www.dpma.de/english/services/fees/patents/index.html"
+          },
+          "searchFee": {
+            "tiers": {
+              "large": 300
+            },
+            "sourceUrl": "https://www.dpma.de/english/services/fees/patents/index.html"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 150
+            },
+            "note": "已提检索请求时150；未提检索请求时350",
+            "sourceUrl": "https://www.dpma.de/english/services/fees/patents/index.html"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 0
+            },
+            "note": "德国无单独授权费",
+            "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+          },
+          "annuity": [
+            {
+              "fromYear": 3,
+              "toYear": 4,
+              "type": "annual",
+              "tiers": {
+                "large": 70
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 5,
+              "toYear": 5,
+              "type": "annual",
+              "tiers": {
+                "large": 100
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 6,
+              "toYear": 6,
+              "type": "annual",
+              "tiers": {
+                "large": 150
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 7,
+              "toYear": 7,
+              "type": "annual",
+              "tiers": {
+                "large": 210
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 8,
+              "toYear": 8,
+              "type": "annual",
+              "tiers": {
+                "large": 280
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 9,
+              "toYear": 9,
+              "type": "annual",
+              "tiers": {
+                "large": 350
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 10,
+              "toYear": 10,
+              "type": "annual",
+              "tiers": {
+                "large": 430
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 11,
+              "toYear": 11,
+              "type": "annual",
+              "tiers": {
+                "large": 540
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 12,
+              "toYear": 12,
+              "type": "annual",
+              "tiers": {
+                "large": 680
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 13,
+              "toYear": 13,
+              "type": "annual",
+              "tiers": {
+                "large": 830
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 14,
+              "toYear": 14,
+              "type": "annual",
+              "tiers": {
+                "large": 980
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 15,
+              "toYear": 15,
+              "type": "annual",
+              "tiers": {
+                "large": 1130
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 16,
+              "toYear": 16,
+              "type": "annual",
+              "tiers": {
+                "large": 1310
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 17,
+              "toYear": 17,
+              "type": "annual",
+              "tiers": {
+                "large": 1490
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 18,
+              "toYear": 18,
+              "type": "annual",
+              "tiers": {
+                "large": 1670
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 19,
+              "toYear": 19,
+              "type": "annual",
+              "tiers": {
+                "large": 1840
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            },
+            {
+              "fromYear": 20,
+              "toYear": 20,
+              "type": "annual",
+              "tiers": {
+                "large": 2030
+              },
+              "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+            }
+          ],
+          "sourceUrl": "https://www.dpma.de/docs/english/formulare/allg_eng/a9510_1.pdf"
+        }
+      },
+      "notes": "费用依据《专利费用法》（Patentkostengesetz）附件，2026年1月版。申请费电子提交€40（含10项权利要求）。审查费€150（已提检索请求时）。德国无单独授权费。年费自第3年起逐年递增至第20年€2030。"
+    },
+    "GB": {
+      "name": "英国",
+      "authority": "英国知识产权局（UKIPO）",
+      "officialUrl": "https://www.gov.uk/government/publications/patent-forms-and-fees/patent-forms-and-fees",
+      "currency": "GBP",
+      "deadline": 31,
+      "deadlineNote": "PCT进入英国国家阶段31个月",
+      "entityTiers": {
+        "large": {
+          "label": "标准实体",
+          "reduction": 0
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明",
+          "filingFee": {
+            "tiers": {
+              "large": 75
+            },
+            "note": "在线提交时£75",
+            "sourceUrl": "https://www.gov.uk/government/publications/apply-for-a-patent-search-and-examination-and-add-inventors"
+          },
+          "searchFee": {
+            "tiers": {
+              "large": 200
+            },
+            "sourceUrl": "https://www.gov.uk/government/publications/patent-forms-and-fees/patent-forms-and-fees"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 130
+            },
+            "sourceUrl": "https://www.gov.uk/government/publications/patent-forms-and-fees/patent-forms-and-fees"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 0
+            },
+            "note": "无基础授权费，仅超项超页附加",
+            "sourceUrl": "https://www.gov.uk/government/publications/grant-fee-for-patent-application"
+          },
+          "annuity": [
+            {
+              "fromYear": 5,
+              "toYear": 5,
+              "type": "annual",
+              "tiers": {
+                "large": 90
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 6,
+              "toYear": 6,
+              "type": "annual",
+              "tiers": {
+                "large": 120
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 7,
+              "toYear": 7,
+              "type": "annual",
+              "tiers": {
+                "large": 150
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 8,
+              "toYear": 8,
+              "type": "annual",
+              "tiers": {
+                "large": 170
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 9,
+              "toYear": 9,
+              "type": "annual",
+              "tiers": {
+                "large": 200
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 10,
+              "toYear": 10,
+              "type": "annual",
+              "tiers": {
+                "large": 230
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 11,
+              "toYear": 11,
+              "type": "annual",
+              "tiers": {
+                "large": 250
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 12,
+              "toYear": 12,
+              "type": "annual",
+              "tiers": {
+                "large": 290
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 13,
+              "toYear": 13,
+              "type": "annual",
+              "tiers": {
+                "large": 340
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 14,
+              "toYear": 14,
+              "type": "annual",
+              "tiers": {
+                "large": 400
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 15,
+              "toYear": 15,
+              "type": "annual",
+              "tiers": {
+                "large": 480
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 16,
+              "toYear": 16,
+              "type": "annual",
+              "tiers": {
+                "large": 560
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 17,
+              "toYear": 17,
+              "type": "annual",
+              "tiers": {
+                "large": 620
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 18,
+              "toYear": 18,
+              "type": "annual",
+              "tiers": {
+                "large": 690
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 19,
+              "toYear": 19,
+              "type": "annual",
+              "tiers": {
+                "large": 760
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            },
+            {
+              "fromYear": 20,
+              "toYear": 20,
+              "type": "annual",
+              "tiers": {
+                "large": 810
+              },
+              "sourceUrl": "https://www.gov.uk/renew-patent"
+            }
+          ],
+          "sourceUrl": "https://www.gov.uk/renew-patent"
+        }
+      },
+      "notes": "费用自2026年4月1日生效（UKIPO自2018年以来首次调价，平均涨约25%）。无实体减缴。年费自第5年起逐年递增至第20年£810，全程合计£6160。"
+    },
+    "AU": {
+      "name": "澳大利亚",
+      "authority": "澳大利亚知识产权局（IP Australia）",
+      "officialUrl": "https://www.ipaustralia.gov.au/patents/timeframes-and-fees",
+      "currency": "AUD",
+      "deadline": 31,
+      "deadlineNote": "PCT进入澳大利亚国家阶段31个月",
+      "entityTiers": {
+        "large": {
+          "label": "标准实体",
+          "reduction": 0
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明（Standard Patent）",
+          "filingFee": {
+            "tiers": {
+              "large": 400
+            },
+            "sourceUrl": "https://www.ipaustralia.gov.au/patents/timeframes-and-fees"
+          },
+          "searchFee": {
+            "tiers": {
+              "large": 0
+            },
+            "note": "无强制检索费。PSO为可选服务$1100",
+            "sourceUrl": "https://www.ipaustralia.gov.au/patents/timeframes-and-fees"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 550
+            },
+            "note": "有IPER减至$350",
+            "sourceUrl": "https://www.ipaustralia.gov.au/patents/timeframes-and-fees"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 300
+            },
+            "sourceUrl": "https://www.ipaustralia.gov.au/patents/timeframes-and-fees"
+          },
+          "annuity": [
+            {
+              "fromYear": 4,
+              "toYear": 4,
+              "type": "annual",
+              "tiers": {
+                "large": 300
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 5,
+              "toYear": 5,
+              "type": "annual",
+              "tiers": {
+                "large": 315
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 6,
+              "toYear": 6,
+              "type": "annual",
+              "tiers": {
+                "large": 345
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 7,
+              "toYear": 7,
+              "type": "annual",
+              "tiers": {
+                "large": 380
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 8,
+              "toYear": 8,
+              "type": "annual",
+              "tiers": {
+                "large": 420
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 9,
+              "toYear": 9,
+              "type": "annual",
+              "tiers": {
+                "large": 465
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 10,
+              "toYear": 10,
+              "type": "annual",
+              "tiers": {
+                "large": 540
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 11,
+              "toYear": 11,
+              "type": "annual",
+              "tiers": {
+                "large": 645
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 12,
+              "toYear": 12,
+              "type": "annual",
+              "tiers": {
+                "large": 780
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 13,
+              "toYear": 13,
+              "type": "annual",
+              "tiers": {
+                "large": 945
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 14,
+              "toYear": 14,
+              "type": "annual",
+              "tiers": {
+                "large": 1140
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 15,
+              "toYear": 15,
+              "type": "annual",
+              "tiers": {
+                "large": 1385
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 16,
+              "toYear": 16,
+              "type": "annual",
+              "tiers": {
+                "large": 1675
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 17,
+              "toYear": 17,
+              "type": "annual",
+              "tiers": {
+                "large": 2010
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 18,
+              "toYear": 18,
+              "type": "annual",
+              "tiers": {
+                "large": 2390
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            },
+            {
+              "fromYear": 19,
+              "toYear": 19,
+              "type": "annual",
+              "tiers": {
+                "large": 2815
+              },
+              "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+            }
+          ],
+          "sourceUrl": "https://www8.austlii.edu.au/cgi-bin/viewdb/au/legis/cth/consol_reg/pr1991218/sch7.html"
+        }
+      },
+      "notes": "AU无小实体减缴制度，所有申请人费用一致。费用为在线缴费（preferred means）费率。年费从第4周年起缴，标准专利最后一次续期为第19周年（共16次续期，覆盖至第20年末）。2024年10月1日费用调整。"
+    },
+    "CA": {
+      "name": "加拿大",
+      "authority": "加拿大知识产权局（CIPO）",
+      "officialUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees",
+      "currency": "CAD",
+      "deadline": 30,
+      "deadlineNote": "PCT进入加拿大国家阶段30个月",
+      "entityTiers": {
+        "large": {
+          "label": "标准实体",
+          "reduction": 0
+        },
+        "small": {
+          "label": "小实体（雇员<100人或大学）",
+          "reduction": 0.6
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明",
+          "filingFee": {
+            "tiers": {
+              "large": 595.06,
+              "small": 241.24
+            },
+            "sourceUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees"
+          },
+          "searchFee": {
+            "tiers": {
+              "large": 0,
+              "small": 0
+            },
+            "note": "无国内检索费，检索包含在审查费中",
+            "sourceUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 1190.13,
+              "small": 482.48
+            },
+            "note": "审查请求基本费。超20项权利要求每项附加：标准117.94/小实体58.97",
+            "sourceUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 446.03,
+              "small": 181.2
+            },
+            "note": "授权基本费。超100页每页附加8.58",
+            "sourceUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees"
+          },
+          "annuity": [
+            {
+              "fromYear": 2,
+              "toYear": 4,
+              "type": "annual",
+              "tiers": {
+                "large": 134.02,
+                "small": 60.26
+              },
+              "sourceUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees"
+            },
+            {
+              "fromYear": 5,
+              "toYear": 9,
+              "type": "annual",
+              "tiers": {
+                "large": 297.0,
+                "small": 107.22
+              },
+              "sourceUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees"
+            },
+            {
+              "fromYear": 10,
+              "toYear": 14,
+              "type": "annual",
+              "tiers": {
+                "large": 372.05,
+                "small": 134.02
+              },
+              "sourceUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees"
+            },
+            {
+              "fromYear": 15,
+              "toYear": 19,
+              "type": "annual",
+              "tiers": {
+                "large": 669.05,
+                "small": 271.26
+              },
+              "sourceUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees"
+            },
+            {
+              "fromYear": 20,
+              "toYear": 20,
+              "type": "annual",
+              "tiers": {
+                "large": 1027.0,
+                "small": 410.8
+              },
+              "sourceUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees"
+            }
+          ],
+          "sourceUrl": "https://ised-isde.canada.ca/site/canadian-intellectual-property-office/en/patents/patent-fees"
+        }
+      },
+      "notes": "CA有小实体减缴制度（雇员<100人或大学），约60%减缴。标准费率每年依Service Fees Act调整（2026年1月1日起上调2.7%）。年费从申请日起第2周年起缴。逾期缴费有6个月宽限期，需缴纳迟纳费$150。"
+    },
+    "IN": {
+      "name": "印度",
+      "authority": "印度专利局（IPO India）",
+      "officialUrl": "https://ipindia.gov.in/frontend/pdf/forms_and_official_fees/Schedule_1.pdf",
+      "currency": "INR",
+      "deadline": 31,
+      "deadlineNote": "PCT进入印度国家阶段31个月",
+      "entityTiers": {
+        "large": {
+          "label": "大型实体（Others）",
+          "reduction": 0
+        },
+        "small": {
+          "label": "自然人/初创企业/小实体/教育机构",
+          "reduction": 0.8
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明",
+          "filingFee": {
+            "tiers": {
+              "large": 8000,
+              "small": 1600
+            },
+            "note": "电子申请，含30页+10项权利要求+单一优先权",
+            "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=IN"
+          },
+          "searchFee": {
+            "tiers": {
+              "large": 0,
+              "small": 0
+            },
+            "note": "无单独检索费",
+            "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=IN"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 20000,
+              "small": 4000
+            },
+            "note": "Form 18审查请求费",
+            "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=IN"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 0,
+              "small": 0
+            },
+            "note": "印度无单独授权费",
+            "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=IN"
+          },
+          "annuity": [
+            {
+              "fromYear": 3,
+              "toYear": 6,
+              "type": "annual",
+              "tiers": {
+                "large": 4000,
+                "small": 800
+              },
+              "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=IN"
+            },
+            {
+              "fromYear": 7,
+              "toYear": 10,
+              "type": "annual",
+              "tiers": {
+                "large": 12000,
+                "small": 2400
+              },
+              "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=IN"
+            },
+            {
+              "fromYear": 11,
+              "toYear": 15,
+              "type": "annual",
+              "tiers": {
+                "large": 24000,
+                "small": 4800
+              },
+              "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=IN"
+            },
+            {
+              "fromYear": 16,
+              "toYear": 20,
+              "type": "annual",
+              "tiers": {
+                "large": 40000,
+                "small": 8000
+              },
+              "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=IN"
+            }
+          ],
+          "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=IN"
+        }
+      },
+      "notes": "费用依据Patents Rules 2003第一附表。两档实体费率差异5倍（小实体为大实体1/5）。年费自第3年起缴（第1-2年无年费）。电子预缴4年以上年费可享10%折扣。须提交Form 28证明小实体资格。"
+    },
+    "BR": {
+      "name": "巴西",
+      "authority": "巴西国家工业产权局（INPI）",
+      "officialUrl": "https://www.gov.br/inpi/pt-br/servicos/patentes",
+      "currency": "BRL",
+      "deadline": 30,
+      "deadlineNote": "PCT进入巴西国家阶段30个月",
+      "entityTiers": {
+        "large": {
+          "label": "标准实体",
+          "reduction": 0
+        },
+        "small": {
+          "label": "个人（含外国个人）",
+          "reduction": 0.5
+        },
+        "micro": {
+          "label": "微型企业/MEI/小型企业/非营利/科技机构",
+          "reduction": 0.6
+        }
+      },
+      "patentTypes": {
+        "invention": {
+          "label": "发明",
+          "filingFee": {
+            "tiers": {
+              "large": 260,
+              "small": 130,
+              "micro": 104
+            },
+            "note": "电子申请；纸质380",
+            "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=BR"
+          },
+          "searchFee": {
+            "tiers": {
+              "large": 0,
+              "small": 0,
+              "micro": 0
+            },
+            "note": "无单独检索费",
+            "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=BR"
+          },
+          "examFee": {
+            "tiers": {
+              "large": 870,
+              "small": 435,
+              "micro": 348
+            },
+            "note": "审查请求费（≤10项权利要求）。超项附加：11-15项每项140，16-30项每项290，31+项每项740。审查请求期限36个月",
+            "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=BR"
+          },
+          "grantFee": {
+            "tiers": {
+              "large": 0,
+              "small": 0,
+              "micro": 0
+            },
+            "note": "授权费自2025-12-20起取消",
+            "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=BR"
+          },
+          "annuity": [
+            {
+              "fromYear": 1,
+              "toYear": 2,
+              "type": "annual",
+              "tiers": {
+                "large": 400,
+                "small": 200,
+                "micro": 160
+              },
+              "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=BR"
+            },
+            {
+              "fromYear": 3,
+              "toYear": 6,
+              "type": "annual",
+              "tiers": {
+                "large": 1000,
+                "small": 500,
+                "micro": 400
+              },
+              "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=BR"
+            },
+            {
+              "fromYear": 7,
+              "toYear": 10,
+              "type": "annual",
+              "tiers": {
+                "large": 1600,
+                "small": 800,
+                "micro": 640
+              },
+              "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=BR"
+            },
+            {
+              "fromYear": 11,
+              "toYear": 15,
+              "type": "annual",
+              "tiers": {
+                "large": 2200,
+                "small": 1100,
+                "micro": 880
+              },
+              "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=BR"
+            },
+            {
+              "fromYear": 16,
+              "toYear": 20,
+              "type": "annual",
+              "tiers": {
+                "large": 2800,
+                "small": 1400,
+                "micro": 1120
+              },
+              "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=BR"
+            }
+          ],
+          "sourceUrl": "https://pctlegal.wipo.int/eGuide/view-doc.xhtml?doc-code=BR"
+        }
+      },
+      "notes": "费用依据Ordinance GM/MDIC No.110/2025，2025年8月7日生效（2012年以来首次全面调价，平均涨24.1%）。授权费自2025-12-20起取消。年费自国际申请日起算。审查请求期限36个月。费用通过INPI电子系统生成GRU缴纳。"
+    }
+  }
+};
+
+// --- strategy_rules.js ---
+/**
+ * 知产前置通 - 4领域策略规则库（模块C策略部分）
+ *
+ * 模块用途：
+ *   当用户在5步自测器第5步选择"出海"时，根据技术领域（医药/软件/机械/通信）
+ *   提供对应的海外专利布局策略建议。
+ *
+ * 导出接口：
+ *   - STRATEGY_RULES          : 4领域策略规则对象
+ *   - COUNTRY_NAMES           : 11国代码到中文名称映射
+ *   - getStrategy(field)      : 按技术领域获取策略建议，不存在返回 null
+ *   - getCountryName(code)    : 获取国家中文名
+ *
+ * 使用方式：
+ *   直接在浏览器中 <script src="strategy_rules.js"><\/script> 引入即可。
+ */
+
+// ============================================================
+// 4领域策略规则库
+// ============================================================
+var STRATEGY_RULES = {
+  pharma: {
+    label: '医药',
+    core: ['US', 'EP', 'JP'],
+    budget: ['US', 'EP'],
+    budgetNote: '先US+EP，JP延迟审查降成本',
+    advice: '医药核心市场美欧日必进；预算紧先US+EP，JP可延迟审查降成本；印度审查严但仿药竞争激烈，防御性布局值得考虑；巴西延迟审查也是降成本选项',
+    recommendedCountries: ['US', 'EP', 'JP', 'IN', 'BR'],
+    pitfalls: {
+      IN: '审查严（3(d)条款）但防御价值高',
+      BR: '延迟审查也是降成本选项'
+    }
+  },
+
+  software: {
+    label: '软件',
+    core: ['US', 'CN'],
+    budget: [],
+    budgetNote: '',
+    advice: '软件US保护最充分但Alice测试要写好；中国客体审查最严（技术三要素）但费用低；欧洲最宽松，权利要求范围可最大；同一个算法三国写法不同，这正是涉外布局的价值',
+    recommendedCountries: ['US', 'CN', 'EP'],
+    pitfalls: {
+      CN: '客体审查最严（技术三要素）',
+      US: 'Alice两步测试法',
+      EP: '最宽松，任何技术特征即可'
+    }
+  },
+
+  mechanical: {
+    label: '机械',
+    core: ['DE', 'US', 'CN'],
+    budget: [],
+    budgetNote: '',
+    advice: '机械领域各国客体都没问题，纯看市场。德国制造核心市场必进；美国大市场必进；中国制造基地+费用低；日韩看是否在亚太制造；出口东南亚可加澳印',
+    recommendedCountries: ['DE', 'US', 'CN', 'JP', 'KR', 'AU', 'IN'],
+    pitfalls: {
+      JP: '看是否在亚太制造',
+      KR: '看是否在亚太制造'
+    }
+  },
+
+  telecom: {
+    label: '通信',
+    core: ['US', 'EP', 'CN'],
+    budget: ['EP'],
+    budgetNote: 'EP一站覆盖多国性价比高',
+    advice: '通信SEP必须美欧中三国；有标准提案加韩日；EP一站覆盖多国性价比高；各国审查侧重不同——US重创造性、EP重清晰性、JP要区分技术方案与算法，权利要求要分国适配',
+    recommendedCountries: ['US', 'EP', 'CN', 'KR', 'JP'],
+    pitfalls: {
+      SEP: '必须进美欧中三国',
+      KR: '看标准提案',
+      JP: '看标准提案，审查要区分技术方案与算法'
+    }
+  }
+};
+
+// ============================================================
+// 国家代码到中文名称映射（11国）
+// CN=中国, US=美国, EP=欧洲, JP=日本, KR=韩国,
+// DE=德国, GB=英国, AU=澳大利亚, CA=加拿大, IN=印度, BR=巴西
+// ============================================================
+var COUNTRY_NAMES = {
+  CN: '中国',
+  US: '美国',
+  EP: '欧洲',
+  JP: '日本',
+  KR: '韩国',
+  DE: '德国',
+  GB: '英国',
+  AU: '澳大利亚',
+  CA: '加拿大',
+  IN: '印度',
+  BR: '巴西'
+};
+
+// ============================================================
+// 按技术领域获取策略建议
+// ============================================================
+// @param  {string} field - 技术领域 key：'pharma' | 'software' | 'mechanical' | 'telecom'
+// @return {object|null}  - 对应的策略规则对象，不存在返回 null
+function getStrategy(field) {
+  if (!field || !STRATEGY_RULES.hasOwnProperty(field)) {
+    console.warn('[strategy_rules] getStrategy: 未知的领域字段 "' + field + '"，支持的领域：pharma, software, mechanical, telecom');
+    return null;
+  }
+  return STRATEGY_RULES[field];
+}
+
+// ============================================================
+// 获取国家中文名
+// ============================================================
+// @param  {string} code - 国家代码如 'US'
+// @return {string}      - 中文名如 '美国'，未知代码返回原 code
+function getCountryName(code) {
+  if (!code) {
+    return '';
+  }
+  return COUNTRY_NAMES[code] || code;
+}
+
+// --- prompts.js ---
+/**
+ * 知产前置通 - AI提示词模板模块（模块E）
+ *
+ * 功能说明：
+ *   为5步自测器中的4个"不确定"环节提供专业AI提示词模板。
+ *   用户点击"复制AI提示词"按钮后，模板原文复制到剪贴板，
+ *   用户可粘贴到任意AI（GLM/ChatGPT/DeepSeek等）进行咨询。
+ *
+ * 导出接口：
+ *   - PROMPTS              : Object，4个提示词模板数据
+ *   - copyPrompt(promptKey): Function，复制指定模板到剪贴板
+ *   - showCopyToast(msg)   : Function，显示浮层提示（内部函数，亦可供外部调用）
+ *
+ * 使用示例：
+ *   <button onclick="copyPrompt('grace_period')">复制AI提示词</button>
+ *
+ * 依赖：无（原生JS，浏览器环境）
+ */
+
+// 4个AI提示词模板
+var PROMPTS = {
+  grace_period: {
+    title: '宽限期判断',
+    template: '我的专利技术已于[填入日期]通过[填入公开方式：论文/展会/销售/其他]公开了。请帮我判断：①这属于哪种公开类型②中国/美国/欧洲的宽限期分别是多久③我是否还在宽限期内④如果过期了有什么补救办法'
+  },
+  inventiveness: {
+    title: '创造性分析',
+    template: '我的发明是对现有技术的改进，区别在于[填入区别特征]。请帮我：①用"三步法"分析创造性②指出可能被审查员质疑的点③怎么论证非显而易见性④举几个类似情况的授权/驳回案例'
+  },
+  subject_matter: {
+    title: '算法客体判断',
+    template: '我的技术方案核心是[填入算法]，它解决了[技术问题]，达到了[技术效果]。请帮我分析：①中国专利法第2条对这类客体的审查要点②美国Alice两步测试法怎么判断③欧洲TBA规则④怎么把纯算法改写成可授权客体'
+  },
+  overseas: {
+    title: '出海选择',
+    template: '我有[填入技术]领域的专利，想申请海外专利。请帮我：①列出该领域专利布局最活跃的国家②各国保护力度差异③费用对比④我的情况建议进哪些国家'
+  }
+};
+
+/**
+ * 复制提示词到剪贴板
+ * @param {string} promptKey - PROMPTS 对象的 key
+ */
+function copyPrompt(promptKey) {
+  // 校验 key 是否存在
+  if (!PROMPTS.hasOwnProperty(promptKey)) {
+    console.warn('[copyPrompt] 未知的 promptKey: ' + promptKey);
+    return;
+  }
+
+  var text = PROMPTS[promptKey].template;
+
+  // 优先使用 Clipboard API
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function () {
+      showCopyToast('已复制，去问GLM/ChatGPT/DeepSeek都行');
+    }).catch(function (err) {
+      // Clipboard API 失败，降级到 execCommand 方案
+      console.warn('[copyPrompt] Clipboard API 失败，降级到 execCommand: ', err);
+      copyWithExecCommand(text);
+    });
+  } else {
+    // 浏览器不支持 Clipboard API，直接降级
+    copyWithExecCommand(text);
+  }
+}
+
+/**
+ * 降级复制方案：使用 execCommand('copy') + 临时 textarea
+ * @param {string} text - 待复制文本
+ */
+function copyWithExecCommand(text) {
+  var textarea = document.createElement('textarea');
+  textarea.value = text;
+  // 移出可视区域，避免页面跳动
+  textarea.style.position = 'fixed';
+  textarea.style.top = '-9999px';
+  textarea.style.left = '-9999px';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+
+  // 移动端 iOS 兼容：需要手动设置 readOnly=false 并触发 select
+  textarea.setAttribute('readonly', '');
+  textarea.select();
+  // iOS 设备使用 setSelectionRange
+  if (textarea.setSelectionRange) {
+    textarea.setSelectionRange(0, textarea.value.length);
+  }
+
+  var success = false;
+  try {
+    success = document.execCommand('copy');
+  } catch (e) {
+    console.warn('[copyWithExecCommand] execCommand 失败: ', e);
+  }
+
+  document.body.removeChild(textarea);
+
+  if (success) {
+    showCopyToast('已复制，去问GLM/ChatGPT/DeepSeek都行');
+  } else {
+    showCopyToast('复制失败，请长按模板文本手动复制');
+  }
+}
+
+/**
+ * 显示提示弹窗（浮层 toast）
+ * @param {string} message - 提示文案
+ */
+function showCopyToast(message) {
+  // 避免重复堆叠：先移除已有的 toast
+  var existing = document.getElementById('__ip_toast__');
+  if (existing && existing.parentNode) {
+    existing.parentNode.removeChild(existing);
+  }
+
+  var toast = document.createElement('div');
+  toast.id = '__ip_toast__';
+  toast.textContent = message;
+
+  // 内联样式，确保自包含、不依赖外部 CSS
+  toast.style.position = 'fixed';
+  toast.style.left = '50%';
+  toast.style.bottom = '20%';
+  toast.style.transform = 'translateX(-50%)';
+  toast.style.zIndex = '99999';
+  toast.style.maxWidth = '80%';
+  toast.style.padding = '12px 20px';
+  toast.style.backgroundColor = 'rgba(40, 40, 40, 0.92)';
+  toast.style.color = '#ffffff';
+  toast.style.fontSize = '14px';
+  toast.style.lineHeight = '1.5';
+  toast.style.textAlign = 'center';
+  toast.style.borderRadius = '8px';
+  toast.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.3)';
+  toast.style.pointerEvents = 'none';
+  toast.style.opacity = '0';
+  toast.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+  // 初始位置略微下移，配合上浮动画
+  toast.style.transform = 'translateX(-50%) translateY(10px)';
+
+  document.body.appendChild(toast);
+
+  // 触发上浮 + 淡入动画（下一帧设置，确保过渡生效）
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      toast.style.opacity = '1';
+      toast.style.transform = 'translateX(-50%) translateY(0)';
+    });
+  });
+
+  // 2秒后自动移除
+  setTimeout(function () {
+    if (!toast.parentNode) { return; }
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(-50%) translateY(10px)';
+    setTimeout(function () {
+      if (toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 250);
+  }, 2000);
+}
+
+// --- quiz.js ---
+/**
+ * 知产前置通 - 5步交互式自测器（模块D）
+ *
+ * 模块用途：
+ *   面向"知道专利重要但不太懂"的人群，用 5 个一次一问的步骤，
+ *   帮用户判断"能不能申请专利 / 该申请哪种专利"。
+ *   每步选项即时反馈灰度文案；拿不准的地方调用三出口弹窗 showHelp；
+ *   走完 5 步出结论卡，自动推荐申请类型并引流到算账 / 代理师。
+ *
+ * 依赖（由其他模块提供，本文件只调用不实现）：
+ *   - showHelp(selfCheckText, aiPromptKey, topicName)
+ *       由 skeleton.html（模块F）定义，弹"自己查 / 问AI / 问代理师"三出口弹窗。
+ *   - prompts.js（模块E）提供 aiPromptKey 对应的 AI 提示词模板。
+ *
+ * 导出接口：
+ *   - Quiz                    : 自测器主对象
+ *       .init(containerEl)        在指定容器内初始化自测器
+ *       .skipToCalculator()       跳过自测器，平滑滚动到段落三（官费算账）
+ *       .getAnswers()             返回用户所有答案（供其他模块使用）
+ *   - SELF_CHECK_GUIDES       : 10个"不确定"环节的自助查文案（供 showHelp 调用）
+ *
+ * 使用方式：
+ *   直接在浏览器中 <script src="quiz.js"><\/script> 引入，然后 Quiz.init(document.getElementById('quiz-container'))。
+ */
+
+// ============================================================
+// 10个"不确定"环节自助查文案（方案§5）
+// 每个环节供三出口弹窗 showHelp 的 selfCheckText 参数使用。
+// ============================================================
+var SELF_CHECK_GUIDES = {
+  entity_type: {
+    id: 'entity_type',
+    name: '实体类型',
+    selfCheckText: '年收入/销售额低于100万的单位、或年收入低于6万的个人算小实体，减缴85%。查公司上年度纳税申报表确认收入。'
+  },
+  novelty: {
+    id: 'novelty',
+    name: '公开新颖性',
+    selfCheckText: '①确认公开日期；②中国宽限期6个月（仅限展会/学术会议）；③美国宽限期1年（含销售公开）。超过宽限期则丧失新颖性。'
+  },
+  inventiveness: {
+    id: 'inventiveness',
+    name: '创造性',
+    selfCheckText: '自查三步：①找最接近现有技术（如已有专利、论文）；②列区别特征；③判断是否"显而易见"。三者都不显然才算有创造性。'
+  },
+  subject_matter: {
+    id: 'subject_matter',
+    name: '算法客体',
+    selfCheckText: '自查三问：①解决具体技术问题？②有技术效果？③有硬件配合？三个都"是"→大概率可以申请；全是"否"→纯算法难授权。'
+  },
+  patent_type: {
+    id: 'patent_type',
+    name: '专利类型',
+    selfCheckText: '方法/工艺（如焊接工艺、制备方法）→只能发明；产品（如装置、设备）→发明保护产品和方法、需实质审查；实用新型只保护产品形状/构造（如机械结构）、不实质审查；外观→只保护样子（如外壳造型）。先定保护对象再选类型。'
+  },
+  dual_filing: {
+    id: 'dual_filing',
+    name: '双报',
+    selfCheckText: '自查：①急需拿证→双报值得；②预算敏感→多花一份钱；③明确是产品（方法不能双报）。双报=发明+实用新型同日申请，须提交同日声明，且两份权利要求保护范围须匹配，否则后续无法走"弃实用新型→授发明"路径。'
+  },
+  country_selection: {
+    id: 'country_selection',
+    name: '选国家',
+    selfCheckText: '自查三问：①产品在哪卖；②竞品在哪国；③预算覆盖几国。专利有地域性，在哪国卖就得在哪国申请。'
+  },
+  us_entity: {
+    id: 'us_entity',
+    name: '美国实体类型',
+    selfCheckText: '小实体：独立发明人/雇员≤500人，减60%。微实体：符合小实体+收入不超上限+未4件以上授权，减80%。'
+  },
+  annuity_decision: {
+    id: 'annuity_decision',
+    name: '年费决策',
+    selfCheckText: '自查：①专利还在用吗；②产品还在卖吗；③竞品有绕开吗。都"否"→考虑放弃缴年费止损。'
+  },
+  budget: {
+    id: 'budget',
+    name: '预算规划',
+    selfCheckText: '中国发明小实体首年到授权约500-600元（纯官费）；海外每国纯官费约1-3万人民币。代理费另算。'
+  }
+};
+
+// ============================================================
+// 5步题目数据
+// 每个 option：
+//   value     - 答案值（存入 answers）
+//   label     - 选项文案
+//   icon      - 图标 emoji
+//   feedback  - 即时反馈灰度文案
+//   triggerHelp - 需要展开help说明时的参数对象 { guide, aiPromptKey, topicName }
+//                 不需要则为 null
+// ============================================================
+var QUIZ_STEPS = [
+  // ---------- 第①步 ----------
+  {
+    id: 1,
+    key: 'protect_type',
+    question: '你想保护什么？',
+    subtitle: '先搞清楚保护对象，类型才选得对',
+    options: [
+      {
+        value: 'product',
+        label: '产品（装置、设备、零部件）',
+        icon: '物',
+        feedback: '产品指有形之物，如装置、设备、系统、零部件（例：电机结构、传感器外壳、机械夹具）。可申请发明或实用新型。两者保护客体不同：发明保护产品和方法，需实质审查创造性；实用新型只保护产品的形状、构造或其结合，不进行实质审查。',
+        triggerHelp: null
+      },
+      {
+        value: 'method',
+        label: '方法（工艺、流程、用途）',
+        icon: '法',
+        feedback: '方法指操作步骤、工艺流程、用途等无形的方案（例：焊接工艺、药物制备方法、通信编码方法）。方法/工艺/用途只能申请发明专利，实用新型不保护方法。',
+        triggerHelp: null
+      },
+      {
+        value: 'appearance',
+        label: '外观（造型、图案、色彩）',
+        icon: '形',
+        feedback: '外观设计只保护产品的"长什么样"，不保护功能和结构（例：手机外壳弧度、包装瓶造型、界面图标布局）。授权快（3-6个月）。',
+        triggerHelp: null
+      },
+      {
+        value: 'software',
+        label: '软件或算法（程序、模型）',
+        icon: '算',
+        feedback: '软件/算法指计算机程序、数据处理模型、AI算法等（例：图像识别算法、推荐系统、信号处理方法）。能否授权要看客体审查：中国最严、美国中等（Alice两步）、欧洲相对宽松。需写成"算法+技术效果+硬件"才易授权。',
+        triggerHelp: { guide: 'subject_matter', aiPromptKey: 'subject_matter', topicName: '算法客体判断' }
+      },
+      {
+        value: 'idea',
+        label: '还只是想法',
+        icon: '思',
+        feedback: '想法本身不能申请专利，需先落地成具体技术方案（有结构、步骤或参数的技术方案）才能申请。',
+        triggerHelp: null
+      }
+    ]
+  },
+
+  // ---------- 第②步 ----------
+  {
+    id: 2,
+    key: 'disclosure',
+    question: '公开过吗？',
+    subtitle: '公开过可能影响新颖性，但有宽限期',
+    options: [
+      {
+        value: 'secret',
+        label: '还没公开',
+        icon: '密',
+        feedback: '好，新颖性没问题，尽快申请别再拖。',
+        triggerHelp: null
+      },
+      {
+        value: 'published',
+        label: '论文或展会',
+        icon: '文',
+        feedback: '涉及宽限期：中国6个月（限展会/学术会议），美国1年（含销售）。需算清日期。',
+        triggerHelp: { guide: 'novelty', aiPromptKey: 'grace_period', topicName: '宽限期判断' }
+      },
+      {
+        value: 'selling',
+        label: '产品已销售',
+        icon: '售',
+        feedback: '销售公开也算丧失新颖性，美国有1年宽限期，中国一般没有（展会/学术除外）。日期很关键。',
+        triggerHelp: { guide: 'novelty', aiPromptKey: 'grace_period', topicName: '宽限期判断' }
+      },
+      {
+        value: 'online',
+        label: '网上公开过',
+        icon: '网',
+        feedback: '网络公开（博客、视频、社交、网页）同样算丧失新颖性，规则与销售公开相同。需确认具体公开日期。',
+        triggerHelp: { guide: 'novelty', aiPromptKey: 'grace_period', topicName: '宽限期判断' }
+      },
+      {
+        value: 'uncertain',
+        label: '不确定',
+        icon: '疑',
+        feedback: '拿不准公开日期或算不算公开？先查宽限期规则，再算日期。',
+        triggerHelp: { guide: 'novelty', aiPromptKey: 'grace_period', topicName: '宽限期判断' }
+      }
+    ]
+  },
+
+  // ---------- 第③步 ----------
+  {
+    id: 3,
+    key: 'difference',
+    question: '跟现有技术区别多大？',
+    subtitle: '区别大小决定创造性是否够',
+    options: [
+      {
+        value: 'breakthrough',
+        label: '突破性（首创）',
+        icon: '破',
+        feedback: '创造性较强，授权前景好，建议直接申请发明。',
+        triggerHelp: null
+      },
+      {
+        value: 'improve',
+        label: '改进型（优化已有方案）',
+        icon: '进',
+        feedback: '创造性可能存疑。建议发明+实用新型同日双报对冲：实用新型快速拿证兜底，发明经实质审查授权后择一保留。注意：须同日提交声明，且两份权利要求保护范围须匹配。',
+        triggerHelp: { guide: 'inventiveness', aiPromptKey: 'inventiveness', topicName: '创造性判断' }
+      },
+      {
+        value: 'combine',
+        label: '拼凑型（组合已有技术）',
+        icon: '合',
+        feedback: '创造性风险高，审查员易认定"显而易见"。先自查三步法评估，再决定要不要写权利要求。',
+        triggerHelp: { guide: 'inventiveness', aiPromptKey: 'inventiveness', topicName: '创造性判断' }
+      },
+      {
+        value: 'uncertain',
+        label: '不确定',
+        icon: '疑',
+        feedback: '拿不准区别够不够？用三步法自查：找最近现有技术→列区别→判是否显而易见。',
+        triggerHelp: { guide: 'inventiveness', aiPromptKey: 'inventiveness', topicName: '创造性判断' }
+      }
+    ]
+  },
+
+  // ---------- 第④步 ----------
+  {
+    id: 4,
+    key: 'algorithm',
+    question: '核心技术是算法吗？',
+    subtitle: '算法类方案在不同国家客体审查差异大',
+    options: [
+      {
+        value: 'no',
+        label: '不是',
+        icon: '否',
+        feedback: '客体没问题，正常申请即可。',
+        triggerHelp: null
+      },
+      {
+        value: 'technical',
+        label: '解决技术问题',
+        icon: '术',
+        feedback: '可能可以，但要看是否有技术效果+硬件配合。中国客体审查最严（技术三要素），要写好。',
+        triggerHelp: { guide: 'subject_matter', aiPromptKey: 'subject_matter', topicName: '算法客体判断' }
+      },
+      {
+        value: 'pure_algorithm',
+        label: '纯算法（无技术效果）',
+        icon: '算',
+        feedback: '客体风险高。中国最严、美国中等（Alice两步）、欧洲最松。需改写成"算法+技术效果+硬件"才易授权。',
+        triggerHelp: { guide: 'subject_matter', aiPromptKey: 'subject_matter', topicName: '算法客体判断' }
+      },
+      {
+        value: 'uncertain',
+        label: '不确定',
+        icon: '疑',
+        feedback: '拿不准算不算纯算法？自查三问：解决技术问题？有技术效果？有硬件配合？',
+        triggerHelp: { guide: 'subject_matter', aiPromptKey: 'subject_matter', topicName: '算法客体判断' }
+      }
+    ]
+  },
+
+  // ---------- 第⑤步 ----------
+  {
+    id: 5,
+    key: 'market',
+    question: '只国内，还是要出海？',
+    subtitle: '专利有地域性，在哪卖就得在哪申请',
+    options: [
+      {
+        value: 'domestic',
+        label: '只国内',
+        icon: '内',
+        feedback: '只算中国官费即可，往下看费用。',
+        triggerHelp: null
+      },
+      {
+        value: 'overseas',
+        label: '要出海',
+        icon: '外',
+        feedback: '已为你展开海外费用。不同领域建议进的国家不同，往下看策略建议。',
+        triggerHelp: { guide: 'country_selection', aiPromptKey: 'overseas', topicName: '出海国家选择' }
+      },
+      {
+        value: 'undecided',
+        label: '没想好',
+        icon: '疑',
+        feedback: '先看费用再决定。海外每国纯官费约1-3万人民币，往下看算账。',
+        triggerHelp: null
+      }
+    ]
+  }
+];
+
+// ============================================================
+// 自测器主对象
+// ============================================================
+var Quiz = {
+
+  // ---------- 内部状态 ----------
+  _container: null,         // 容器元素
+  _currentStep: 0,          // 当前步骤索引（0~4，原始QUIZ_STEPS索引）
+  _answers: {},             // 用户答案 { protect_type: 'product', ... }
+
+  // ---------- 初始化 ----------
+  // @param {HTMLElement} containerEl - 自测器渲染容器
+  init: function (containerEl) {
+    if (!containerEl) {
+      console.warn('[quiz] init: 容器元素不存在');
+      return;
+    }
+    this._container = containerEl;
+    this._currentStep = 0;
+    this._answers = {};
+    this._render();
+  },
+
+  // ---------- 跳过自测器，切换到算账页 ----------
+  skipToCalculator: function () {
+    if (typeof window.switchPage === 'function') {
+      window.switchPage('calc');
+    } else {
+      // 兜底：滚到页面底部
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+  },
+
+  // ---------- 获取用户所有答案 ----------
+  // @return {object} 答案对象副本
+  getAnswers: function () {
+    var copy = {};
+    for (var k in this._answers) {
+      if (this._answers.hasOwnProperty(k)) {
+        copy[k] = this._answers[k];
+      }
+    }
+    return copy;
+  },
+
+  // ---------- 判断某步骤是否应显示（基于已有答案的条件跳题） ----------
+  // Q4(算法)仅在Q1选了"产品"或"方法"时显示；Q1选"软件或算法"已知是算法，跳过
+  // Q3(创造性)在Q1选"还只是想法"时跳过（想法阶段谈创造性太早）
+  _shouldShowStep: function (stepIndex) {
+    var protect = this._answers.protect_type;
+    if (stepIndex === 2) {
+      // Q3 创造性：想法阶段跳过
+      if (protect === 'idea') return false;
+    }
+    if (stepIndex === 3) {
+      // Q4 算法：仅选了"软件或算法"时才显示，进一步判断是纯算法还是解决技术问题
+      if (protect !== 'software') return false;
+    }
+    return true;
+  },
+
+  // ---------- 获取当前应显示的步骤索引数组 ----------
+  _getVisibleSteps: function () {
+    var visible = [];
+    for (var i = 0; i < QUIZ_STEPS.length; i++) {
+      if (this._shouldShowStep(i)) visible.push(i);
+    }
+    return visible;
+  },
+
+  // ---------- 主渲染入口 ----------
+  _render: function () {
+    var visibleSteps = this._getVisibleSteps();
+    // _currentStep 超过可见步骤范围 → 渲染结论
+    var isLastVisible = (visibleSteps.length === 0 || this._currentStep > visibleSteps[visibleSteps.length - 1]);
+    if (isLastVisible) {
+      this._renderConclusion();
+    } else {
+      this._renderStep(this._currentStep);
+    }
+  },
+
+  // ---------- 渲染单步 ----------
+  _renderStep: function (stepIndex) {
+    var self = this;
+    var step = QUIZ_STEPS[stepIndex];
+
+    var html = '';
+    // 进度条
+    html += this._buildProgress(stepIndex);
+    // 问题区
+    html += '<div class="quiz-step" data-step="' + stepIndex + '">';
+    html += '  <div class="quiz-question">' + this._escape(step.question) + '</div>';
+    html += '  <div class="quiz-subtitle">' + this._escape(step.subtitle) + '</div>';
+    // 选项区（已有答案则预选高亮）
+    var existingValue = this._answers[step.key];
+    html += '  <div class="quiz-options">';
+    for (var i = 0; i < step.options.length; i++) {
+      var opt = step.options[i];
+      var selected = (existingValue === opt.value);
+      html += '    <button class="quiz-option' + (selected ? ' quiz-option-selected' : '') + '" '
+        + 'data-step="' + stepIndex + '" '
+        + 'data-index="' + i + '" '
+        + 'type="button">';
+      html += '      <span class="quiz-option-icon">' + opt.icon + '</span>';
+      html += '      <span class="quiz-option-label">' + this._escape(opt.label) + '</span>';
+      html += '    </button>';
+    }
+    html += '  </div>';
+    // 反馈区（初始空，已有答案时由 _restoreStep 填充）
+    html += '  <div class="quiz-feedback" id="quiz-feedback-' + stepIndex + '"></div>';
+    // 操作区（上一题 + 下一题，已有答案时显示）
+    var hasAnswer = (existingValue != null);
+    var visibleSteps = this._getVisibleSteps();
+    var visiblePos = visibleSteps.indexOf(stepIndex);
+    var isLastVisible = (visiblePos === visibleSteps.length - 1);
+    var isFirstVisible = (visiblePos === 0);
+    html += '  <div class="quiz-action" id="quiz-action-' + stepIndex + '" style="display:' + (hasAnswer ? 'flex' : 'none') + ';">';
+    // 上一题按钮（第一个可见步骤不显示）
+    if (!isFirstVisible) {
+      html += '    <button class="quiz-prev-btn" type="button">上一题</button>';
+    }
+    html += '    <button class="quiz-next-btn" type="button">'
+      + (isLastVisible ? '看结论' : '下一题') + '</button>';
+    html += '  </div>';
+    html += '</div>';
+
+    this._container.innerHTML = html;
+
+    // 绑定选项点击（允许重选，不锁定）
+    var optionEls = this._container.querySelectorAll('.quiz-option');
+    for (var j = 0; j < optionEls.length; j++) {
+      (function (el) {
+        el.addEventListener('click', function () {
+          self._handleAnswer(stepIndex, parseInt(el.getAttribute('data-index'), 10));
+        });
+        // 触摸视觉反馈（移动端 active 增强）
+        el.addEventListener('touchstart', function () {
+          el.classList.add('quiz-option-active');
+        }, { passive: true });
+        el.addEventListener('touchend', function () {
+          el.classList.remove('quiz-option-active');
+        }, { passive: true });
+        el.addEventListener('touchcancel', function () {
+          el.classList.remove('quiz-option-active');
+        }, { passive: true });
+      })(optionEls[j]);
+    }
+
+    // 绑定下一题按钮
+    var nextBtn = this._container.querySelector('.quiz-next-btn');
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        self._nextStep();
+      });
+    }
+
+    // 绑定上一题按钮
+    var prevBtn = this._container.querySelector('.quiz-prev-btn');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        self._prevStep();
+      });
+    }
+
+    // 已有答案 → 恢复反馈文案（回退到已答过的题目时）
+    if (hasAnswer) {
+      this._restoreFeedback(stepIndex);
+    }
+
+    // 入场动画
+    this._animateIn();
+  },
+
+  // ---------- 恢复已有答案的反馈文案 + help区块 ----------
+  _restoreFeedback: function (stepIndex) {
+    var step = QUIZ_STEPS[stepIndex];
+    var value = this._answers[step.key];
+    if (value == null) return;
+    var opt = null;
+    for (var i = 0; i < step.options.length; i++) {
+      if (step.options[i].value === value) { opt = step.options[i]; break; }
+    }
+    if (!opt) return;
+    var feedbackEl = this._container.querySelector('#quiz-feedback-' + stepIndex);
+    if (feedbackEl) {
+      var html = '<div class="quiz-feedback-text">' + this._escape(opt.feedback) + '</div>';
+      if (opt.triggerHelp) {
+        html += this._buildHelpBlock(opt.triggerHelp);
+      }
+      feedbackEl.innerHTML = html;
+      feedbackEl.style.display = 'block';
+      feedbackEl.classList.add('quiz-feedback-show');
+      this._bindCopyPromptBtn(feedbackEl);
+    }
+  },
+
+  // ---------- 处理作答（允许重选，不锁定） ----------
+  // @param {number} stepIndex   - 步骤索引
+  // @param {number} optionIndex - 选项索引
+  _handleAnswer: function (stepIndex, optionIndex) {
+    var step = QUIZ_STEPS[stepIndex];
+    var opt = step.options[optionIndex];
+    if (!opt) return;
+
+    // 记录答案
+    this._answers[step.key] = opt.value;
+
+    // 高亮选中项，其它项取消高亮（允许重选，不锁定disabled）
+    var optionEls = this._container.querySelectorAll('.quiz-option');
+    for (var i = 0; i < optionEls.length; i++) {
+      optionEls[i].classList.remove('quiz-option-selected', 'quiz-option-dimmed');
+      optionEls[i].removeAttribute('disabled');
+      if (i === optionIndex) {
+        optionEls[i].classList.add('quiz-option-selected');
+      }
+    }
+
+    // 显示反馈文案 + help区块（内联分段，不弹窗）
+    var feedbackEl = this._container.querySelector('#quiz-feedback-' + stepIndex);
+    if (feedbackEl) {
+      var html = '<div class="quiz-feedback-text">' + this._escape(opt.feedback) + '</div>';
+      if (opt.triggerHelp) {
+        html += this._buildHelpBlock(opt.triggerHelp);
+      }
+      feedbackEl.innerHTML = html;
+      feedbackEl.style.display = 'block';
+      // 反馈入场
+      requestAnimationFrame(function () {
+        feedbackEl.classList.add('quiz-feedback-show');
+      });
+      // 绑定复制AI提示词按钮
+      this._bindCopyPromptBtn(feedbackEl);
+    }
+
+    // 显示操作区（上一题+下一题）
+    var actionEl = this._container.querySelector('#quiz-action-' + stepIndex);
+    if (actionEl) {
+      actionEl.style.display = 'flex';
+      requestAnimationFrame(function () {
+        actionEl.classList.add('quiz-action-show');
+      });
+    }
+  },
+
+  // ---------- 构建内联help区块（分段：自助查 / 问AI / 代理师提示） ----------
+  // @param {object} helpConfig - { guide, aiPromptKey, topicName }
+  // @return {string} HTML字符串
+  _buildHelpBlock: function (helpConfig) {
+    var guide = SELF_CHECK_GUIDES[helpConfig.guide];
+    var selfCheckText = guide ? guide.selfCheckText : '';
+    var aiPromptKey = helpConfig.aiPromptKey || '';
+
+    var html = '<div class="quiz-help-block">';
+
+    // 自助查
+    if (selfCheckText) {
+      html += '<div class="quiz-help-section">';
+      html += '<div class="quiz-help-title">自助查</div>';
+      html += '<div class="quiz-help-body">' + this._escape(selfCheckText) + '</div>';
+      html += '</div>';
+    }
+
+    // 问AI
+    if (aiPromptKey) {
+      html += '<div class="quiz-help-section">';
+      html += '<div class="quiz-help-title">问AI</div>';
+      html += '<div class="quiz-help-body">复制下方提示词，粘贴到GLM / ChatGPT / DeepSeek等AI工具咨询</div>';
+      // 显示提示词原文
+      var promptText = '';
+      if (typeof PROMPTS !== 'undefined' && PROMPTS[aiPromptKey]) {
+        promptText = PROMPTS[aiPromptKey].template || '';
+      }
+      if (promptText) {
+        html += '<div class="quiz-prompt-text">' + this._escape(promptText) + '</div>';
+      }
+      html += '<button class="quiz-copy-prompt-btn" data-prompt-key="' + this._escape(aiPromptKey) + '" type="button">复制AI提示词</button>';
+      html += '</div>';
+    }
+
+    // 代理师提示（灰字，不显眼）
+    html += '<div class="quiz-help-section quiz-help-agent">';
+    html += '<div class="quiz-help-body">拿不准也可以联系代理师 张倩 微信 pb-zhangqian 一对一判断</div>';
+    html += '</div>';
+
+    html += '</div>';
+    return html;
+  },
+
+  // ---------- 绑定复制AI提示词按钮 ----------
+  _bindCopyPromptBtn: function (container) {
+    var btns = container.querySelectorAll('.quiz-copy-prompt-btn');
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener('click', function () {
+        var key = this.getAttribute('data-prompt-key');
+        if (typeof copyPrompt === 'function') {
+          copyPrompt(key);
+        }
+      });
+    }
+  },
+
+  // ---------- 下一步 ----------
+  _nextStep: function () {
+    this._currentStep++;
+    // 跳过被隐藏的步骤
+    while (this._currentStep < QUIZ_STEPS.length && !this._shouldShowStep(this._currentStep)) {
+      this._currentStep++;
+    }
+    this._render();
+    // 滚动到容器顶部，保证新问题可见
+    if (this._container && this._container.scrollIntoView) {
+      this._container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  },
+
+  // ---------- 上一步（回退，保留已答答案） ----------
+  _prevStep: function () {
+    if (this._currentStep <= 0) return;
+    this._currentStep--;
+    // 跳过被隐藏的步骤
+    while (this._currentStep >= 0 && !this._shouldShowStep(this._currentStep)) {
+      this._currentStep--;
+    }
+    if (this._currentStep < 0) this._currentStep = 0;
+    this._render();
+    if (this._container && this._container.scrollIntoView) {
+      this._container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  },
+
+  // ---------- 进度条 ----------
+  _buildProgress: function (stepIndex) {
+    var total = QUIZ_STEPS.length;
+    var current = stepIndex + 1;
+    var percent = Math.round((current / total) * 100);
+    var html = '';
+    html += '<div class="quiz-progress">';
+    html += '  <div class="quiz-progress-text">进度 ' + percent + '%</div>';
+    html += '  <div class="quiz-progress-bar">';
+    html += '    <div class="quiz-progress-fill" style="width:' + percent + '%;"></div>';
+    html += '  </div>';
+    html += '</div>';
+    return html;
+  },
+
+  // ---------- 结论卡推荐逻辑 ----------
+  // @return {object} { type, typeLabel, advice, dualFiling, overseas }
+  _recommend: function () {
+    var protect = this._answers.protect_type;   // product/method/appearance/software/idea
+    var diff = this._answers.difference;         // breakthrough/improve/combine/uncertain
+    var market = this._answers.market;           // domestic/overseas/undecided
+    var overseas = (market === 'overseas');
+
+    var type = 'unknown';
+    var typeLabel = '待定';
+    var advice = '情况较复杂，建议联系专业代理机构或代理师进一步判断。';
+    var dualFiling = false;
+
+    if (protect === 'method') {
+      type = 'invention';
+      typeLabel = '发明专利';
+      advice = '方法/工艺只能申请发明专利，建议尽快启动，审查约1.5-3年。';
+    } else if (protect === 'appearance') {
+      type = 'design';
+      typeLabel = '外观设计专利';
+      advice = '外观设计只保护外观，不保护功能和结构，授权快（3-6个月）。';
+    } else if (protect === 'software') {
+      type = 'invention';
+      typeLabel = '发明专利';
+      advice = '软件/算法只能申请发明专利，且需通过客体审查。建议写成"算法+技术效果+硬件"组合，提高授权概率。';
+    } else if (protect === 'product') {
+      if (diff === 'breakthrough') {
+        type = 'invention';
+        typeLabel = '发明专利';
+        advice = '产品+突破性改进，建议申请发明专利，保护力度最强。';
+      } else if (diff === 'improve') {
+        type = 'dual';
+        typeLabel = '发明 + 实用新型双报';
+        dualFiling = true;
+        advice = '产品+改进型，建议发明+实用新型同日双报：实用新型快速拿证兜底，发明经实质审查授权后择一保留。注意：须同日提交声明，两份权利要求保护范围须匹配。';
+      } else if (diff === 'combine') {
+        type = 'utility';
+        typeLabel = '实用新型专利';
+        advice = '拼凑型创造性较弱。实用新型只保护产品形状/构造，不进行实质审查；可先试实用新型，但授权后可能被无效，建议同步评估创造性。';
+      } else {
+        // uncertain
+        type = 'dual';
+        typeLabel = '发明 + 实用新型双报';
+        dualFiling = true;
+        advice = '创造性拿不准时，双报是最稳的对冲方案：实用新型先拿证，发明再经实质审查确认创造性。';
+      }
+    } else if (protect === 'idea') {
+      type = 'unknown';
+      typeLabel = '待定';
+      advice = '想法需先落地成具体技术方案（有结构、步骤或参数）才能申请，建议先梳理技术细节再启动。';
+    }
+
+    return {
+      type: type,
+      typeLabel: typeLabel,
+      advice: advice,
+      dualFiling: dualFiling,
+      overseas: overseas
+    };
+  },
+
+  // ---------- 渲染结论卡 ----------
+  _renderConclusion: function () {
+    var rec = this._recommend();
+    var market = this._answers.market;
+
+    var html = '';
+    html += '<div class="quiz-conclusion">';
+    html += '  <div class="quiz-conclusion-title">自测结论</div>';
+    html += '  <div class="quiz-conclusion-type">建议申请：<strong>' + this._escape(rec.typeLabel) + '</strong></div>';
+    html += '  <div class="quiz-conclusion-advice">' + this._escape(rec.advice) + '</div>';
+
+    // 双报额外提示
+    if (rec.dualFiling) {
+      html += '  <div class="quiz-conclusion-tag">思 双报=发明+实用新型同日申请，多花一份官费，换"快速拿证+强保护"双保险。须同日提交声明，权利要求保护范围须匹配，否则后续无法择一保留</div>';
+    }
+
+    // 出海额外提示
+    if (rec.overseas) {
+      html += '  <div class="quiz-conclusion-tag">外 已为你展开海外费用，往下看各国官费对比与策略建议</div>';
+    }
+
+    // 没想好额外提示
+    if (market === 'undecided') {
+      html += '  <div class="quiz-conclusion-tag">疑 出不出口没想好？先看费用再决定，海外每国纯官费约1-3万人民币</div>';
+    }
+
+    // 三种专利类型科普说明
+    html += '  <div class="quiz-conclusion-types">';
+    html += '    <div class="quiz-type-item"><span class="quiz-type-name">发明专利</span><span class="quiz-type-desc">保护产品或方法的技术方案（例：新药化合物、通信编码方法），需实质审查创造性，保护期20年（自申请日起算）</span></div>';
+    html += '    <div class="quiz-type-item"><span class="quiz-type-name">实用新型专利</span><span class="quiz-type-desc">只保护产品的形状、构造或其结合（例：新型机械夹具结构、改进的电池壳体），不进行实质审查，保护期10年（自申请日起算）</span></div>';
+    html += '    <div class="quiz-type-item"><span class="quiz-type-name">外观设计专利</span><span class="quiz-type-desc">只保护产品的外观形状、图案或色彩（例：手机外壳弧度、包装瓶造型），不保护功能和结构，保护期15年（自申请日起算）</span></div>';
+    html += '  </div>';
+
+    // 操作按钮
+    html += '  <div class="quiz-conclusion-actions">';
+    html += '    <button class="quiz-btn-primary" id="quiz-btn-process" type="button">看流程</button>';
+    html += '    <button class="quiz-btn-secondary" id="quiz-btn-fee" type="button">看费用</button>';
+    html += '    <button class="quiz-btn-secondary" id="quiz-btn-agent" type="button">咨询代理师</button>';
+    html += '  </div>';
+
+    // 灰字不显眼的微信号提示（用户要求：不显眼）
+    html += '  <div class="quiz-conclusion-agent-hint">如需一对一判断，可联系代理师 张倩 微信 pb-zhangqian</div>';
+
+    // 重做入口
+    html += '  <div class="quiz-conclusion-redo"><a id="quiz-redo" href="javascript:void(0);">重新测一次</a></div>';
+    html += '</div>';
+
+    this._container.innerHTML = html;
+
+    // 绑定"看流程" → 切换到流程页并激活对应类型tab
+    var procBtn = this._container.querySelector('#quiz-btn-process');
+    if (procBtn) {
+      procBtn.addEventListener('click', function () {
+        var tabMap = { invention: 'invention', utility: 'utility', design: 'design', dual: 'invention', unknown: 'invention' };
+        var tabName = tabMap[rec.type] || 'invention';
+        if (typeof window.switchPage === 'function') {
+          window.switchPage('process', { processTab: tabName });
+        }
+      });
+    }
+
+    // 绑定"看费用" → 切换到算账页
+    var feeBtn = this._container.querySelector('#quiz-btn-fee');
+    if (feeBtn) {
+      feeBtn.addEventListener('click', function () {
+        // 出海时切换到海外费用页，否则切换到中国算账页
+        if (rec.overseas && typeof window.switchPage === 'function') {
+          window.switchPage('overseas');
+        } else {
+          Quiz.skipToCalculator();
+        }
+      });
+    }
+
+    // 绑定"咨询代理师" → 复制微信号
+    var agentBtn = this._container.querySelector('#quiz-btn-agent');
+    if (agentBtn) {
+      agentBtn.addEventListener('click', function () {
+        if (typeof window.copyWechat === 'function') {
+          window.copyWechat();
+        }
+      });
+    }
+
+    // 绑定"重新测一次"
+    var redo = this._container.querySelector('#quiz-redo');
+    if (redo) {
+      redo.addEventListener('click', function () {
+        Quiz.init(Quiz._container);
+      });
+    }
+
+    this._animateIn();
+  },
+
+  // ---------- 入场动画 ----------
+  _animateIn: function () {
+    var stepEl = this._container.querySelector('.quiz-step, .quiz-conclusion');
+    if (!stepEl) return;
+    stepEl.classList.add('quiz-enter');
+    requestAnimationFrame(function () {
+      stepEl.classList.add('quiz-enter-active');
+    });
+  },
+
+  // ---------- HTML 转义 ----------
+  _escape: function (str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+};
+
+// --- cn_calc.js ---
+/**
+ * 知产前置通 - 中国官费算账模块（模块B）
+ *
+ * 模块用途：
+ *   根据用户选择的申请类型（发明/实用新型/外观设计）和实体类型（大实体/小实体/自然人），
+ *   实时计算中国专利官费，支持发明+实用新型双报费用计算。
+ *   用户在自测器（模块D）得到推荐类型后，到费用区选择类型，实时出结果。
+ *
+ * 数据来源：
+ *   全局变量 FEES（fees.json 内联），结构：FEES.countries.CN.patentTypes[类型]
+ *
+ * 导出接口：
+ *   CNCalc.init()                       - 初始化，绑定 radio 事件并自动选型
+ *   CNCalc.calc(patentType, entityType)  - 计算费用，返回 { feeItems, total, entityLabel }
+ *   CNCalc.render()                      - 渲染费用表到 #cn-fee-table
+ *   CNCalc.calcDual(entityType)          - 双报计算（发明+实用新型）
+ *
+ * 依赖（均为可选，缺失时降级不报错）：
+ *   - 全局变量 FEES（fees.json 数据）
+ *   - 全局对象 Quiz（自测器，用于自动选型和双报判断）
+ *   注意：render() 直接使用内置 _renderFallback 渲染，不调用全局 renderFeeTable
+ *        （全局 renderFeeTable 签名为 (countryArray, targetId)，用途不同）
+ *
+ * 类型映射：
+ *   HTML "utility"    → fees.json "utilityModel"
+ *   HTML "individual" → fees.json "small"（自然人享小实体减缴待遇）
+ *
+ * 初始化时机：
+ *   DOMContentLoaded 时，检查 FEES 是否存在，存在则 init
+ *   如果 FEES 未定义（fees.json未内联），不报错，静默跳过
+ */
+
+var CNCalc = {
+
+  // 当前选择（HTML data-value 值）
+  _patentType: 'invention',  // invention / utility / design
+  _entityType: 'large',      // large / small / individual
+
+
+  // ============================================================
+  // 初始化
+  // ============================================================
+
+  /**
+   * 初始化：注入样式、构建 HTML（如不存在）、绑定事件、自动选型、首次渲染
+   */
+  init: function () {
+    // FEES 必须存在
+    if (typeof FEES === 'undefined' || !FEES.countries || !FEES.countries.CN) {
+      console.warn('[cn_calc] FEES 未定义或缺少 CN 节点，跳过初始化');
+      return;
+    }
+
+    // 注入 CSS（幂等）
+    this._injectCSS();
+
+    // 构建 HTML 容器（如不存在）
+    this._buildHTML();
+
+    // 绑定 radio 事件
+    this._bindRadios();
+
+    // 从自测器结果自动选型
+    this._autoSelectFromQuiz();
+
+    // 显示当前实体类型说明
+    this._updateEntityHint(this._entityType);
+
+    // 首次渲染
+    this.render();
+  },
+
+
+  // ============================================================
+  // HTML / CSS 构建
+  // ============================================================
+
+  /**
+   * 注入模块所需 CSS（幂等，只注入一次）
+   * 使用 skeleton.html 已有的 CSS 变量，保持视觉一致
+   */
+  _injectCSS: function () {
+    if (document.getElementById('cn-calc-style')) return;
+    var style = document.createElement('style');
+    style.id = 'cn-calc-style';
+    style.textContent = [
+      '.cn-calc-block{margin-top:16px;}',
+      '.cn-calc-sub-title{font-size:16px;font-weight:700;color:var(--ink-deep,#0F172A);margin-bottom:12px;line-height:1.5;}',
+      '.cn-calc-sub-title::before{content:"";display:inline-block;width:3px;height:16px;background:var(--seal-red,#A8423A);margin-right:8px;vertical-align:middle;}',
+      '.cn-field-group{margin-bottom:16px;}',
+      '.cn-field-label{display:block;font-size:13px;color:var(--ink-gray,#78716C);margin-bottom:8px;line-height:1.5;}',
+      '.cn-radio-row{display:flex;gap:8px;flex-wrap:wrap;}',
+      '.cn-radio-item{',
+      '  flex:1;min-width:80px;padding:10px 12px;text-align:center;',
+      '  border:1px solid var(--border-ink,rgba(45,90,74,0.15));',
+      '  background:transparent;color:var(--ink-green,#2D5A4A);',
+      '  font-size:14px;cursor:pointer;transition:background .15s,color .15s,border-color .15s;',
+      '  font-family:inherit;line-height:1.4;user-select:none;',
+      '}',
+      '.cn-radio-item.active{',
+      '  background:var(--ink-green,#2D5A4A);color:var(--paper,#FFFBEB);',
+      '  border-color:var(--ink-green,#2D5A4A);font-weight:600;',
+      '}',
+      '.cn-fee-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:12px;}',
+      '.cn-fee-table th{padding:10px 8px;border-bottom:1px solid var(--border-ink,rgba(45,90,74,0.15));text-align:left;color:var(--ink-gray,#78716C);font-weight:400;line-height:1.5;}',
+      '.cn-fee-table td{padding:10px 8px;border-bottom:1px solid var(--border-ink-2,rgba(45,90,74,0.08));color:var(--ink-deep,#0F172A);line-height:1.5;}',
+      '.cn-fee-table tr:last-child td{border-bottom:none;}',
+      '.cn-fee-amount{font-variant-numeric:tabular-nums;color:var(--seal-red,#A8423A);font-weight:600;white-space:nowrap;}',
+      '.cn-fee-note{font-size:11px;color:var(--ink-light,#A8A29E);margin-left:4px;}',
+      '.cn-fee-link{color:var(--ink-green,#2D5A4A);text-decoration:underline;cursor:pointer;font-size:12px;}',
+      '.cn-fee-total-row td{padding-top:12px;border-top:2px solid var(--ink-green,#2D5A4A);border-bottom:none !important;font-weight:700;font-size:15px;}',
+      '.cn-fee-total-amount{color:var(--seal-red,#A8423A);font-size:17px;}',
+      '.cn-entity-tag{display:inline-block;padding:3px 10px;font-size:12px;background:var(--paper-2,#FBF6E4);color:var(--ink-green,#2D5A4A);border:1px solid var(--border-ink,rgba(45,90,74,0.15));margin-bottom:8px;line-height:1.4;}',
+      '.cn-dual-note{margin-top:12px;padding:10px 12px;background:#FFF8E1;border-left:3px solid #FFC107;border-radius:0;}',
+      '.cn-dual-note__title{font-weight:600;color:#E65100;font-size:13px;line-height:1.5;}',
+      '.cn-dual-note__desc{margin-top:4px;font-size:12px;color:#666;line-height:1.5;}',
+      '.cn-dual-note__amount{margin-top:4px;font-size:18px;font-weight:700;color:#D84315;line-height:1.4;}',
+      '.cn-dual-note__breakdown{margin-top:2px;font-size:11px;color:#999;line-height:1.4;}',
+      '.cn-entity-hint{font-size:12px;color:var(--ink-gray,#78716C);line-height:1.7;margin-top:6px;padding:8px 10px;background:var(--paper,#FFFBEB);border-left:3px solid var(--ink-green,#2D5A4A);}',
+      '.cn-entity-hint:empty{display:none;}'
+    ].join('\n');
+    document.head.appendChild(style);
+  },
+
+  /**
+   * 构建 HTML 容器
+   * 如果 #cn-fees 已存在（skeleton.html 已包含），则跳过
+   * 否则在 #ip-calc-cn 挂载点内构建
+   */
+  _buildHTML: function () {
+    // skeleton 已提供 #cn-fees 容器（内含占位符），清空并填充实际内容
+    var existing = document.getElementById('cn-fees');
+    if (existing) {
+      existing.innerHTML = ''
+        + '  <div class="cn-calc-sub-title">中国官费算账</div>'
+        + '  <div class="cn-field-group">'
+        + '    <label class="cn-field-label">申请类型</label>'
+        + '    <div class="cn-radio-row" id="cn-patent-type">'
+        + '      <div class="cn-radio-item" data-value="invention">发明</div>'
+        + '      <div class="cn-radio-item" data-value="utility">实用新型</div>'
+        + '      <div class="cn-radio-item" data-value="design">外观设计</div>'
+        + '    </div>'
+        + '  </div>'
+        + '  <div class="cn-field-group">'
+        + '    <label class="cn-field-label">申请人类型</label>'
+        + '    <div class="cn-radio-row" id="cn-entity-type">'
+        + '      <div class="cn-radio-item" data-value="large">大实体</div>'
+        + '      <div class="cn-radio-item" data-value="small">小实体</div>'
+        + '      <div class="cn-radio-item" data-value="individual">自然人</div>'
+        + '    </div>'
+        + '    <div class="cn-entity-hint" id="cn-entity-hint"></div>'
+        + '  </div>'
+        + '  <div id="cn-fee-table"></div>';
+      return;
+    }
+
+    // 兜底：查找挂载点 #ip-calc-cn
+    var mount = document.getElementById('ip-calc-cn');
+    if (!mount) return;
+
+    mount.innerHTML = ''
+      + '<div id="cn-fees" class="cn-calc-block">'
+      + '  <div class="cn-calc-sub-title">中国官费算账</div>'
+      + '  <div class="cn-field-group">'
+      + '    <label class="cn-field-label">申请类型</label>'
+      + '    <div class="cn-radio-row" id="cn-patent-type">'
+      + '      <div class="cn-radio-item" data-value="invention">发明</div>'
+      + '      <div class="cn-radio-item" data-value="utility">实用新型</div>'
+      + '      <div class="cn-radio-item" data-value="design">外观设计</div>'
+      + '    </div>'
+      + '  </div>'
+      + '  <div class="cn-field-group">'
+      + '    <label class="cn-field-label">申请人类型</label>'
+      + '    <div class="cn-radio-row" id="cn-entity-type">'
+      + '      <div class="cn-radio-item" data-value="large">大实体</div>'
+      + '      <div class="cn-radio-item" data-value="small">小实体</div>'
+      + '      <div class="cn-radio-item" data-value="individual">自然人</div>'
+      + '    </div>'
+      + '    <div class="cn-entity-hint" id="cn-entity-hint"></div>'
+      + '  </div>'
+      + '  <div id="cn-fee-table"></div>'
+      + '</div>';
+  },
+
+
+  // ============================================================
+  // 事件绑定
+  // ============================================================
+
+  /**
+   * 绑定 radio-item 点击事件
+   */
+  _bindRadios: function () {
+    var self = this;
+
+    // 申请类型
+    var patentRadios = document.querySelectorAll('#cn-patent-type .cn-radio-item, #cn-patent-type .radio-item');
+    for (var i = 0; i < patentRadios.length; i++) {
+      patentRadios[i].addEventListener('click', function () {
+        self._selectRadio(this, 'cn-patent-type');
+        self._patentType = this.getAttribute('data-value');
+        self.render();
+      });
+    }
+
+    // 实体类型
+    var entityRadios = document.querySelectorAll('#cn-entity-type .cn-radio-item, #cn-entity-type .radio-item');
+    for (var j = 0; j < entityRadios.length; j++) {
+      entityRadios[j].addEventListener('click', function () {
+        self._selectRadio(this, 'cn-entity-type');
+        self._entityType = this.getAttribute('data-value');
+        self._updateEntityHint(self._entityType);
+        self.render();
+      });
+    }
+
+    // 默认选中第一项
+    if (patentRadios.length > 0) this._selectRadio(patentRadios[0], 'cn-patent-type');
+    if (entityRadios.length > 0) this._selectRadio(entityRadios[0], 'cn-entity-type');
+  },
+
+  /**
+   * 更新实体类型说明提示
+   */
+  _updateEntityHint: function (entityType) {
+    var hint = document.getElementById('cn-entity-hint');
+    if (!hint) return;
+    var texts = {
+      large: '大实体：年销售额超过100万元的企业或单位，按标准费率缴纳，无减缴。',
+      small: '小实体：年收入/销售额≤100万元的单位，或年收入≤6万元的个人，减缴85%（申请费、审查费、复审费、授权起10年内年费）。',
+      individual: '自然人：以个人名义申请的发明人，享小实体同等减缴待遇（减缴85%）。',
+      '': ''
+    };
+    hint.textContent = texts[entityType] || '';
+  },
+
+  /**
+   * 选中 radio-item：同组移除 .active，当前项加 .active
+   * 兼容 .cn-radio-item 和 .radio-item 两种 class 命名
+   */
+  _selectRadio: function (el, groupId) {
+    var siblings = document.querySelectorAll(
+      '#' + groupId + ' .cn-radio-item, #' + groupId + ' .radio-item'
+    );
+    for (var i = 0; i < siblings.length; i++) {
+      siblings[i].classList.remove('active');
+    }
+    el.classList.add('active');
+  },
+
+
+  // ============================================================
+  // 类型映射
+  // ============================================================
+
+  /**
+   * HTML 专利类型 → fees.json 专利类型
+   * utility → utilityModel，其余直接对应
+   */
+  _mapPatentType: function (htmlType) {
+    if (htmlType === 'utility') return 'utilityModel';
+    return htmlType; // invention, design 直接对应
+  },
+
+  /**
+   * HTML 实体类型 → fees.json 实体类型
+   * individual → small（自然人享小实体减缴待遇），其余直接对应
+   */
+  _mapEntityType: function (htmlType) {
+    if (htmlType === 'individual') return 'small';
+    return htmlType; // large, small 直接对应
+  },
+
+
+  // ============================================================
+  // 费用计算
+  // ============================================================
+
+  /**
+   * 添加费用项到 feeItems
+   * 规则：金额为0且有 note 时不显示（如检索费=0"中国发明无单独检索费"）
+   * @param {Array}  feeItems  - 费用项数组（引用传递，直接 push）
+   * @param {string} name      - 费用项名称
+   * @param {object} feeData   - fees.json 中的费用项数据
+   * @param {string} feesEntity - fees.json 实体类型（large/small）
+   * @returns {number} 该项金额（未加入 feeItems 则返回0）
+   */
+  _addFeeItem: function (feeItems, name, feeData, feesEntity) {
+    if (!feeData || !feeData.tiers) return 0;
+
+    var amount = feeData.tiers[feesEntity] || 0;
+    var note = feeData.note || '';
+    var url = feeData.sourceUrl || '';
+
+    // 金额为0且有说明文字 → 不显示该项
+    if (amount === 0 && note) return 0;
+
+    feeItems.push({
+      name: name,
+      amount: amount,
+      url: url,
+      note: note
+    });
+    return amount;
+  },
+
+  /**
+   * 计算费用
+   * @param {string} patentType - HTML 专利类型（invention/utility/design）
+   * @param {string} entityType - HTML 实体类型（large/small/individual）
+   * @returns {{ feeItems: Array, total: number, entityLabel: string }}
+   *   feeItems: [{ name, amount, url, note }, ...]
+   *   total: 首年官费合计（不含年费）
+   *   entityLabel: 实体减缴标签（如"小实体减缴85%"，大实体为空）
+   */
+  calc: function (patentType, entityType) {
+    var feesPatent = this._mapPatentType(patentType);
+    var feesEntity = this._mapEntityType(entityType);
+
+    var cnData = FEES.countries.CN;
+    var patentData = cnData.patentTypes[feesPatent];
+
+    var feeItems = [];
+    var total = 0;
+
+    // ---- 实体减缴标签 ----
+    var entityLabel = '';
+    if (feesEntity === 'small') {
+      var reductionPercent = Math.round(cnData.entityTiers.small.reduction * 100);
+      if (entityType === 'individual') {
+        entityLabel = '自然人减缴' + reductionPercent + '%';
+      } else {
+        entityLabel = '小实体减缴' + reductionPercent + '%';
+      }
+    }
+
+    // ---- 首年官费项 ----
+
+    // 1. 申请费
+    total += this._addFeeItem(feeItems, '申请费', patentData.filingFee, feesEntity);
+
+    // 2. 公布印刷费（仅发明有，不减缴——fees.json 中 small 也为 50，直接取值）
+    total += this._addFeeItem(feeItems, '公布印刷费', patentData.printingFee, feesEntity);
+
+    // 3. 检索费（金额为0且有note时自动跳过，如中国发明无单独检索费）
+    total += this._addFeeItem(feeItems, '检索费', patentData.searchFee, feesEntity);
+
+    // 4. 实质审查费（实用新型为0且有note"无实质审查"，自动跳过）
+    total += this._addFeeItem(feeItems, '实质审查费', patentData.examFee, feesEntity);
+
+    // 5. 授权登记费
+    total += this._addFeeItem(feeItems, '授权登记费', patentData.grantFee, feesEntity);
+
+    // ---- 年维持费（取第1档，仅展示，不计入首年合计）----
+    if (patentData.annuity && patentData.annuity.length > 0) {
+      var firstTier = patentData.annuity[0];
+      var annuityAmt = (firstTier.tiers && firstTier.tiers[feesEntity]) || 0;
+      feeItems.push({
+        name: '年维持费（' + firstTier.fromYear + '-' + firstTier.toYear + '年）',
+        amount: annuityAmt,
+        url: firstTier.sourceUrl || '',
+        note: '每年'
+      });
+    }
+
+    return {
+      feeItems: feeItems,
+      total: total,
+      entityLabel: entityLabel
+    };
+  },
+
+  /**
+   * 双报计算（发明+实用新型）
+   * @param {string} entityType - HTML 实体类型
+   * @returns {{ feeItems: Array, total: number, entityLabel: string, isDual: boolean, dualTotal: number, utilityTotal: number }}
+   *   feeItems: 发明的费用项（用于主表展示）
+   *   total: 发明首年官费
+   *   dualTotal: 发明+实用新型首年官费合计
+   *   utilityTotal: 实用新型首年官费
+   */
+  calcDual: function (entityType) {
+    // 发明首年官费
+    var invResult = this.calc('invention', entityType);
+    // 实用新型首年官费（实用新型无审查费，calc 内部自动跳过）
+    var utResult = this.calc('utility', entityType);
+
+    return {
+      feeItems: invResult.feeItems,
+      total: invResult.total,
+      entityLabel: invResult.entityLabel,
+      isDual: true,
+      dualTotal: invResult.total + utResult.total,
+      utilityTotal: utResult.total
+    };
+  },
+
+
+  // ============================================================
+  // 自测器联动
+  // ============================================================
+
+  /**
+   * 从自测器结果自动选型
+   * 推荐映射：invention→发明, dual→发明+双报, utility→实用新型, design→外观设计
+   * 兼容多种 Quiz 接口：answers.recommend / Quiz._recommend() / 原始答案推断
+   */
+  _autoSelectFromQuiz: function () {
+    if (typeof Quiz === 'undefined' || !Quiz.getAnswers) return;
+
+    var answers;
+    try {
+      answers = Quiz.getAnswers();
+    } catch (e) {
+      return;
+    }
+    if (!answers) return;
+
+    // 获取推荐类型（三种方式，优先级递减）
+    var recommend = answers.recommend || answers.type;
+
+    if (!recommend && typeof Quiz._recommend === 'function') {
+      try {
+        var rec = Quiz._recommend();
+        if (rec) recommend = rec.type;
+      } catch (e) {}
+    }
+
+    if (!recommend) {
+      recommend = this._inferRecommend(answers);
+    }
+
+    // 映射到 HTML radio 值
+    var targetPatent = null;
+    switch (recommend) {
+      case 'invention':
+        targetPatent = 'invention';
+        break;
+      case 'dual':
+        targetPatent = 'invention'; // 双报选发明，render 时追加双报提示
+        break;
+      case 'utility':
+        targetPatent = 'utility';
+        break;
+      case 'design':
+        targetPatent = 'design';
+        break;
+    }
+
+    if (targetPatent) {
+      this._patentType = targetPatent;
+      var radio = document.querySelector(
+        '#cn-patent-type [data-value="' + targetPatent + '"]'
+      );
+      if (radio) this._selectRadio(radio, 'cn-patent-type');
+    }
+  },
+
+  /**
+   * 从原始答案推断推荐类型（当 Quiz 无 _recommend 方法时的回退）
+   * 复刻 Quiz._recommend 的核心逻辑
+   */
+  _inferRecommend: function (answers) {
+    var protect = answers.protect_type;
+    var diff = answers.difference;
+
+    if (protect === 'method') return 'invention';
+    if (protect === 'appearance') return 'design';
+    if (protect === 'product') {
+      if (diff === 'breakthrough') return 'invention';
+      if (diff === 'improve' || diff === 'uncertain') return 'dual';
+      if (diff === 'combine') return 'utility';
+    }
+    return null;
+  },
+
+  /**
+   * 判断是否应显示双报提示
+   * 条件：当前选发明 + 自测器推荐双报 或 用户第3步选了"改进型"
+   */
+  _shouldShowDual: function () {
+    if (this._patentType !== 'invention') return false;
+    if (typeof Quiz === 'undefined' || !Quiz.getAnswers) return false;
+
+    try {
+      var answers = Quiz.getAnswers();
+      if (!answers) return false;
+
+      // 方式1：直接检查 answers.recommend
+      if (answers.recommend === 'dual') return true;
+
+      // 方式2：检查 difference === 'improve'（用户描述的判断条件）
+      if (answers.difference === 'improve') return true;
+
+      // 方式3：调用 Quiz._recommend() 检查 type/dualFiling
+      if (typeof Quiz._recommend === 'function') {
+        var rec = Quiz._recommend();
+        if (rec && (rec.type === 'dual' || rec.dualFiling === true)) return true;
+      }
+    } catch (e) {}
+
+    return false;
+  },
+
+
+  // ============================================================
+  // 渲染
+  // ============================================================
+
+  /**
+   * 渲染费用表到 #cn-fee-table
+   * 优先调用全局 renderFeeTable，不可用时使用内置回退渲染
+   */
+  render: function () {
+    var container = document.getElementById('cn-fee-table');
+    if (!container) return;
+
+    var showDual = this._shouldShowDual();
+    var result;
+
+    if (showDual) {
+      result = this.calcDual(this._entityType);
+    } else {
+      result = this.calc(this._patentType, this._entityType);
+    }
+
+    // 直接使用内置渲染（全局 renderFeeTable 签名不同，用途不同）
+    this._renderFallback('cn-fee-table', result.feeItems, {
+      showTotal: true,
+      entityLabel: result.entityLabel,
+      currency: '¥',
+      total: result.total
+    });
+
+    // 追加双报提示
+    if (showDual && result.isDual) {
+      this._renderDualNote(container, result);
+    }
+  },
+
+  /**
+   * 内置回退渲染（当全局 renderFeeTable 不可用时使用）
+   * @param {string} containerId - 容器元素 ID
+   * @param {Array}  feeItems    - 费用项数组
+   * @param {object} options     - { showTotal, entityLabel, currency, total }
+   */
+  _renderFallback: function (containerId, feeItems, options) {
+    var container = document.getElementById(containerId);
+    if (!container) return;
+
+    options = options || {};
+    var currency = options.currency || '¥';
+    var total = options.total;
+
+    // 如果未传入 total，从 feeItems 计算（排除 note='每年' 的年费项）
+    if (typeof total !== 'number') {
+      total = 0;
+      for (var t = 0; t < feeItems.length; t++) {
+        if (feeItems[t].note === '每年') continue;
+        total += feeItems[t].amount || 0;
+      }
+    }
+
+    var html = '';
+
+    // 实体减缴标签
+    if (options.entityLabel) {
+      html += '<div class="cn-entity-tag">' + options.entityLabel + '</div>';
+    }
+
+    // 费用表
+    html += '<table class="cn-fee-table">';
+    html += '<thead><tr>';
+    html += '<th>费用项</th>';
+    html += '<th style="text-align:right;">金额</th>';
+    html += '<th style="text-align:center;">来源</th>';
+    html += '</tr></thead>';
+    html += '<tbody>';
+
+    for (var i = 0; i < feeItems.length; i++) {
+      var item = feeItems[i];
+      html += '<tr>';
+
+      // 费用名 + 备注
+      html += '<td>' + this._escapeHtml(item.name);
+      if (item.note) {
+        html += '<span class="cn-fee-note">(' + this._escapeHtml(item.note) + ')</span>';
+      }
+      html += '</td>';
+
+      // 金额
+      var amtText = (item.amount === 0) ? '—' : (currency + item.amount.toLocaleString());
+      html += '<td style="text-align:right;" class="cn-fee-amount">' + amtText + '</td>';
+
+      // 来源链接
+      html += '<td style="text-align:center;">';
+      if (item.url) {
+        html += '<a class="cn-fee-link" href="' + this._escapeHtml(item.url) + '" target="_blank" rel="noopener">查</a>';
+      } else {
+        html += '—';
+      }
+      html += '</td>';
+
+      html += '</tr>';
+    }
+
+    html += '</tbody>';
+
+    // 合计行
+    if (options.showTotal) {
+      html += '<tfoot><tr class="cn-fee-total-row">';
+      html += '<td>首年官费合计</td>';
+      html += '<td style="text-align:right;" class="cn-fee-total-amount">' + currency + total.toLocaleString() + '</td>';
+      html += '<td></td>';
+      html += '</tr></tfoot>';
+    }
+
+    html += '</table>';
+
+    container.innerHTML = html;
+  },
+
+  /**
+   * 渲染双报提示行（追加到费用表后）
+   */
+  _renderDualNote: function (container, result) {
+    var html = '<div class="cn-dual-note">';
+    html += '<div class="cn-dual-note__title">双报提示</div>';
+    html += '<div class="cn-dual-note__desc">同时申请发明+实用新型，首年官费合计：</div>';
+    html += '<div class="cn-dual-note__amount">¥' + result.dualTotal.toLocaleString() + '</div>';
+    html += '<div class="cn-dual-note__breakdown">（发明 ¥' + result.total.toLocaleString() + ' + 实用新型 ¥' + result.utilityTotal.toLocaleString() + '）</div>';
+    html += '</div>';
+    container.insertAdjacentHTML('beforeend', html);
+  },
+
+
+  // ============================================================
+  // 工具方法
+  // ============================================================
+
+  /**
+   * HTML 转义（防止费用项名称中的特殊字符破坏 DOM）
+   */
+  _escapeHtml: function (str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+};
+
+
+// ============================================================
+// 自动初始化
+// ============================================================
+(function () {
+  function initCNCalc() {
+    // FEES 未定义时不报错，静默跳过
+    if (typeof FEES === 'undefined') return;
+    if (!FEES.countries || !FEES.countries.CN) return;
+    CNCalc.init();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCNCalc);
+  } else {
+    // DOM 已就绪（脚本延迟加载场景）
+    initCNCalc();
+  }
+})();
+
+// --- overseas_calc.js ---
+/**
+ * 知产前置通 - 海外官费算账模块（模块C算账部分）
+ *
+ * 模块用途：
+ *   用户在5步自测器第5步选"出海"后，海外费用区展开。
+ *   用户选择技术领域 → 看到策略建议（getStrategy）→ 预勾选推荐国家 →
+ *   可手动增减国家 → 实时计算各国"申请到授权"官费并折人民币对比排序。
+ *
+ * 数据来源：
+ *   全局变量 FEES（fees.json 内联），结构：
+ *     FEES.meta.exchangeRate[currency]            → 人民币汇率
+ *     FEES.countries[code].patentTypes.invention  → 各国发明费用
+ *     FEES.countries[code].entityTiers            → 实体档位（US 有 small/micro，其余仅 large）
+ *
+ * 导出接口：
+ *   OverseasCalc.init()                              - 初始化（构建UI、绑定事件、首次渲染）
+ *   OverseasCalc.calcCountry(code, entityType)       - 计算单国费用，返回对比行对象
+ *   OverseasCalc.calcAll()                           - 计算所有选中国家，按人民币小计升序返回
+ *   OverseasCalc.render()                            - 渲染对比表到 #ov-fee-table
+ *   OverseasCalc.recommendCountries(field)           - 按技术领域返回推荐国家代码数组（不含CN）
+ *
+ * 依赖（均为可选，缺失时降级不报错）：
+ *   - 全局变量 FEES（fees.json 数据）
+ *   - 全局函数 getStrategy(field) / getCountryName(code)（strategy_rules.js 提供）
+ *
+ * 初始化时机：
+ *   1) 包装 window.expandOverseas：quiz.js 结论卡调用时自动 init
+ *   2) DOMContentLoaded 时若 #overseas-fees 已可见则 init
+ *   FEES 未定义时不报错，渲染降级提示。
+ *
+ * 实体类型规则：
+ *   海外默认"大实体"；仅当选了 US 时才显示 small/micro 选项；
+ *   选 US 小/微实体时，其他国家仍按 large 计算（因其无对应 tier，自动回退）。
+ */
+
+// ============================================================
+// 海外国家代码清单（不含 CN，CN 在中国费用区）与国旗 emoji
+// ============================================================
+var OVERSEAS_COUNTRY_CODES = ['US', 'EP', 'JP', 'KR', 'DE', 'GB', 'AU', 'CA', 'IN', 'BR'];
+
+var COUNTRY_FLAGS = {
+  US: 'US', EP: 'EP', JP: 'JP', KR: 'KR', DE: 'DE',
+  GB: 'GB', AU: 'AU', CA: 'CA', IN: 'IN', BR: 'BR'
+};
+
+
+var OverseasCalc = {
+
+  _selectedCountries: [],  // 用户选中的国家代码数组
+  _entityType: 'large',    // 当前实体类型 large/small/micro
+  _field: '',              // 当前技术领域 pharma/software/mechanical/telecom
+  _built: false,           // HTML 是否已构建（避免重复构建）
+
+
+  // ============================================================
+  // 初始化
+  // ============================================================
+
+  /**
+   * 初始化：FEES 缺失则降级提示；否则注入样式、构建 HTML、绑定事件、首次渲染
+   * 幂等：已构建则直接返回；FEES 后到可再次调用补建
+   */
+  init: function () {
+    // FEES 必须存在
+    if (typeof FEES === 'undefined' || !FEES.countries) {
+      this._renderDegraded();
+      return;
+    }
+    if (this._built) return;
+
+    this._injectCSS();
+    this._buildHTML();
+    this._bind();
+
+    this._built = true;
+    this.render();
+  },
+
+
+  // ============================================================
+  // HTML / CSS 构建
+  // ============================================================
+
+  /**
+   * 注入模块 CSS（幂等，只注入一次）
+   * 复用 skeleton.html 的 CSS 变量，前缀 .ov- 避免冲突
+   */
+  _injectCSS: function () {
+    if (document.getElementById('ov-calc-style')) return;
+    var style = document.createElement('style');
+    style.id = 'ov-calc-style';
+    style.textContent = [
+      '.ov-calc-block{margin-top:16px;}',
+      '.ov-sub-title{font-size:16px;font-weight:700;color:var(--ink-deep,#0F172A);margin-bottom:12px;line-height:1.5;}',
+      '.ov-sub-title::before{content:"";display:inline-block;width:3px;height:16px;background:var(--seal-red,#A8423A);margin-right:8px;vertical-align:middle;}',
+      '.ov-field-group{margin-bottom:16px;}',
+      '.ov-field-label{display:block;font-size:13px;color:var(--ink-gray,#78716C);margin-bottom:8px;line-height:1.5;}',
+      '.ov-field-select{width:100%;padding:10px 12px;border:1px solid var(--border-ink,rgba(45,90,74,0.15));background:var(--paper,#FFFBEB);color:var(--ink-deep,#0F172A);font-size:14px;font-family:inherit;line-height:1.5;}',
+      '.ov-strategy-box{margin-bottom:16px;padding:12px 14px;background:var(--paper-2,#FBF6E4);border-left:3px solid var(--ink-green,#2D5A4A);}',
+      '.ov-strategy-box:empty{display:none;}',
+      '.ov-strategy-title{font-weight:700;color:var(--ink-green,#2D5A4A);font-size:14px;margin-bottom:6px;line-height:1.5;}',
+      '.ov-strategy-advice{font-size:13px;color:var(--ink-deep,#0F172A);line-height:1.7;}',
+      '.ov-strategy-rec{margin-top:6px;font-size:12px;color:var(--ink-gray,#78716C);line-height:1.6;}',
+      '.ov-radio-row{display:flex;gap:8px;flex-wrap:wrap;}',
+      '.ov-radio-item{flex:1;min-width:72px;padding:10px 12px;text-align:center;border:1px solid var(--border-ink,rgba(45,90,74,0.15));background:transparent;color:var(--ink-green,#2D5A4A);font-size:14px;cursor:pointer;transition:background .15s,color .15s,border-color .15s;font-family:inherit;line-height:1.4;user-select:none;}',
+      '.ov-radio-item.active{background:var(--ink-green,#2D5A4A);color:var(--paper,#FFFBEB);border-color:var(--ink-green,#2D5A4A);font-weight:600;}',
+      '.ov-entity-hint{font-size:11px;color:var(--ink-light,#A8A29E);margin-top:6px;line-height:1.5;}',
+      '.ov-entity-hint:empty{margin-top:0;}',
+      '.ov-country-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}',
+      '.ov-country-item{display:flex;align-items:center;gap:6px;padding:8px 10px;border:1px solid var(--border-ink,rgba(45,90,74,0.15));background:var(--paper,#FFFBEB);cursor:pointer;font-size:13px;line-height:1.4;user-select:none;}',
+      '.ov-country-item input{margin:0;flex-shrink:0;}',
+      '.ov-country-flag{font-size:16px;}',
+      '.ov-country-name{flex:1;color:var(--ink-deep,#0F172A);}',
+      '.ov-country-code{font-size:11px;color:var(--ink-light,#A8A29E);}',
+      '.ov-country-item.checked{border-color:var(--ink-green,#2D5A4A);background:var(--paper-2,#FBF6E4);}',
+      '.ov-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:8px;border:1px solid var(--border-ink,rgba(45,90,74,0.15));}',
+      '.ov-fee-table{width:100%;border-collapse:collapse;font-size:12px;min-width:660px;}',
+      '.ov-fee-table th{padding:8px 6px;border-bottom:1px solid var(--border-ink,rgba(45,90,74,0.15));text-align:left;color:var(--ink-gray,#78716C);font-weight:400;line-height:1.4;white-space:nowrap;background:var(--paper-2,#FBF6E4);}',
+      '.ov-fee-table td{padding:8px 6px;border-bottom:1px solid var(--border-ink-2,rgba(45,90,74,0.08));color:var(--ink-deep,#0F172A);line-height:1.4;vertical-align:top;}',
+      '.ov-td-country{white-space:nowrap;}',
+      '.ov-flag{font-size:14px;margin-right:2px;}',
+      '.ov-cname{font-weight:600;}',
+      '.ov-entity-tag{display:block;font-size:10px;color:var(--seal-red,#A8423A);margin-top:2px;font-weight:400;}',
+      '.ov-td-fee,.ov-td-cny{font-variant-numeric:tabular-nums;white-space:nowrap;}',
+      '.ov-td-cny{color:var(--seal-red,#A8423A);font-weight:700;}',
+      '.ov-td-maint{font-size:11px;color:var(--ink-gray,#78716C);min-width:120px;}',
+      '.ov-fee-note{font-size:10px;color:var(--ink-light,#A8A29E);margin-top:2px;}',
+      '.ov-fee-link{color:var(--ink-green,#2D5A4A);text-decoration:underline;cursor:pointer;font-size:12px;white-space:nowrap;}',
+      '.ov-row{cursor:pointer;transition:background .12s;}',
+      '.ov-row:hover{background:var(--paper-2,#FBF6E4);}',
+      '.ov-row-open{background:var(--paper-2,#FBF6E4);}',
+      '.ov-detail td{background:var(--paper,#FFFBEB);padding:12px;}',
+      '.ov-detail-inner{font-size:12px;line-height:1.6;}',
+      '.ov-detail-fees{display:flex;flex-direction:column;gap:4px;}',
+      '.ov-detail-fee{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}',
+      '.ov-detail-name{font-weight:600;color:var(--ink-deep,#0F172A);min-width:48px;}',
+      '.ov-detail-amt{color:var(--seal-red,#A8423A);font-variant-numeric:tabular-nums;}',
+      '.ov-detail-note{color:var(--ink-light,#A8A29E);font-size:11px;}',
+      '.ov-detail-note-row{margin-top:6px;color:var(--ink-gray,#78716C);}',
+      '.ov-empty{padding:24px;text-align:center;color:var(--ink-light,#A8A29E);font-size:13px;line-height:1.7;}',
+      '.ov-deadline-tip{margin-top:12px;padding:10px 12px;background:#FFF8E1;border-left:3px solid #FFC107;font-size:12px;color:var(--ink-gray,#78716C);line-height:1.6;}',
+      '.ov-degraded{padding:16px;text-align:center;color:var(--ink-gray,#78716C);font-size:13px;line-height:1.7;}'
+    ].join('\n');
+    document.head.appendChild(style);
+  },
+
+  /**
+   * 构建 HTML 容器
+   * 替换 #overseas-fees 占位符为完整结构；已构建则跳过
+   */
+  _buildHTML: function () {
+    var mount = document.getElementById('overseas-fees');
+    if (!mount) return;
+    if (document.getElementById('ov-field')) return; // 已构建
+
+    mount.innerHTML = ''
+      + '<div class="ov-calc-block">'
+      + '  <div class="ov-sub-title">海外官费对比</div>'
+      // 技术领域选择
+      + '  <div class="ov-field-group">'
+      + '    <label class="ov-field-label">技术领域</label>'
+      + '    <select class="ov-field-select" id="ov-field">'
+      + '      <option value="">— 请选择技术领域 —</option>'
+      + '      <option value="pharma">医药</option>'
+      + '      <option value="software">软件</option>'
+      + '      <option value="mechanical">机械</option>'
+      + '      <option value="telecom">通信</option>'
+      + '    </select>'
+      + '  </div>'
+      // 策略建议显示区
+      + '  <div class="ov-strategy-box" id="ov-strategy-advice"></div>'
+      // 实体类型选择
+      + '  <div class="ov-field-group">'
+      + '    <label class="ov-field-label">实体类型</label>'
+      + '    <div class="ov-radio-row" id="ov-entity-type">'
+      + '      <div class="ov-radio-item active" data-value="large">大实体</div>'
+      + '      <div class="ov-radio-item ov-entity-optional" data-value="small" style="display:none;">小实体</div>'
+      + '      <div class="ov-radio-item ov-entity-optional" data-value="micro" style="display:none;">微实体</div>'
+      + '    </div>'
+      + '    <div class="ov-entity-hint" id="ov-entity-hint"></div>'
+      + '  </div>'
+      // 国家多选
+      + '  <div class="ov-field-group">'
+      + '    <label class="ov-field-label">选择国家（可多选）</label>'
+      + '    <div class="ov-country-grid" id="ov-country-grid"></div>'
+      + '  </div>'
+      // 费用对比表容器
+      + '  <div id="ov-fee-table"></div>'
+      // 期限提醒
+      + '  <div class="ov-deadline-tip">'
+      + '    <strong>PCT 期限提醒：</strong>优先权日起12个月内提交PCT国际申请；进入国家阶段期限：多数国家30个月，EP/DE/GB等31个月，逾期不可恢复。'
+      + '  </div>'
+      + '</div>';
+
+    this._buildCountryGrid();
+  },
+
+  /**
+   * 构建国家多选网格（10国，不含CN）
+   */
+  _buildCountryGrid: function () {
+    var grid = document.getElementById('ov-country-grid');
+    if (!grid) return;
+    var html = '';
+    for (var i = 0; i < OVERSEAS_COUNTRY_CODES.length; i++) {
+      var code = OVERSEAS_COUNTRY_CODES[i];
+      var name = (typeof getCountryName === 'function') ? getCountryName(code) : code;
+      var flag = COUNTRY_FLAGS[code] || '';
+      html += '<label class="ov-country-item" data-code="' + code + '">'
+        + '<input type="checkbox" value="' + code + '">'
+        + '<span class="ov-country-flag">' + flag + '</span>'
+        + '<span class="ov-country-name">' + this._escapeHtml(name) + '</span>'
+        + '<span class="ov-country-code">' + code + '</span>'
+        + '</label>';
+    }
+    grid.innerHTML = html;
+  },
+
+
+  // ============================================================
+  // 事件绑定
+  // ============================================================
+
+  _bind: function () {
+    var self = this;
+
+    // 技术领域选择 → 策略建议 + 预勾选推荐国家
+    var fieldSel = document.getElementById('ov-field');
+    if (fieldSel) {
+      fieldSel.addEventListener('change', function () {
+        self._onFieldChange(this.value);
+      });
+    }
+
+    // 实体类型 radio
+    var entityWrap = document.getElementById('ov-entity-type');
+    if (entityWrap) {
+      var radios = entityWrap.querySelectorAll('.ov-radio-item');
+      for (var i = 0; i < radios.length; i++) {
+        radios[i].addEventListener('click', function () {
+          self._selectRadio(this, 'ov-entity-type');
+          self._entityType = this.getAttribute('data-value');
+          self.render();
+        });
+      }
+    }
+
+    // 国家 checkbox（事件委托）
+    var grid = document.getElementById('ov-country-grid');
+    if (grid) {
+      grid.addEventListener('change', function (e) {
+        if (e.target.tagName !== 'INPUT' || e.target.type !== 'checkbox') return;
+        var label = e.target.closest('.ov-country-item');
+        if (label) {
+          if (e.target.checked) label.classList.add('checked');
+          else label.classList.remove('checked');
+        }
+        self._syncSelectedFromGrid();
+        self.render();
+      });
+    }
+  },
+
+  /**
+   * 技术领域变更：渲染策略建议，预勾选推荐国家（不含CN）
+   */
+  _onFieldChange: function (field) {
+    this._field = field || '';
+    this._renderStrategy(this._field);
+    if (this._field) {
+      this._selectedCountries = this.recommendCountries(this._field);
+      this._applySelectionToGrid();
+    }
+    this.render();
+  },
+
+  /**
+   * 渲染策略建议到 #ov-strategy-advice
+   */
+  _renderStrategy: function (field) {
+    var box = document.getElementById('ov-strategy-advice');
+    if (!box) return;
+    if (!field) { box.innerHTML = ''; return; }
+    var strat = (typeof getStrategy === 'function') ? getStrategy(field) : null;
+    if (!strat) { box.innerHTML = ''; return; }
+
+    var html = '<div class="ov-strategy-title">' + this._escapeHtml(strat.label) + '领域策略建议</div>';
+    html += '<div class="ov-strategy-advice">' + this._escapeHtml(strat.advice) + '</div>';
+
+    if (strat.recommendedCountries && strat.recommendedCountries.length) {
+      var names = [];
+      for (var i = 0; i < strat.recommendedCountries.length; i++) {
+        var c = strat.recommendedCountries[i];
+        if (c === 'CN') { names.push('中国（国内费用区）'); continue; }
+        names.push((COUNTRY_FLAGS[c] || '') + ' ' + ((typeof getCountryName === 'function') ? getCountryName(c) : c));
+      }
+      html += '<div class="ov-strategy-rec">建议关注：' + names.join('、') + '</div>';
+    }
+    box.innerHTML = html;
+  },
+
+  /**
+   * 把 _selectedCountries 同步到 checkbox 勾选状态与 .checked 样式
+   */
+  _applySelectionToGrid: function () {
+    var checks = document.querySelectorAll('#ov-country-grid input[type=checkbox]');
+    for (var i = 0; i < checks.length; i++) {
+      var on = this._selectedCountries.indexOf(checks[i].value) !== -1;
+      checks[i].checked = on;
+      var label = checks[i].closest('.ov-country-item');
+      if (label) { if (on) label.classList.add('checked'); else label.classList.remove('checked'); }
+    }
+  },
+
+  /**
+   * 从 checkbox 读取勾选状态到 _selectedCountries
+   */
+  _syncSelectedFromGrid: function () {
+    var checks = document.querySelectorAll('#ov-country-grid input[type=checkbox]');
+    var sel = [];
+    for (var i = 0; i < checks.length; i++) {
+      if (checks[i].checked) sel.push(checks[i].value);
+    }
+    this._selectedCountries = sel;
+  },
+
+  /**
+   * 根据是否选了 US，显示/隐藏 small/micro 选项，并在非 US 时回退 large
+   */
+  _updateEntityVisibility: function () {
+    var opts = document.querySelectorAll('#ov-entity-type .ov-entity-optional');
+    var hasUS = this._selectedCountries.indexOf('US') !== -1;
+    for (var i = 0; i < opts.length; i++) {
+      opts[i].style.display = hasUS ? '' : 'none';
+    }
+    var hint = document.getElementById('ov-entity-hint');
+    if (hint) hint.textContent = hasUS ? 'US 小/微实体享减缴，其他国家仍按大实体计' : '';
+
+    // 未选 US 但当前是小/微 → 回退大实体
+    if (!hasUS && this._entityType !== 'large') {
+      this._entityType = 'large';
+      this._selectRadioByValue('ov-entity-type', 'large');
+    }
+  },
+
+  /**
+   * 选中 radio-item：同组移除 .active，当前项加 .active
+   */
+  _selectRadio: function (el, groupId) {
+    var siblings = document.querySelectorAll('#' + groupId + ' .ov-radio-item');
+    for (var i = 0; i < siblings.length; i++) siblings[i].classList.remove('active');
+    el.classList.add('active');
+  },
+
+  _selectRadioByValue: function (groupId, value) {
+    var radios = document.querySelectorAll('#' + groupId + ' .ov-radio-item');
+    for (var i = 0; i < radios.length; i++) {
+      if (radios[i].getAttribute('data-value') === value) radios[i].classList.add('active');
+      else radios[i].classList.remove('active');
+    }
+  },
+
+
+  // ============================================================
+  // 实体类型处理
+  // ============================================================
+
+  /**
+   * 取有效实体：该国 entityTiers 不含该 tier 时回退 large
+   * （US 支持 small/micro，其他国家仅 large）
+   */
+  _effectiveEntity: function (code, entityType) {
+    var country = FEES.countries[code];
+    if (!country || !country.entityTiers) return 'large';
+    if (country.entityTiers[entityType]) return entityType;
+    return 'large';
+  },
+
+  /**
+   * 取实体减缴标签（如"小实体减缴50%"，大实体为空）
+   */
+  _entityLabel: function (code, effEntity) {
+    var country = FEES.countries[code];
+    if (!country || !country.entityTiers || !country.entityTiers[effEntity]) return '';
+    var tier = country.entityTiers[effEntity];
+    if (tier.reduction && tier.reduction > 0) {
+      return tier.label + '减缴' + Math.round(tier.reduction * 100) + '%';
+    }
+    return '';
+  },
+
+
+  // ============================================================
+  // 费用计算
+  // ============================================================
+
+  /**
+   * 计算单国费用（申请到授权）
+   * @param {string} code       - 国家代码如 'US'
+   * @param {string} entityType - 用户选择的实体类型 large/small/micro
+   * @returns {object|null} 对比行对象，该国无发明数据时返回 null
+   *   {
+   *     code, name, flag, currency, rate,
+   *     feeItems: [{ name, amount, url, note }, ...],   // 原币金额
+   *     totalOrig, totalCNY,                             // 首年小计
+   *     maintenanceDesc, perClaimUsed,
+   *     officialUrl, deadline, entityLabel
+   *   }
+   */
+  calcCountry: function (code, entityType) {
+    var country = FEES.countries[code];
+    if (!country) return null;
+    var patent = country.patentTypes && country.patentTypes.invention;
+    if (!patent) return null;
+
+    var currency = country.currency || 'USD';
+    var rate = (FEES.meta && FEES.meta.exchangeRate && FEES.meta.exchangeRate[currency]) || 1;
+    var effEntity = this._effectiveEntity(code, entityType);
+
+    var self = this;
+    var items = [];
+    var totalOrig = 0;
+    var perClaimUsed = false;
+
+    // 添加单项费用：按 effEntity 取 tiers；处理 perClaim（按10项权利要求估算）；
+    // 金额为0且有 note 时跳过
+    function add(name, feeData) {
+      if (!feeData || !feeData.tiers) return;
+      var base = feeData.tiers[effEntity];
+      if (base == null) base = feeData.tiers.large;
+      if (base == null) base = 0;
+      var note = feeData.note || '';
+      var url = feeData.sourceUrl || '';
+      var amount = base;
+      var itemNote = note;
+
+      // perClaim：基础费 + (10-1) × 每项附加费
+      if (feeData.perClaim) {
+        var pc = 0;
+        if (feeData.perClaim.tiers) {
+          pc = feeData.perClaim.tiers[effEntity];
+          if (pc == null) pc = feeData.perClaim.tiers.large;
+          if (pc == null) pc = 0;
+        } else if (typeof feeData.perClaim === 'number') {
+          pc = feeData.perClaim;
+        }
+        if (pc > 0) {
+          amount = base + (10 - 1) * pc;
+          perClaimUsed = true;
+          itemNote = (itemNote ? itemNote + '；' : '') + '按10项权利要求估算';
+        }
+      }
+
+      // 金额为0且有说明 → 不显示该项
+      if (amount === 0 && note) return;
+
+      items.push({ name: name, amount: amount, url: url, note: itemNote });
+      totalOrig += amount;
+    }
+
+    add('申请费', patent.filingFee);
+    add('检索费', patent.searchFee);
+    add('审查费', patent.examFee);
+    add('授权费', patent.grantFee);
+
+    var totalCNY = Math.round(totalOrig * rate);
+
+    return {
+      code: code,
+      name: (typeof getCountryName === 'function') ? getCountryName(code) : code,
+      flag: COUNTRY_FLAGS[code] || '',
+      currency: currency,
+      rate: rate,
+      feeItems: items,
+      totalOrig: totalOrig,
+      totalCNY: totalCNY,
+      maintenanceDesc: this._buildMaintenanceDesc(patent, effEntity, currency),
+      perClaimUsed: perClaimUsed,
+      officialUrl: country.officialUrl || (patent.filingFee && patent.filingFee.sourceUrl) || '',
+      deadline: country.deadline,
+      entityLabel: this._entityLabel(code, effEntity)
+    };
+  },
+
+  /**
+   * 构造维持费说明
+   * - maintenanceFee（US）：维持费 3.5/7.5/11.5年 共XX 原币
+   * - annuity（EP/DE/GB等）：年费 第1档XX原币/年
+   */
+  _buildMaintenanceDesc: function (patent, effEntity, currency) {
+    // US 维持费
+    if (patent.maintenanceFee && patent.maintenanceFee.length) {
+      var mSum = 0;
+      var years = [];
+      for (var i = 0; i < patent.maintenanceFee.length; i++) {
+        var m = patent.maintenanceFee[i];
+        var amt = this._tierValue(m.tiers, effEntity);
+        mSum += amt;
+        if (m.atYear != null) years.push(m.atYear);
+      }
+      var yearStr = years.length ? years.join('/') + '年' : '';
+      return '维持费 ' + yearStr + ' 共' + mSum + ' ' + currency;
+    }
+    // 年费
+    if (patent.annuity && patent.annuity.length) {
+      var first = patent.annuity[0];
+      var amt = this._tierValue(first.tiers, effEntity);
+      var yr = '';
+      if (first.fromYear != null) {
+        yr = first.fromYear + ((first.toYear != null && first.toYear !== first.fromYear) ? '-' + first.toYear : '') + '年';
+      }
+      return '年费 ' + yr + ' ' + amt + ' ' + currency + '/年';
+    }
+    return '—';
+  },
+
+  /**
+   * 从 tiers 取指定实体金额，缺失回退 large
+   */
+  _tierValue: function (tiers, effEntity) {
+    if (!tiers) return 0;
+    var v = tiers[effEntity];
+    if (v == null) v = tiers.large;
+    if (v == null) v = 0;
+    return v;
+  },
+
+  /**
+   * 计算所有选中国家，按首年小计(¥)升序排序
+   * @returns {Array} 对比行对象数组
+   */
+  calcAll: function () {
+    var results = [];
+    for (var i = 0; i < this._selectedCountries.length; i++) {
+      var r = this.calcCountry(this._selectedCountries[i], this._entityType);
+      if (r) results.push(r);
+    }
+    results.sort(function (a, b) { return a.totalCNY - b.totalCNY; });
+    return results;
+  },
+
+  /**
+   * 按技术领域返回推荐国家代码数组（剔除CN，仅保留海外10国）
+   */
+  recommendCountries: function (field) {
+    if (!field) return [];
+    var strat = (typeof getStrategy === 'function') ? getStrategy(field) : null;
+    if (!strat || !strat.recommendedCountries) return [];
+
+    var list = [];
+    for (var i = 0; i < strat.recommendedCountries.length; i++) {
+      var c = strat.recommendedCountries[i];
+      if (c === 'CN') continue; // CN 在国内费用区
+      if (OVERSEAS_COUNTRY_CODES.indexOf(c) === -1) continue;
+      if (list.indexOf(c) === -1) list.push(c);
+    }
+    return list;
+  },
+
+
+  // ============================================================
+  // 渲染
+  // ============================================================
+
+  /**
+   * 渲染对比表到 #ov-fee-table
+   */
+  render: function () {
+    var container = document.getElementById('ov-fee-table');
+    if (!container) return;
+
+    // 同步实体选项可见性
+    this._updateEntityVisibility();
+
+    var results = this.calcAll();
+
+    if (results.length === 0) {
+      container.innerHTML = '<div class="ov-empty">请勾选上方国家进行费用对比<br>（选择技术领域可自动预勾选推荐国家）</div>';
+      return;
+    }
+
+    container.innerHTML = this._buildTableHTML(results);
+    this._bindRowToggle(container);
+  },
+
+  /**
+   * 构建对比表 HTML
+   */
+  _buildTableHTML: function (results) {
+    var html = '<div class="ov-table-wrap"><table class="ov-fee-table">';
+    html += '<thead><tr>';
+    var heads = ['国家', '申请费', '检索费', '审查费', '授权费', '首年小计(原币)', '首年小计(¥)', '维持费说明', '官网'];
+    for (var h = 0; h < heads.length; h++) html += '<th>' + heads[h] + '</th>';
+    html += '</tr></thead><tbody>';
+
+    for (var i = 0; i < results.length; i++) {
+      html += this._buildMainRow(results[i]);
+      html += this._buildDetailRow(results[i]);
+    }
+
+    html += '</tbody></table></div>';
+    return html;
+  },
+
+  _buildMainRow: function (r) {
+    var html = '<tr class="ov-row" data-code="' + r.code + '">';
+
+    // 国家
+    html += '<td class="ov-td-country">';
+    html += '<span class="ov-flag">' + r.flag + '</span>';
+    html += '<span class="ov-cname">' + this._escapeHtml(r.name) + '</span>';
+    if (r.entityLabel) html += '<span class="ov-entity-tag">' + this._escapeHtml(r.entityLabel) + '</span>';
+    html += '</td>';
+
+    // 四项费用
+    var feeKeys = ['申请费', '检索费', '审查费', '授权费'];
+    for (var k = 0; k < feeKeys.length; k++) {
+      var item = this._findItem(r.feeItems, feeKeys[k]);
+      html += '<td class="ov-td-fee">' + (item ? this._formatOrig(item.amount, r.currency) : '—') + '</td>';
+    }
+
+    // 首年小计（原币）
+    html += '<td class="ov-td-fee">' + this._formatOrig(r.totalOrig, r.currency) + '</td>';
+    // 首年小计（人民币）
+    html += '<td class="ov-td-cny">¥' + r.totalCNY.toLocaleString() + '</td>';
+    // 维持费说明
+    html += '<td class="ov-td-maint">' + this._escapeHtml(r.maintenanceDesc);
+    if (r.perClaimUsed) html += '<div class="ov-fee-note">含按10项估算附加费</div>';
+    html += '</td>';
+    // 官网
+    html += '<td class="ov-td-link">';
+    if (r.officialUrl) {
+      html += '<a class="ov-fee-link" href="' + this._escapeHtml(r.officialUrl) + '" target="_blank" rel="noopener">官网</a>';
+    } else {
+      html += '—';
+    }
+    html += '</td>';
+
+    html += '</tr>';
+    return html;
+  },
+
+  /**
+   * 展开明细行：逐项费用金额 + 来源链接 + 实体/期限备注
+   */
+  _buildDetailRow: function (r) {
+    var html = '<tr class="ov-detail" hidden><td colspan="9"><div class="ov-detail-inner">';
+
+    html += '<div class="ov-detail-fees">';
+    for (var i = 0; i < r.feeItems.length; i++) {
+      var item = r.feeItems[i];
+      html += '<div class="ov-detail-fee">';
+      html += '<span class="ov-detail-name">' + this._escapeHtml(item.name) + '</span>';
+      html += '<span class="ov-detail-amt">' + this._formatOrig(item.amount, r.currency) + '</span>';
+      if (item.note) html += '<span class="ov-detail-note">(' + this._escapeHtml(item.note) + ')</span>';
+      if (item.url) html += '<a class="ov-fee-link" href="' + this._escapeHtml(item.url) + '" target="_blank" rel="noopener">来源</a>';
+      html += '</div>';
+    }
+    html += '</div>';
+
+    if (r.entityLabel) {
+      html += '<div class="ov-detail-note-row">' + this._escapeHtml(r.entityLabel) + '</div>';
+    }
+    if (r.deadline) {
+      html += '<div class="ov-detail-note-row">进入国家阶段期限：优先权日起 ' + r.deadline + ' 个月</div>';
+    }
+
+    html += '</div></td></tr>';
+    return html;
+  },
+
+  _findItem: function (items, name) {
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].name === name) return items[i];
+    }
+    return null;
+  },
+
+  _formatOrig: function (amount, currency) {
+    if (amount === 0 || amount == null) return '—';
+    return currency + ' ' + amount.toLocaleString();
+  },
+
+  /**
+   * 行点击展开/收起明细（事件委托，点击链接不触发）
+   */
+  _bindRowToggle: function (container) {
+    container.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return; // 点链接不折叠
+      var row = e.target.closest('.ov-row');
+      if (!row) return;
+      var detail = row.nextElementSibling;
+      if (detail && detail.classList.contains('ov-detail')) {
+        detail.hidden = !detail.hidden;
+        row.classList.toggle('ov-row-open');
+      }
+    });
+  },
+
+  /**
+   * FEES 未定义时的降级提示
+   */
+  _renderDegraded: function () {
+    var mount = document.getElementById('overseas-fees');
+    if (!mount) return;
+    if (document.getElementById('ov-degraded')) return;
+    mount.innerHTML = '<div id="ov-degraded" class="ov-degraded">海外官费数据（FEES）未加载，暂无法对比。<br>请确认 fees.json 已内联为全局变量 FEES。</div>';
+    mount.hidden = false;
+  },
+
+
+  // ============================================================
+  // 工具方法
+  // ============================================================
+
+  _escapeHtml: function (str) {
+    if (str == null) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+};
+
+
+// ============================================================
+// 自动初始化
+// ============================================================
+// 1) window.expandOverseas 已在 skeleton 中改为 switchPage('overseas')
+// 2) switchPage('overseas') 时自动 init OverseasCalc
+// 3) FEES 未定义时不报错（init 内部降级处理）
+(function () {
+  function tryInit() {
+    // 页面初始化时检查 hash，支持直接链接到指定页面
+    var hash = window.location.hash.replace('#', '');
+    var validPages = ['quiz', 'calc', 'overseas'];
+    if (hash && validPages.indexOf(hash) >= 0 && typeof window.switchPage === 'function') {
+      window.switchPage(hash, { skipInit: false });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', tryInit);
+  } else {
+    tryInit();
+  }
+})();
+
+// ============================================================
+// 模块初始化（DOMContentLoaded）
+// ============================================================
+(function () {
+  function bootModules() {
+    // 初始化自测器（skeleton.html 已有此逻辑，此处不重复）
+    // 初始化中国算账
+    if (typeof CNCalc !== "undefined" && CNCalc && typeof CNCalc.init === "function") {
+      try { CNCalc.init(); } catch (e) { console.warn("[CNCalc] init error:", e); }
+    }
+    // 初始化海外算账（在海外区展开时自动init，此处不强制）
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", bootModules);
+  } else {
+    bootModules();
+  }
+})();
+</script>
+
+</body>
+</html>
